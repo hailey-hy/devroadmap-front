@@ -1,4 +1,24 @@
 header{
-    position: fixed;
+    height: 100vh;
     left: 3rem;
+}
+
+.container-header{
+    padding-top: 2rem;
+}
+
+/* 상태 박스 */
+.container-status{
+    position: absolute;
+    top: 2rem;
+    right: 4rem;
+}
+
+#status-d-day{
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+#status-percent{
+    text-align: right;
 }

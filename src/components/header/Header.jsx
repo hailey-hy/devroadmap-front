@@ -1,4 +1,5 @@
 import React from 'react'
+import './header.css'
 
 //메인 페이지 헤더
 
