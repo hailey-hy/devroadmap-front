@@ -1,0 +1,16 @@
+/* 상태 박스 */
+.container-status{
+    position: absolute;
+    top: 2rem;
+    right: 4rem;
+}
+
+#status-d-day{
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+#status-percent{
+    text-align: right;
+}
+
