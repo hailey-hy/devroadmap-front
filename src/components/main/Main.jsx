@@ -1,8 +1,7 @@
 import React from 'react'
 import './main.css'
-import Header from '../header/Header'
 import Status from './Status'
-import Login from './Login'
+import Login from '../login/Login'
 
 const Main = () => {
   return (
