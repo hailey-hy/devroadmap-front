@@ -7,6 +7,7 @@ import Nav from './components/nav/Nav'
 function App() {
   return (
     <>
+      <Header/>
       <Main/>
 
       <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
