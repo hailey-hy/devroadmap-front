@@ -1,21 +1,22 @@
-// 카카오
+//네이버
 import React from 'react'
 
 const href = window.location.href;
 let params = new URL(document.location).searchParams;
 let code = params.get("code");
+let state = params.get("state");
 
-const Kakao = async () => {
+const Naver = async () => {
     try {
       const result = await axios.get(
-        `${KAKAO_AUTH_URL}/api/v1/oauth2/authorization/kakao?code=${code}`
+        `${NAVER_AUTH_URL}/api/v1/oauth2/authorization/naver?code=${code}&state=${state}`
       );
     } catch (error) {
       console.log("error", error);
     }
-  return (
-    result
-  )
+    return (
+        result
+    )
 }
 
-export default Kakao
+export default Naver
