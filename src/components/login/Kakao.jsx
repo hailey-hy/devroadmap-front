@@ -5,10 +5,10 @@ const href = window.location.href;
 let params = new URL(document.location).searchParams;
 let code = params.get("code");
 
-const Kakao = (props) => async () => {
+const Kakao = async () => {
     try {
       const result = await axios.get(
-        `${KAKAO_AUTH_URL}/api/v1/oauth2/authorization/kakao?code=${code}`
+        //`${KAKAO_AUTH_URL}/api/v1/oauth2/authorization/kakao?code=${code}`
       );
     } catch (error) {
       console.log("error", error);
