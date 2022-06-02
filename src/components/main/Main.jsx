@@ -8,7 +8,6 @@ const Main = () => {
     <>
       <section id='main'>
         <Status/>
-        <Login/>
       </section>
     </>
   )

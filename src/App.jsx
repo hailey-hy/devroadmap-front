@@ -1,15 +1,20 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/header/Header';
 import Main from './components/main/Main'
-import Nav from './components/nav/Nav'
+import Login from './components/login/Login';
 
 
 function App() {
   return (
     <>
-      <Header/>
-      <Main/>
-
+      <BrowserRouter>
+        <Header/>
+        <Routes>
+          <Route path='/' element={<Main/>}></Route>
+          <Route path='/login' element={<Login/>}></Route>
+        </Routes>
+      </BrowserRouter>
       <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
       <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js" crossorigin></script>
       <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
