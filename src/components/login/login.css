@@ -18,7 +18,11 @@
 
 .btn-login-select{
     width: 200px;
+    height: 38px;
+    border-radius: 3.5px;
     margin: 0.5rem;
+    text-align: center;
+    background-color: var();
 }
 
 #login-back{

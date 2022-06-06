@@ -113,3 +113,8 @@ a{
 a:hover{
   color: var(--color-black);
 }
+
+button{
+  background-color: var(--color-bg);
+  font-weight: 500;
+}
