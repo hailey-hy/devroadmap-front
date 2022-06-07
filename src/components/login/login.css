@@ -3,7 +3,7 @@
 .container-login{
     position: absolute;
     width: 400px;
-    height: 330px;
+    height: 380px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -16,7 +16,24 @@
     padding: 2rem;
 }
 
-.btn-login-select{
+.login-input{
+    margin: 0.4rem;
+    width: 200px;
+    height: 35px;
+    border: none;
+    border-radius: 3px;
+    padding: 0.4rem;
+
+}
+
+#login-result{
+    height: 40px;
+    align-items: center;
+    justify-items: center;
+    line-height: 3;
+}
+
+.btn-login{
     width: 200px;
     height: 38px;
     border-radius: 3.5px;
@@ -26,6 +43,14 @@
 }
 
 #login-back{
-    margin-top: 1.2rem;
+    margin-top: 1rem;
     font-size: medium;
+}
+
+#login-back:hover{
+    /* margin-top: 1rem;
+    font-size: medium; */
+    color: #bbbbbb;
+    transition: var(--transition);
+
 }

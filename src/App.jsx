@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/header/Header';
-import Main from './components/main/Main'
+import Main from './components/main/Main';
 import Login from './components/login/Login';
+import Join from './components/join/Join';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path='/' isLogin={isLogin} element={<Main/>}></Route>
           <Route path='/login' isLogin={isLogin} element={<Login/>}></Route>
+          <Route path='/join' isLogin={isLogin} element={<Join/>}></Route>
         </Routes>
       </BrowserRouter>
       <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
