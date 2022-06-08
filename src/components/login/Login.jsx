@@ -21,14 +21,14 @@ import axios from 'axios'
 // 	});
 // }
 
-const Login = () => {
+const Login = (props) => {
 
-  const [inputId, setInputId] = useState('')
+  const [inputEmail, setInputEmail] = useState('')
   const [inputPw, setInputPw] = useState('')
   const [result, setResult] = useState('');
 
-  const handleInputId = (e) => {
-    setInputId(e.target.value)
+  const handleInputEmail = (e) => {
+    setInputEmail(e.target.value)
   }
 
   const handleInputPw = (e) => {
@@ -38,16 +38,17 @@ const Login = () => {
   // login 버튼 클릭 이벤트
   const onClickLogin = () => {
     const data = {
-      		inputId,
+      		inputEmail,
       		inputPw,
       	};
       	axios.post('/login', data).then(response => {
       		const { accessToken } = response.data;
       
-      		// API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-      		axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-      
-      		// accessToken을 localStorage, cookie 등에 저장하지 않는다!
+          localStorage.setItem("user", JSON.stringify(accessToken));
+          console.log(localStorage.getItem("user"))
+          
+      		props.loginCallBack(true);
+          props.history.push("/");
       
       	}).catch(error => {
       		console.error(error);
@@ -56,11 +57,9 @@ const Login = () => {
   }
 
   // 페이지 렌더링 후 가장 처음 호출되는 함수
-  // useEffect(() => {
-  //   axios.get('/user_inform/login')
-  //   .then(res => console.log(res))
-  //   .catch()
-  // }, []) 
+  useEffect(()=>{
+    console.log("LoginPage render ... ");
+})
   
   return (
     <div className="container-login">
@@ -69,7 +68,7 @@ const Login = () => {
         <Google></Google> <br></br>
         <Button className="btn-login-select" variant="primary" href={NAVER_AUTH_URL}>NAVER</Button> <br></br>
         <Button className="btn-login-select" variant="primary" href={KAKAO_AUTH_URL}>KAKAO</Button> */}
-        <input className='login-input' type='text' name='input_id' value={inputId} onChange={handleInputId} placeholder='ID'/><br/>
+        <input className='login-input' type='text' name='input_id' value={inputEmail} onChange={handleInputEmail} placeholder='EMAIL'/><br/>
         <input className='login-input' type='password' name='input_pw' value={inputPw} onChange={handleInputPw} placeholder='PW'/><br/>
         <div>
         {/* 로그인 오류 시 오류 메시지 출력 창 */}
@@ -81,4 +80,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
