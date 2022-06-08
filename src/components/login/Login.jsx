@@ -38,32 +38,26 @@ const Login = (props) => {
   // login 버튼 클릭 이벤트
   const onClickLogin = () => {
 
-        axios({
-          method: 'post',
-          url: '/signin',
-          headers: {
-            "Content-Type": "application/text",
-            "userEmail" : email,
-            "userPassword" : password
-          }
-        })
-
-      	// axios.post('/signin', null, {
-        //   'userEmail' : email,
-      	// 	'userPassword' : password
-        // })
-        .then(response => {
-      		const { accessToken } = response.data;
-      
-          localStorage.setItem("user", JSON.stringify(accessToken));
-          console.log(localStorage.getItem("user"));
-      		props.loginCallBack(true);
-          props.history.push("/");
-      
-      	}).catch(error => {
-      		console.error(error);
-          setResult("로그인 실패")
-      	});
+    axios({
+      method: 'post',
+      url: '/signin',
+      headers: {
+        "Content-Type": "application/text",
+        "userEmail" : email,
+        "userPassword" : password
+      }
+    }).then(response => {
+      const { accessToken } = response.data;
+  
+      localStorage.setItem("user", JSON.stringify(accessToken));
+      console.log(localStorage.getItem("user"));
+      props.loginCallBack(true);
+      // props.history.push("/");
+  
+    }).catch(error => {
+      console.error(error);
+      setResult("로그인 실패")
+    });
   }
 
   // 페이지 렌더링 후 가장 처음 호출되는 함수
