@@ -23,30 +23,40 @@ import axios from 'axios'
 
 const Login = (props) => {
 
-  const [inputEmail, setInputEmail] = useState('')
-  const [inputPw, setInputPw] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [result, setResult] = useState('');
 
-  const handleInputEmail = (e) => {
-    setInputEmail(e.target.value)
+  const handleEmail = (e) => {
+    setEmail(e.target.value)
   }
 
-  const handleInputPw = (e) => {
-      setInputPw(e.target.value)
+  const handlePassword = (e) => {
+      setPassword(e.target.value)
   }
 
   // login 버튼 클릭 이벤트
   const onClickLogin = () => {
-    const data = {
-      		inputEmail,
-      		inputPw,
-      	};
-      	axios.post('/login', data).then(response => {
+
+        axios({
+          method: 'post',
+          url: '/signin',
+          headers: {
+            "Content-Type": "application/text",
+            "userEmail" : email,
+            "userPassword" : password
+          }
+        })
+
+      	// axios.post('/signin', null, {
+        //   'userEmail' : email,
+      	// 	'userPassword' : password
+        // })
+        .then(response => {
       		const { accessToken } = response.data;
       
           localStorage.setItem("user", JSON.stringify(accessToken));
-          console.log(localStorage.getItem("user"))
-          
+          console.log(localStorage.getItem("user"));
       		props.loginCallBack(true);
           props.history.push("/");
       
@@ -68,8 +78,8 @@ const Login = (props) => {
         <Google></Google> <br></br>
         <Button className="btn-login-select" variant="primary" href={NAVER_AUTH_URL}>NAVER</Button> <br></br>
         <Button className="btn-login-select" variant="primary" href={KAKAO_AUTH_URL}>KAKAO</Button> */}
-        <input className='login-input' type='text' name='input_id' value={inputEmail} onChange={handleInputEmail} placeholder='EMAIL'/><br/>
-        <input className='login-input' type='password' name='input_pw' value={inputPw} onChange={handleInputPw} placeholder='PW'/><br/>
+        <input className='login-input' type='text' value={email} onChange={handleEmail} placeholder='EMAIL'/><br/>
+        <input className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/><br/>
         <div>
         {/* 로그인 오류 시 오류 메시지 출력 창 */}
           <h6 id='login-result'>{result}</h6> 
