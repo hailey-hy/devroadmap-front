@@ -1,0 +1,51 @@
+.header-wrapper{
+    position: absolute;
+    top: 2rem;
+    left: 3rem;
+}
+
+/* 내브바 여는 아이콘 */
+
+#nav-icon{
+    width: 35px;
+    height: 35px;
+}
+
+#nav-icon:hover{
+    cursor: pointer;
+}
+
+/* 내브바 컨테이너 */
+
+#nav-content{
+    background-color: var(--color-transparent);
+    width: 400px;
+    height: 100vh;
+}
+
+.show-menu{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transition: 1s;
+}
+
+.hide-menu{
+    position: absolute;
+    top: 0px;
+    left: -400px;
+    transition: 1s;
+}
+
+/* 내브바 닫는 아이콘 */
+#nav-cancel{
+    color: var(--color-white);
+    width: 30px;
+    height: 30px;
+    margin-left: 20.5rem;
+    margin-top: 0.5rem;
+}
+
+#nav-cancel:hover{
+    cursor: pointer;
+}

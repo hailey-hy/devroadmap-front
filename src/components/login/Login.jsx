@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button'
 import './login.css'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 // const onLogin = (input_id, input_pw) => {
 // 	const data = {
@@ -35,6 +36,8 @@ const Login = (props) => {
       setPassword(e.target.value)
   }
 
+  const navigate = useNavigate();
+
   // login 버튼 클릭 이벤트
   const onClickLogin = () => {
 
@@ -47,13 +50,12 @@ const Login = (props) => {
         "userPassword" : password
       }
     }).then(response => {
-      const { accessToken } = response.data;
+      console.log(response.data)
   
-      localStorage.setItem("user", JSON.stringify(accessToken));
-      console.log(localStorage.getItem("user"));
-      props.loginCallBack(true);
-      // props.history.push("/");
-  
+      window.localStorage.setItem("user", response.data);
+      console.log(window.localStorage.getItem("user"));
+      navigate('/');
+      
     }).catch(error => {
       console.error(error);
       setResult("로그인 실패")
