@@ -49,3 +49,13 @@
 #nav-cancel:hover{
     cursor: pointer;
 }
+
+/* 회원 정보 수정 탭 */
+.go-tab{
+    margin-top: 2rem;
+    color: var(--color-white);
+}
+
+.go-tab:hover{
+    cursor: pointer;
+}

@@ -65,7 +65,7 @@ const Login = (props) => {
   // 페이지 렌더링 후 가장 처음 호출되는 함수
   useEffect(()=>{
     console.log("LoginPage render ... ");
-})
+}, [])
   
   return (
     <div className="container-login">

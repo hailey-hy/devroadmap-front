@@ -8,20 +8,21 @@ const Header = () => {
 
   const [color, setColor] = useState('black');
 
-  const navOpen = (result) => {
-    if(result){
-      setColor('white');
-    }
-    else{
-      setColor('black');
-    }
-  }
+  // const navOpen = (result) => {
+  //   if(result){
+  //     setColor('white');
+  //   }
+  //   else{
+  //     setColor('black');
+  //   }
+  // }
   
   return (
     <header>
       <div className="container-header">
         <h1 className={color}>(가제)개발 정원</h1>
-        <Nav navOpen= {navOpen}/>
+        {/* <Nav navOpen= {navOpen}/> */}
+        <Nav/>
       </div>
     </header>
   )
