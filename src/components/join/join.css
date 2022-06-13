@@ -1,7 +1,71 @@
 #join-second{
     height: 500px;
+    width: 700px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 #type{
-    width: 200px;
+    width: 260px;
+    margin: 0.4rem;
+}
+
+/* .id-check{
+    position: relative;
+} */
+
+.chunck-container{
+    width: 650px;
+    margin: auto;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.detail-container{
+    margin: 0.8rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-title{
+    font-size: 17px;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-left: 0.3rem;
+    width: 90px;
+}
+
+.detail-container-container{
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.id-check{
+    margin-bottom: 0.18rem;
+}
+
+#go-back{
+    margin-top: 1rem;
+    font-size: medium;
+}
+
+#go-back:hover{
+    color: #bbbbbb;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+#tooltip{
+    left: 0;
+    text-align: left;
 }

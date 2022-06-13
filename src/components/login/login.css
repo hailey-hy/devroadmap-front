@@ -52,5 +52,5 @@
     font-size: medium; */
     color: #bbbbbb;
     transition: var(--transition);
-
+    cursor: pointer;
 }
