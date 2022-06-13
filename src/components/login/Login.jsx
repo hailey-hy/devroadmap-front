@@ -4,10 +4,10 @@ import './login.css'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 
-// const onLogin = (input_id, input_pw) => {
+// const onClickLogin = (email, password) => {
 // 	const data = {
-// 		input_id,
-// 		input_pw,
+// 		email,
+// 		password,
 // 	};
 // 	axios.post('/login', data).then(response => {
 // 		const { accessToken } = response.data;
@@ -45,9 +45,11 @@ const Login = (props) => {
       method: 'post',
       url: '/signin',
       headers: {
-        "Content-Type": "application/text",
-        "userEmail" : email,
-        "userPassword" : password
+        "Content-Type": "application/text"
+      },
+      params: {
+        "email" : email,
+        "password" : password
       }
     }).then(response => {
       console.log(response.data)
@@ -60,6 +62,10 @@ const Login = (props) => {
       console.error(error);
       setResult("로그인 실패")
     });
+  }
+
+  const goJoin = () => {
+    navigate('/signup/mail');
   }
 
   // 페이지 렌더링 후 가장 처음 호출되는 함수
@@ -81,7 +87,7 @@ const Login = (props) => {
           <h6 id='login-result'>{result}</h6> 
         </div>
         <Button className='btn-login' onClick={onClickLogin}>로그인</Button>
-        <a href="/join"><h5 id='login-back'>회원가입</h5></a>
+        <h5 id='login-back' onClick={goJoin}>회원가입</h5>
     </div>
   )
 }
