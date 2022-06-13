@@ -5,11 +5,14 @@ import Main from './components/main/Main';
 import Login from './components/login/Login';
 import Join from './components/join/Join';
 import Edit from './components/edit/Edit';
+import JoinMail from './components/join/JoinMail';
+import { userInfo } from './util/userInfo';
 
 
 function App() {
 
-  
+  userInfo();
+
 
   return (
     <div className="App">
@@ -19,7 +22,8 @@ function App() {
           <Route path='/' element={<Main/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
           {/* <Route path='/login' render={(props)=> <Login {...props} loginCallBack={loginCallBack}/>}></Route> */}
-          <Route path='/join' element={<Join/>}></Route>
+          <Route path='/signup' element={<Join/>}></Route>
+          <Route path='/signup/mail' element={<JoinMail/>}></Route>
           <Route path='/edit' element={<Edit/>}></Route>
         </Routes>
       </BrowserRouter>

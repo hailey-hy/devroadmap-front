@@ -59,3 +59,7 @@
 .go-tab:hover{
     cursor: pointer;
 }
+
+#user-delete{
+    margin-top: 2rem;
+}

@@ -65,8 +65,9 @@ const Nav = (props) => {
           toggleMenu()
         }}>회원 정보 수정</h3>
         {/* </div> */}
-        
+        <Button id="user-delete" variant='warning'>회원 탈퇴</Button>
       </ul>
+
     </nav>  
   )}
 
@@ -78,7 +79,7 @@ const Nav = (props) => {
       </ul>
       <ul id='nav-content' className={isOpen ? "show-menu" : "hide-menu"}>
         <IoClose id='nav-cancel' onClick={() => toggleMenu()}/>
-        <Button nClick={() => {
+        <Button onClick={() => {
             goLogin()
             toggleMenu()
           }}>로그인</Button>
