@@ -24,7 +24,7 @@ const Nav = (props) => {
   }
 
   const goLogin = () => {
-    navigate('/login');
+    navigate('/signin');
   }
 
   const goMain = () => {

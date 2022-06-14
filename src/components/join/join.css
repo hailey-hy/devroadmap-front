@@ -23,12 +23,13 @@
     grid-template-columns: 1fr 1fr;
     justify-content: center;
     align-content: center;
-    align-items: center;
+    align-items: start;
     justify-items: center;
 }
 
 .detail-container{
     margin: 0.8rem;
+    width: 300px;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -40,7 +41,7 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    margin-left: 0.3rem;
+    margin-left: 1.4rem;
     width: 90px;
 }
 
@@ -52,6 +53,33 @@
 
 .id-check{
     margin-bottom: 0.18rem;
+}
+
+.img-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 1rem;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-left: 2rem;
+    margin-top: 0.4rem;
+}
+
+#img-upload{
+    width: 200px;
+    height: 30px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.img-box{
+    width: 70px;
+    height: 70px;
+    border: 1px solid;
+    border-color: var(--color-white);
+    background-size: cover;
 }
 
 #go-back{

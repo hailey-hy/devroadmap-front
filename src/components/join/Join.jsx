@@ -3,14 +3,13 @@ import {Button, ButtonGroup, ToggleButton, Tooltip, OverlayTrigger} from 'react-
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import './join.css'
+import { nicknameCheck } from '../../util/nicknameCheck';
 import {BiInfoCircle} from 'react-icons/bi'
 
 const Join = (props) => {
   const [nickname, setNickname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [type, setType] = useState('')
-  const [field, setField] = useState('')
 
   const handleNickname = (e) => {
     setNickname(e.target.value)
@@ -24,22 +23,31 @@ const Join = (props) => {
       setPassword(e.target.value)
   }
 
-// 공부 시간
+//프로필 사진
 
-const [radioValue, setRadioValue] = useState('1');
+  const [files, setFiles] = useState('');
 
-const radios = [
-  { name: '8시간', value: '8시간' },
-  { name: '4시간', value: '4시간' },
-  { name: '2시간', value: '2시간' },
-];
+  const onLoadFile = (e) => {
+    const file = e.target.files;
+    setFiles(file);
+  }
+
+// 공부 시간 (사용 중지)
+
+// const [radioValue, setRadioValue] = useState('1');
+
+// const radios = [
+//   { name: '8시간', value: '8시간' },
+//   { name: '4시간', value: '4시간' },
+//   { name: '2시간', value: '2시간' },
+// ];
 
 //공부 유형
 const [radioSecValue, setRadioSecValue] = useState('1');
 
 const radiosSec = [
-  { name: 'Front', value: 'Front' },
-  { name: 'Back', value: 'Back' }
+  { name: 'front', value: 'front' },
+  { name: 'back', value: 'back' }
 ];
 //   const handleType = (e) => {
 //     setType(e.target.value)
@@ -56,32 +64,67 @@ const renderTooltip = (props) => (
   </Tooltip>
 );
 
+//뒤로 가기 
   const navigate = useNavigate();
+  const goBack = () => {
+    navigate('/signin');
+  }
 
+  //회원가입 버튼
   const onClickJoin = () => {
+
+    if(nickCheck == true){
+    console.log(radioSecValue);
+    console.log(files[0]);
+    const formdata = new FormData();
+    formdata.append('uploadImage', files[0]);
+    console.log(formdata);
+
     axios({
       method: 'post',
       url: '/signup',
       headers: {
         "Content-Type": "application/text",
+        // "Content-Type": "multipart/form-data"
       },
       params: {
         "nickname" : nickname,
         "email" : email,
         "password" : password,
-        "profile" : radioValue,
+        "profile" : formdata,
         "field" : radioSecValue
       }
     }).then(response => {
-      navigate('/login');
+      navigate('/signin');
     }).catch(err => {
       console.error(err);
-    })
+    });
+  }
   }
 
-  const goBack = () => {
-    navigate('/login');
+  //프로필 사진 미리보기
+  useEffect(() => {
+    preview();
+
+    return () => preview();
+  });
+
+  const preview = () => {
+    if (!files) return false;
+
+    const imgEL = document.querySelector('.img-box');
+    const reader = new FileReader();
+
+    reader.onload = () => (
+      imgEL.style.backgroundImage = `url(${reader.result})`
+    );
+
+    reader.readAsDataURL(files[0]);
   }
+
+
+  //중복 확인 관련
+  const [nickCheck, setNickCheck] = useState(true);
 
   return (
     <div id="join-second" className="container-login">
@@ -119,6 +162,12 @@ const renderTooltip = (props) => (
         
         <div>
         <div className="detail-container">
+          <h5 className='detail-title'>프로필 사진</h5>
+            <form className='img-container'>
+              <div className="img-box"></div>
+              <input id="img-upload" type="file" accept='image/*' onChange={onLoadFile}/>
+            </form>
+          {/* 공부 유형 (사용 중지)
           <OverlayTrigger
             placement="top"
             delay={{ show: 250, hide: 400 }}
@@ -142,7 +191,7 @@ const renderTooltip = (props) => (
                 {radio.name}
               </ToggleButton>
             ))}
-          </ButtonGroup>
+          </ButtonGroup> */}
         </div>
         
         <div className="detail-container">

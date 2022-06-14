@@ -20,7 +20,7 @@ function App() {
         <Header/>
         <Routes>
           <Route path='/' element={<Main/>}></Route>
-          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/signin' element={<Login/>}></Route>
           {/* <Route path='/login' render={(props)=> <Login {...props} loginCallBack={loginCallBack}/>}></Route> */}
           <Route path='/signup' element={<Join/>}></Route>
           <Route path='/signup/mail' element={<JoinMail/>}></Route>

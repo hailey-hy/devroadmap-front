@@ -7,7 +7,7 @@ export const loginCheck = () => {
     
     useEffect(() => {
         if (! window.localStorage.getItem("user")) {
-        navigate('/login');
+        navigate('/signin');
     }
     });
 }
