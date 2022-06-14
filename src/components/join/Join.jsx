@@ -59,22 +59,23 @@ const renderTooltip = (props) => (
   const navigate = useNavigate();
 
   const onClickJoin = () => {
-
     axios({
       method: 'post',
       url: '/signup',
       headers: {
         "Content-Type": "application/text",
       },
-      param: {
+      params: {
         "nickname" : nickname,
         "email" : email,
         "password" : password,
-        "type" : radioValue,
+        "profile" : radioValue,
         "field" : radioSecValue
       }
     }).then(response => {
       navigate('/login');
+    }).catch(err => {
+      console.error(err);
     })
   }
 
