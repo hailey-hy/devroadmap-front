@@ -76,6 +76,8 @@
   --container-width-ms: 90%;
 
   --transition: all 400ms ease;
+
+  --basic-profile: 'src/assets/basic-profile.png';
 }
 
 html{
