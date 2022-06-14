@@ -115,11 +115,13 @@ const renderTooltip = (props) => (
     const imgEL = document.querySelector('.img-box');
     const reader = new FileReader();
 
-    reader.onload = () => (
-      imgEL.style.backgroundImage = `url(${reader.result})`
-    );
-
+    reader.onload = () => {
+        imgEL.style.backgroundImage = `url(${reader.result})`
+    };
+    console.log(reader)
+    if(files[0] != null){
     reader.readAsDataURL(files[0]);
+    }
   }
 
 
