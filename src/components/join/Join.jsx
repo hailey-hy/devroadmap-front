@@ -117,6 +117,24 @@ const renderTooltip = (props) => (
   }
   }
 
+  //중복 확인 관련
+  const [nickCheck, setNickCheck] = useState(true);
+  const [pwCheck, setPwCheck] = useState(false);
+  const [pwDoubleCheck, setPwDoubleCheck] = useState(false);
+  
+  //비밀번호 자리 수 확인
+  const onClickPwDoubleCheck = () => {
+    if(password == passwordCheck){
+      setPwDoubleCheck(true);
+    }
+  }
+
+  // 경고창 관련
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   //프로필 사진 미리보기
   useEffect(() => {
     preview();
@@ -137,26 +155,6 @@ const renderTooltip = (props) => (
     reader.readAsDataURL(files[0]);
     }
   }
-
-
-  //중복 확인 관련
-  const [nickCheck, setNickCheck] = useState(true);
-  const [pwCheck, setPwCheck] = useState(false);
-  const [pwDoubleCheck, setPwDoubleCheck] = useState(false);
-  
-  //비밀번호 자리 수 확인
-  const onClickPwDoubleCheck = () => {
-    if(password == passwordCheck){
-      setPwDoubleCheck(true);
-    }
-  }
-
-  // 경고창 관련
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
 
   return (
     <div id="join-second" className="container-login">
