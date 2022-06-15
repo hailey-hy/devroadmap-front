@@ -5,7 +5,7 @@ import './edit.css'
 
 const Edit = () => {
   return (
-    <div>Edit</div>
+    <div className='container-white'>Edit</div>
   )
 }
 

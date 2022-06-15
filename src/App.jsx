@@ -12,7 +12,7 @@ import { userInfo } from './util/userInfo';
 function App() {
 
   userInfo();
-
+  const [userEmail, setUserEmail] = useState('');
 
   return (
     <div className="App">

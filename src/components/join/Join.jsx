@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Button, ButtonGroup, ToggleButton, Tooltip, OverlayTrigger} from 'react-bootstrap'
+import {Button, ButtonGroup, ToggleButton, Tooltip, OverlayTrigger, Modal} from 'react-bootstrap'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import './join.css'
@@ -10,6 +10,7 @@ const Join = (props) => {
   const [nickname, setNickname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [passwordCheck, setPasswordCheck] = useState('')
 
   const handleNickname = (e) => {
     setNickname(e.target.value)
@@ -20,8 +21,21 @@ const Join = (props) => {
   }
 
   const handlePassword = (e) => {
+      const alertMsg = document.querySelector('#pw-alert');
       setPassword(e.target.value)
+      if (password.length >= 4 && password.length < 12) {
+        setPwCheck(true);
+        alertMsg.innerHTML = '';
+      } else {
+        setPwCheck(false);
+        alertMsg.innerHTML = '4자리 이상 12자리 이하';
+      } 
+      
   }
+
+  const handlePasswordCheck = (e) => {
+    setPasswordCheck(e.target.value)
+}
 
 //프로필 사진
 
@@ -72,13 +86,11 @@ const renderTooltip = (props) => (
 
   //회원가입 버튼
   const onClickJoin = () => {
-
-    if(nickCheck == true){
+    //닉네임 중복, 비밀번호 자리수, 비밀번호 확인 여부
+    if(nickCheck == true && pwCheck == true && pwDoubleCheck == true){
     console.log(radioSecValue);
-    console.log(files[0]);
     const formdata = new FormData();
     formdata.append('uploadImage', files[0]);
-    console.log(formdata);
 
     axios({
       method: 'post',
@@ -99,6 +111,9 @@ const renderTooltip = (props) => (
     }).catch(err => {
       console.error(err);
     });
+  } else {
+    handleShow();
+    
   }
   }
 
@@ -118,7 +133,6 @@ const renderTooltip = (props) => (
     reader.onload = () => {
         imgEL.style.backgroundImage = `url(${reader.result})`
     };
-    console.log(reader)
     if(files[0] != null){
     reader.readAsDataURL(files[0]);
     }
@@ -127,6 +141,22 @@ const renderTooltip = (props) => (
 
   //중복 확인 관련
   const [nickCheck, setNickCheck] = useState(true);
+  const [pwCheck, setPwCheck] = useState(false);
+  const [pwDoubleCheck, setPwDoubleCheck] = useState(false);
+  
+  //비밀번호 자리 수 확인
+  const onClickPwDoubleCheck = () => {
+    if(password == passwordCheck){
+      setPwDoubleCheck(true);
+    }
+  }
+
+  // 경고창 관련
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   return (
     <div id="join-second" className="container-login">
@@ -153,10 +183,13 @@ const renderTooltip = (props) => (
 
             {/* 비밀번호 */}
             <div className="detail-container">
-              <h5 className='detail-title'>비밀번호</h5>
-              
-                <input className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/>
-                <Button className='id-check' variant="primary">확인</Button>
+              <div id="detail-pw">
+                <h5 className='detail-title pw'>비밀번호</h5>
+                <h5 className='pw' id='pw-alert'></h5>
+              </div>
+                <input id='input-pw' className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/>
+                <input className='login-input' type='password' value={passwordCheck} onChange={handlePasswordCheck} placeholder='PW CHECK'/>
+                <Button className='id-check' variant="primary" onClick={onClickPwDoubleCheck}>확인</Button>
               
             </div>
           </div>
@@ -221,7 +254,18 @@ const renderTooltip = (props) => (
         <Button className='btn-login' onClick={onClickJoin}>회원 가입</Button>
         <h5 id='go-back' onClick={goBack}>뒤로 가기</h5>
 
-      
+        {/* 경고창 */}
+        <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>회원가입 양식 미완성!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>완료되지 않은 항목이 있어요. <br/> 정상적인 회원가입을 위해 모든 항목을 완료해 주세요.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            닫기
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   )
 }

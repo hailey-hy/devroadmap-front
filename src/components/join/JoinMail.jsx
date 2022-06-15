@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import './join.css'
 
-const JoinMail = () => {
+const JoinMail = (props) => {
 
     // 이메일 입력 관련 변수 및 함수
     const [email, setEmail] = useState('')
