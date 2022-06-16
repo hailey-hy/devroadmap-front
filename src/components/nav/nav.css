@@ -21,6 +21,7 @@
     background-color: var(--color-transparent);
     width: 400px;
     height: 100vh;
+    z-index: 1000;
 }
 
 .show-menu{
@@ -28,6 +29,7 @@
     left: 0px;
     top: 0px;
     transition: 1s;
+    z-index: 1000;
 }
 
 .hide-menu{
@@ -35,6 +37,7 @@
     top: 0px;
     left: -400px;
     transition: 1s;
+    z-index: 1000;
 }
 
 /* 내브바 닫는 아이콘 */
