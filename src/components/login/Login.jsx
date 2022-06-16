@@ -45,14 +45,15 @@ const Login = (props) => {
       method: 'post',
       url: '/signin',
       headers: {
-        "Content-Type": "application/text"
+        "Content-Type": "application/text",
+        "jwtToken": ""
       },
       params: {
         "email" : email,
         "password" : password
       }
     }).then(response => {
-      console.log(response.data)
+      console.log(response.headers['jwtToken'])
   
       window.localStorage.setItem("user", response.data);
       console.log(window.localStorage.getItem("user"));
