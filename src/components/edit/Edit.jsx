@@ -90,7 +90,7 @@ const Edit = () => {
       url: '/edit/nickname/check',
       headers: {
         "Content-Type": "application/text",
-        "Authorization": "Bearer" + localStorage.getItem("user")
+        "Authorization": "Bearer " + localStorage.getItem("user")
         // "Content-Type": "multipart/form-data"
       },
       params: {
@@ -139,6 +139,7 @@ const Edit = () => {
       url: '/edit/userdetatils',
       headers: {
         "Content-Type": "application/text",
+        "Authorization": "Bearer " + localStorage.getItem("user")
         // "Content-Type": "multipart/form-data"
       },
       params: {
