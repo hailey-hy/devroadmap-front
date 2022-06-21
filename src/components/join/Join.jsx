@@ -39,12 +39,12 @@ const Join = (props) => {
 
 //프로필 사진
 
-  const [files, setFiles] = useState('');
+  // const [files, setFiles] = useState('');
 
-  const onLoadFile = (e) => {
-    const file = e.target.files;
-    setFiles(file);
-  }
+  // const onLoadFile = (e) => {
+  //   const file = e.target.files;
+  //   setFiles(file);
+  // }
 
 // 공부 시간 (사용 중지)
 
@@ -89,8 +89,6 @@ const renderTooltip = (props) => (
     //닉네임 중복, 비밀번호 자리수, 비밀번호 확인 여부
     if(nickCheck == true && pwCheck == true && pwDoubleCheck == true){
     console.log(radioSecValue);
-    const formdata = new FormData();
-    formdata.append('uploadImage', files[0]);
 
     axios({
       method: 'post',
@@ -103,7 +101,6 @@ const renderTooltip = (props) => (
         "nickname" : nickname,
         "email" : email,
         "password" : password,
-        "profile" : formdata,
         "field" : radioSecValue
       }
     }).then(response => {
@@ -136,25 +133,25 @@ const renderTooltip = (props) => (
   const handleShow = () => setShow(true);
 
   //프로필 사진 미리보기
-  useEffect(() => {
-    preview();
+  // useEffect(() => {
+  //   preview();
 
-    return () => preview();
-  });
+  //   return () => preview();
+  // });
 
-  const preview = () => {
-    if (!files) return false;
+  // const preview = () => {
+  //   if (!files) return false;
 
-    const imgEL = document.querySelector('.img-box');
-    const reader = new FileReader();
+  //   const imgEL = document.querySelector('.img-box');
+  //   const reader = new FileReader();
 
-    reader.onload = () => {
-        imgEL.style.backgroundImage = `url(${reader.result})`
-    };
-    if(files[0] != null){
-    reader.readAsDataURL(files[0]);
-    }
-  }
+  //   reader.onload = () => {
+  //       imgEL.style.backgroundImage = `url(${reader.result})`
+  //   };
+  //   if(files[0] != null){
+  //   reader.readAsDataURL(files[0]);
+  //   }
+  // }
 
   return (
     <div id="join-second" className="container-login">
