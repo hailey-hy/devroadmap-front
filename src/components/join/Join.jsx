@@ -169,16 +169,33 @@ const renderTooltip = (props) => (
                 <Button className='id-check' variant="primary">확인</Button>
               
             </div>
-
-            {/* 이메일 */}
             <div className="detail-container">
+                <h5 className='detail-title'>공부 분야</h5>
+                <ButtonGroup id="type" className="mb-2">
+                {radiosSec.map((radioSec, idx) => (
+                  <ToggleButton
+                    key={idx}
+                    id={`radioSec-${idx}`}
+                    type="radio"
+                    variant="primary"
+                    name="radioSec"
+                    value={radioSec.value}
+                    checked={radioSecValue === radioSec.value}
+                    onChange={(e) => setRadioSecValue(e.currentTarget.value)}
+                  >
+                    {radioSec.name}
+                  </ToggleButton>
+                ))}
+                </ButtonGroup>
+            </div>
+          </div>
+        <div>
+          {/* 이메일 */}
+          <div className="detail-container">
               <h5 className='detail-title'>이메일</h5>
-              
                 <input className='login-input' type='text' value={email} onChange={handleEmail} placeholder='EMAIL'/>
                 <Button className='id-check' variant="primary">확인</Button>
-              
             </div>
-
             {/* 비밀번호 */}
             <div className="detail-container">
               <div id="detail-pw">
@@ -188,67 +205,10 @@ const renderTooltip = (props) => (
                 <input id='input-pw' className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/>
                 <input className='login-input' type='password' value={passwordCheck} onChange={handlePasswordCheck} placeholder='PW CHECK'/>
                 <Button className='id-check' variant="primary" onClick={onClickPwDoubleCheck}>확인</Button>
-              
             </div>
-          </div>
-        {/* <input className='login-input' type='text' value={type} onChange={handleType} placeholder='Type'/><br/> */}
+        </div>
+      </div>
         
-        <div>
-        <div className="detail-container">
-          <h5 className='detail-title'>프로필 사진</h5>
-            <form className='img-container'>
-              <div className="img-box"></div>
-              <input id="img-upload" type="file" accept='image/*' onChange={onLoadFile}/>
-            </form>
-          {/* 공부 유형 (사용 중지)
-          <OverlayTrigger
-            placement="top"
-            delay={{ show: 250, hide: 400 }}
-            overlay={renderTooltip}
-            id='tooltip'
-          >
-            <h5 className='detail-title'>공부 유형 <BiInfoCircle/></h5>
-          </OverlayTrigger>
-            <ButtonGroup id="type" className="mb-2">
-            {radios.map((radio, idx) => (
-              <ToggleButton
-                key={idx}
-                id={`radio-${idx}`}
-                type="radio"
-                variant="primary"
-                name="radio"
-                value={radio.value}
-                checked={radioValue === radio.value}
-                onChange={(e) => setRadioValue(e.currentTarget.value)}
-              >
-                {radio.name}
-              </ToggleButton>
-            ))}
-          </ButtonGroup> */}
-        </div>
-        
-        <div className="detail-container">
-          <h5 className='detail-title'>공부 분야</h5>
-            <ButtonGroup id="type" className="mb-2">
-            {radiosSec.map((radioSec, idx) => (
-              <ToggleButton
-                key={idx}
-                id={`radioSec-${idx}`}
-                type="radio"
-                variant="primary"
-                name="radioSec"
-                value={radioSec.value}
-                checked={radioSecValue === radioSec.value}
-                onChange={(e) => setRadioSecValue(e.currentTarget.value)}
-              >
-                {radioSec.name}
-              </ToggleButton>
-            ))}
-          </ButtonGroup>
-        </div>
-        </div>
-        </div>
-        {/* <input className='login-input' type='text' value={field} onChange={handleField} placeholder='Field'/><br/> */}
         <Button className='btn-login' onClick={onClickJoin}>회원 가입</Button>
         <h5 id='go-back' onClick={goBack}>뒤로 가기</h5>
 

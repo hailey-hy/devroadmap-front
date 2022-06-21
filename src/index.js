@@ -6,5 +6,5 @@ import axios from 'axios'
 
 ReactDOM.render(<App/>, document.querySelector('#root'))
 
-axios.defaults.baseURL = "http://43.200.80.56:8080";
+axios.defaults.baseURL = "http://localhost:8080";
 axios.defaults.withCredentials = true;
