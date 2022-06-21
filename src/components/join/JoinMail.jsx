@@ -11,7 +11,7 @@ const JoinMail = (props) => {
     const handleEmail = (e) => {
         setEmail(e.target.value)
       }
-
+      
     // 이메일 인증 버튼 클릭시 작동 함수
     const onClickJoinMail = () => {
         axios({
