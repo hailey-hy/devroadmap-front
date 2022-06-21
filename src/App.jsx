@@ -7,6 +7,7 @@ import Join from './components/join/Join';
 import Edit from './components/edit/Edit';
 import JoinMail from './components/join/JoinMail';
 import { userInfo } from './util/userInfo';
+import Record from './components/record/Record';
 
 
 function App() {
@@ -19,12 +20,13 @@ function App() {
       <BrowserRouter>
         <Header/>
         <Routes>
-          <Route path='/' element={<Main/>}></Route>
-          <Route path='/signin' element={<Login/>}></Route>
+          <Route path='/' element={<Main/>}/>
+          <Route path='/signin' element={<Login/>}/>
           {/* <Route path='/login' render={(props)=> <Login {...props} loginCallBack={loginCallBack}/>}></Route> */}
-          <Route path='/signup' element={<Join/>}></Route>
-          <Route path='/signup/mail' element={<JoinMail/>}></Route>
-          <Route path='/edit' element={<Edit/>}></Route>
+          <Route path='/signup' element={<Join/>}/>
+          <Route path='/signup/mail' element={<JoinMail/>}/>
+          <Route path='/edit' element={<Edit/>}/>
+          <Route path='/record' element={<Record/>}/>
         </Routes>
       </BrowserRouter>
       <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>

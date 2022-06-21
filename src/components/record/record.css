@@ -1,0 +1,42 @@
+.record-bubble {
+    width: 500px;
+    height: 70px;
+	position: relative;
+	background: #ededed;
+	border-radius: .4em;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.record-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 9px solid transparent;
+	border-right-color: #ededed;
+	border-left: 0;
+	margin-top: -9px;
+	margin-left: -9px;
+}
+
+.container-content{
+    display: grid;
+    grid-template-columns: 0.6fr 0.6fr 3fr;
+}
+
+.container-bubble{
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding-top: 1.5rem;
+}
+
+.record-date{
+    border-right: 1px solid black;
+}

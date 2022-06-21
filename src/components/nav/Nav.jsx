@@ -39,6 +39,10 @@ const Nav = (props) => {
     navigate('/')
   }
 
+  const goRecord = () => {
+    navigate('/record')
+  }
+
   if(localStorage.getItem("user")){
   return (
     <nav>
@@ -57,13 +61,18 @@ const Nav = (props) => {
             toggleMenu()
           }}>메인</h3>
         <h3 class='go-tab' onClick={() => {
-          goMain()
+          goRoadmap()
           toggleMenu()
         }}>로드맵</h3>
         <h3 class='go-tab' onClick={() => {
           goEdit()
           toggleMenu()
         }}>회원 정보 수정</h3>
+        <h3 class='go-tab' onClick={() => {
+          goRecord()
+          toggleMenu()
+        }}>정원 기록</h3>
+
         {/* </div> */}
         <Button id="user-delete" variant='warning'>회원 탈퇴</Button>
       </ul>
