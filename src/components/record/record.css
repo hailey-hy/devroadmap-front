@@ -1,3 +1,9 @@
+
+#container-records{
+    height: 255px;
+}
+
+/* 말풍선 내부 */
 .record-bubble {
     width: 500px;
     height: 70px;
@@ -29,7 +35,6 @@
     grid-template-columns: 0.6fr 0.6fr 3fr;
     margin-bottom: 1.5rem;
 }
-
 .container-bubble{
     display: grid;
     grid-template-columns: 1.5fr 3fr;
@@ -41,4 +46,10 @@
 
 .record-date{
     border-right: 1px solid black;
+}
+
+/* 페이지네이션 바 */
+.pagination{
+    justify-content: center;
+    margin-top: 3rem;
 }
