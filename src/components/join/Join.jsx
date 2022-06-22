@@ -21,14 +21,14 @@ const Join = (props) => {
   }
 
   const handlePassword = (e) => {
-      const alertMsg = document.querySelector('#pw-alert');
+      const pwAlertMsg = document.querySelector('#pw-alert');
       setPassword(e.target.value)
       if (password.length >= 4 && password.length < 12) {
         setPwCheck(true);
-        alertMsg.innerHTML = '';
+        pwAlertMsg.innerHTML = '';
       } else {
         setPwCheck(false);
-        alertMsg.innerHTML = '4자리 이상 12자리 이하';
+        pwAlertMsg.innerHTML = '4자리 이상 12자리 이하';
       } 
       
   }
@@ -118,6 +118,26 @@ const renderTooltip = (props) => (
   const [nickCheck, setNickCheck] = useState(true);
   const [pwCheck, setPwCheck] = useState(false);
   const [pwDoubleCheck, setPwDoubleCheck] = useState(false);
+
+  //닉네임 중복 확인 관련
+  const nickServerCheck = () => {
+    const idAlertMsg = document.querySelector('#nick-alert');
+    axios({
+      method: 'get',
+      url: '/signup/nickname/',
+      params: {
+        "nickname" : nickname}
+    }).then((response) => {
+      if(response.data == 'ok'){
+      setNickCheck(true);
+      idAlertMsg.innerHTML = '사용할 수 있는 닉네임입니다.'
+      } else {
+        idAlertMsg.innerHTML = '사용할 수 없는 닉네임입니다.'
+      }
+    }).catch((err) => {
+      console.error(err)
+    })
+  }
   
   //비밀번호 자리 수 확인
   const onClickPwDoubleCheck = () => {
@@ -160,10 +180,12 @@ const renderTooltip = (props) => (
           <div>
             {/* 닉네임 */}
             <div className="detail-container">
-              <h5 className='detail-title'>닉네임</h5>
-              
+              <div id="detail-pw">
+                <h5 className='detail-title'>닉네임</h5>
+                <h5 id='nick-alert'></h5>
+              </div>
                 <input className='login-input' type='text' value={nickname} onChange={handleNickname} placeholder='NICKNAME'/>
-                <Button className='id-check' variant="primary">확인</Button>
+                <Button className='id-check' variant="primary" onClick={nickServerCheck}>확인</Button>
               
             </div>
             <div className="detail-container">
