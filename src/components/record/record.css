@@ -7,7 +7,7 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    margin-bottom: 2rem;
+    
 }
 
 .record-bubble:after {
@@ -27,6 +27,7 @@
 .container-content{
     display: grid;
     grid-template-columns: 0.6fr 0.6fr 3fr;
+    margin-bottom: 1.5rem;
 }
 
 .container-bubble{

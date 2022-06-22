@@ -1,48 +1,56 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import './record.css'
-
+import Bubbles from './Bubbles';
+import paginationBasic from './PaginationBasic';
+import { Pagination } from 'react-bootstrap';
 
 
 const Record = () => {
-
-    const bubble = () => {
-    }
-    
-    // const insertBubble = () => {
-    //     const container = document.getElementById('container-bubble');
-    //     container.innerHTML = {bubble};
-    // }
-    
-    // insertBubble();
     
     const [record, setRecord] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordPerPage, setRecordPerPage] = useState(3);
     
     useEffect(() => {
+        setLoading(true);
         axios({
             method: 'get',
             url: 'https://jsonplaceholder.typicode.com/users'
         }).then((response)=> {
             setRecord(response.data);
+            setLoading(false);
         })
     
     }, []);
 
+
+    // 페이지네이션
+    const indexOfLast = currentPage * recordPerPage;
+    const indexOfFirst = indexOfLast - recordPerPage;
+    const currentRecord = (record) => {
+      let currentRecord = 0;
+      currentRecord = record.slice(indexOfFirst, indexOfLast);
+      return currentRecord;
+    };
+    const totalrecord = record.length;
+
+    let active = 1;
+    let items = [];
+    for (let number = 1; number <= Math.ceil(record.length / recordPerPage); number++) {
+    items.push(
+        <Pagination.Item key={number} active={number === active} onClick={() => setCurrentPage(number)}>
+        {number}
+        </Pagination.Item>,
+    );
+    }   
+
   return (
     <div className='container-white container'>
         <h3 id="white-title">정원 기록</h3>
-        {record.map(record => (
-            <div className="container-content">
-                <div></div>
-                <div></div>
-                <div className="record-bubble">
-                    <div className='container-bubble'>
-                        <h5 className='record-date'>{record.id}</h5>
-                        <h5 className='record-subject'>{record.name}</h5>
-                    </div>
-                </div>
-            </div>
-        ))}
+        <Bubbles record={currentRecord(record)} loading={loading}></Bubbles>
+        <Pagination>{items}</Pagination>
     </div>
   )
 }
