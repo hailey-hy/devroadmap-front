@@ -6,7 +6,7 @@ import { loginCheck } from '../../util/loginCheck'
 
 const Main = () => {
   
-  loginCheck();
+  // loginCheck();
 
   return (
     <>

@@ -1,4 +1,15 @@
-#Roadmap{
+#roadmap{
     height: 100vh;
     transition: var(--transition);
+}
+
+#container-roadmap{
+    position: absolute;
+    background-color: var(--color-white);
+    border-radius: 10px;
+    height: 70vh;
+    width: 80vw;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, 80%);
 }
