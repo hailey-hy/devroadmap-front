@@ -26,14 +26,14 @@ const Roadmap = () => {
   const backObjects = ['인터넷', '프론트 기본(HTML, CSS, JS)', 'OS', '언어', '버전관리', 'DB', 'API', '캐시', '웹 보안 지식', '테스트', 'CI/CD', '개발 설계 원칙', '아키텍처 패턴', '검색엔진', '메시지 브로커', '컨테이너화 vs 가상화', '그래프 QL', '웹서버', '확장성 있는 구축'];
 
   let obejct_list = [];
-  for (let number = 1; number <= total; number++) {
+  for (let number = 0; number < total; number++) {
     if(userType == 'front'){
     obejct_list.push(
-        <Objects object={number} resp={resp} name={frontObjects[number]}></Objects>
+        <Objects number={number} resp={resp} name={frontObjects[number]}></Objects>
     );
     } else {
       obejct_list.push(
-        <Objects object={number} resp={resp} name={backObjects[number]}></Objects>
+        <Objects number={number} resp={resp} name={backObjects[number]}></Objects>
     );
     }
   }
