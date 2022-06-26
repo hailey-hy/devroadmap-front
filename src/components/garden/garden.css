@@ -1,0 +1,198 @@
+#container-img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80vw;
+    height: 500px;
+    transform: translate(-50%, -50%);
+}
+
+#container-garden{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 350px;
+}
+
+/* 1400px 이상 */
+#grass{
+    top: 60%;
+}
+
+#sun{
+    top: -13%;
+    left: 20%;
+}
+
+#cloud1{
+    top: 5%;
+    left: 33%;
+}
+
+#cloud2{
+    top: -15%;
+    left: 100%;
+}
+
+#cloud3{
+    top: 45%;
+    left: -10%;
+}
+
+#cloud4{
+    top: 40%;
+    left: 110%;
+}
+
+#cloud5{
+    top: 5%;
+    left: 5%;
+}
+
+#img0{
+    top: 28%;
+    left: 30%;
+    z-index: 1000;
+}
+
+/* 소나무 */
+
+#img1{
+    top: -5%;
+    left: 22%;
+    z-index: 10;
+}
+
+/* 꽃나무 */
+
+#img2{
+    top: -33%;
+    left: 90%;
+    z-index: 10;
+}
+
+/* 울타리 */
+#img3{
+    top: 0%;
+    z-index: 0;
+}
+
+/* 새집 */
+#img4{
+    top: -1%;
+    left: 15%;
+    z-index: 20;
+}
+
+/* 토끼 */
+#img5{
+    top: 25%;
+    left: 60%;
+}
+
+/* 연못 */
+#img6{
+    top: 28%;
+    left: 30%;
+    z-index: 20;
+}
+
+/* 연꽃 */
+#img6a{
+    top: 30%;
+    left: 11%;
+    z-index: 30;
+}
+
+/* 개구리 */
+#img7{
+    top: 20%;
+    left: 28%;
+    z-index: 30;
+}
+
+/* 분수 */
+#img8{
+    top: -15%;
+    left: 46%;
+    z-index: 15;
+}
+
+/* 두더지 */
+#img9{
+    top: 40%;
+    left: 72%;
+    z-index: 20;
+}
+
+/* 벤치의자 */
+#img10{
+    top: -10%;
+    left: 80%;
+    z-index: 25;
+}
+
+/* 튤립, 민들레 */
+#img11a, #img11b{
+    top: 20%;
+    left: 60%;
+    z-index: 20;
+}
+
+/* 돌 */
+#img12{
+    top: 20%;
+    left: 10%;
+    z-index: 20;
+}
+
+/* 덤불 */
+#img13{
+    top: -5%;
+    left: 84%;
+    z-index: 20;
+}
+
+/* 사다리*/
+#img14{
+    top: 85%;
+    left: 33%;
+    z-index: 20;
+}
+
+/* 다람쥐 그네 */
+#img15{
+    top: -20%;
+    left: 40%;
+    z-index: 20;
+}
+
+/* 정원사 앉아있는 버전 */
+#img16{
+    top: 40%;
+    left: 35%;
+    z-index: 30;
+}
+
+/* 개미 */
+#img17{
+    top: 45%;
+    left: 20%;
+    z-index: 10;
+}
+
+/* 지렁이 */
+#img18{
+    top: 84%;
+    left: 82%;
+    z-index: 30;
+}
+
+/* 토끼풀 */
+#img19{
+    top: 30%;
+    left: 48%;
+    z-index: 10;
+}

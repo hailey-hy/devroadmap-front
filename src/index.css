@@ -67,6 +67,8 @@
   --color-box-variant: rgb(140, 200, 240);
   --color-transparent: rgba(62, 62, 62, 0.72);
   --color-white: #fff;
+  --color-grey: #ededed;
+  --color-selected: #ddf2ff;
   --color-black: rgb(51, 51, 51);
   --color-front: rgb(26, 188, 156);
   --color-back: rgb(243, 156, 18);
@@ -82,6 +84,7 @@
 
 html{
   scroll-behavior: smooth;
+  background-color: var(--color-bg);
 }
 
 ::-webkit-scrollbar{
@@ -119,4 +122,14 @@ a:hover{
 button{
   background-color: var(--color-bg);
   font-weight: 500;
+}
+
+.garden-img{
+  position: absolute;
+  width: auto;
+  height: auto;
+  max-width: 1400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

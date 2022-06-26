@@ -6,21 +6,38 @@ import Login from './components/login/Login';
 import Join from './components/join/Join';
 import Edit from './components/edit/Edit';
 import JoinMail from './components/join/JoinMail';
-import { userInfo } from './util/userInfo';
 import Record from './components/record/Record';
+import {createStore} from 'redux';
+import {Provider, useSelector, useDispatch, connect} from 'react-redux';
+
 
 
 function App() {
 
-  userInfo();
-  const [userEmail, setUserEmail] = useState('');
+  function reducer(currentState, action){
+    if(currentState === undefined){
+      return {
+        showItem: -1,
+      }
+    }
+    const newState = { ...currentState};
+    newState.showItem = action.type;
+    console.log(newState.showItem)
+    return newState;
+  }
+
+  const store = createStore(reducer);
+  
+  
 
   return (
     <div className="App">
       <BrowserRouter>
         <Header/>
         <Routes>
-          <Route path='/' element={<Main/>}/>
+          
+            <Route path='/' element={<Provider store={store}><Main/></Provider>}/>
+          
           <Route path='/signin' element={<Login/>}/>
           {/* <Route path='/login' render={(props)=> <Login {...props} loginCallBack={loginCallBack}/>}></Route> */}
           <Route path='/signup' element={<Join/>}/>
