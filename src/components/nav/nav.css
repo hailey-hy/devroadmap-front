@@ -2,6 +2,7 @@
     position: absolute;
     top: 2rem;
     left: 3rem;
+    z-index: 1000;
 }
 
 /* 내브바 여는 아이콘 */
@@ -9,6 +10,7 @@
 #nav-icon{
     width: 35px;
     height: 35px;
+    z-index: 1000;
 }
 
 #nav-icon:hover{

@@ -19,6 +19,7 @@
 /* 1400px 이상 */
 #grass{
     top: 60%;
+    z-index: 5;
 }
 
 #sun{
