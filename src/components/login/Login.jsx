@@ -44,10 +44,11 @@ const Login = (props) => {
     axios({
       method: 'post',
       url: '/signin',
-      headers: {
-        "Content-Type": "application/text",
-        "jwtToken": ""
-      },
+      // headers: {
+      //   "Access-Control-Allow-Origin": "https://localhost:8080/",
+      //   "Access-Control-Allow-Credentials": "true"
+      //   // "jwtToken": ""
+      // },
       params: {
         "email" : email,
         "password" : password
