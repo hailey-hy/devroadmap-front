@@ -11,8 +11,8 @@ const Bubbles = ({record, loading}) => {
                 <div></div>
                 <div className="record-bubble">
                     <div className='container-bubble'>
-                        <h5 className='record-date'>{record.id}</h5>
-                        <h5 className='record-subject'>{record.name}</h5>
+                        <h5 className='record-date'>{record.completedate}</h5>
+                        <h5 className='record-subject'>{record.object}</h5>
                     </div>
                 </div>
             </div>

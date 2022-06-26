@@ -16,9 +16,12 @@ const Record = () => {
         setLoading(true);
         axios({
             method: 'get',
-            url: 'https://jsonplaceholder.typicode.com/users'
+            url: '/hitsory',
+            headers: {
+              'jwt': window.localStorage.getItem("user")
+            }
         }).then((response)=> {
-            setRecord(response.data);
+            setRecord(response.data.complete_subjects);
             setLoading(false);
         })
     
