@@ -1,5 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react';
 
 import './garden.css'
 import img1 from '../../assets/img-garden/소나무.png';
@@ -26,7 +25,7 @@ import img19 from '../../assets/img-garden/토끼풀.png';
 
 // 개구리 3
 
-const Garden = (props) => {
+const Garden = () => {
 
     return (
         <>  

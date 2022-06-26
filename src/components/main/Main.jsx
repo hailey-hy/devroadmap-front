@@ -5,7 +5,6 @@ import Status from './Status'
 import Roadmap from '../roadmap/Roadmap'
 import { loginCheck } from '../../util/loginCheck'
 import Garden from '../garden/Garden'
-import { useSelector } from 'react-redux';
 import grass from '../../assets/img-garden/땅.png';
 import sun from '../../assets/img-garden/해.png';
 import cloud1 from '../../assets/img-garden/구름1.png';
@@ -16,19 +15,10 @@ import cloud5 from '../../assets/img-garden/구름5.png';
 
 const Main = () => {
   loginCheck();
-
-  let showList = [];
-  const showItem = useSelector(state => state.showItem);
-
-    //   console.log(state.showItem)
-    //   showList.push(
-    //     <Garden number={state.showItem}></Garden>
-    //   )
       
-  
-
   return (
     <>
+    
         <section id='main'>
         <div id="container-img">
           <img id='grass' class='garden-img' src={grass} alt=""/>
@@ -40,7 +30,6 @@ const Main = () => {
           <img id='cloud5' class='garden-img' src={cloud5} alt=""/>
         </div>
         <div id="container-garden">
-          {/* <Garden number={showItem}/> */}
           <Garden></Garden>
         </div>
           <Status/>

@@ -25,6 +25,7 @@
 #sun{
     top: -13%;
     left: 20%;
+    z-index: -1;
 }
 
 #cloud1{

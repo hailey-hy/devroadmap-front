@@ -67,13 +67,14 @@ function App() {
         <Header/>
         <Routes>
           
-            <Route path='/' element={<Main/>}/>
+          <Route path='/' element={<Main/>}/>
           
           <Route path='/signin' element={<Login/>}/>
           {/* <Route path='/login' render={(props)=> <Login {...props} loginCallBack={loginCallBack}/>}></Route> */}
           <Route path='/signup' element={<Join/>}/>
           <Route path='/signup/mail' element={<JoinMail/>}/>
-          <Route path='/edit' element={<Provider store={store}><Edit/></Provider>}/>
+          {/* <Route path='/edit' element={<Provider store={store}><Edit/></Provider>}/> */}
+          <Route path='/edit' element={<Edit/>}/>
           <Route path='/record' element={<Record/>}/>
         </Routes>
       </BrowserRouter>
