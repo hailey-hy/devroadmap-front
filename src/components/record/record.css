@@ -8,7 +8,7 @@
     width: 500px;
     height: 70px;
 	position: relative;
-	background: #ededed;
+	background: var(--color-grey);
 	border-radius: .4em;
     justify-content: center;
     text-align: center;

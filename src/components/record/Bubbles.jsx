@@ -4,7 +4,7 @@ import './record.css'
 const Bubbles = ({record, loading}) => {
   return (
     <>
-        {loading && <div> loading... </div>}
+        {loading && <div> <h5>loading... </h5></div>}
         {record.map((record) => (
             <div className="container-content">
                 <div></div>
