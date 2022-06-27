@@ -55,7 +55,37 @@
     cursor: pointer;
 }
 
-/* 회원 정보 수정 탭 */
+/* 유저 정보 요약 창 */
+#container-user{
+    background-color: rgba(255, 255, 255, 0.5);
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    margin-right: 2rem;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+#user-profile{
+    border: 1px solid var(--color-grey);
+    margin: 0 2rem 0 0;
+}
+
+#contianer-user-detail{
+    /* margin: 0 1rem; */
+}
+
+#user-nickname{
+    margin-top: 0.2rem;
+    margin-bottom: 0;
+}
+
+#logout{
+    margin: 0.5rem 0rem;
+}
+
+/* 상세 탭 */
 .go-tab{
     margin-top: 2rem;
     color: var(--color-white);
@@ -66,5 +96,5 @@
 }
 
 #user-delete{
-    margin-top: 2rem;
+    margin-top: 10rem;
 }

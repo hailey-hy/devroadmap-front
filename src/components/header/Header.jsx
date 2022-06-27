@@ -6,16 +6,6 @@ import './header.css'
 
 const Header = () => {
 
-  const [color, setColor] = useState('black');
-
-  // const navOpen = (result) => {
-  //   if(result){
-  //     setColor('white');
-  //   }
-  //   else{
-  //     setColor('black');
-  //   }
-  // }
   
   return (
     <header>
