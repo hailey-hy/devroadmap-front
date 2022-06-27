@@ -16,10 +16,10 @@ import { loginCheck } from './util/loginCheck';
 
 function App() {
   const [userDetail, setUserDetail] = useState('');
-  const [email, setEmail] = useState('');
-  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('이메일');
+  const [nickname, setNickname] = useState('닉네임');
   const [profile, setProfile] = useState('');
-  const [field, setField] = useState('');
+  const [field, setField] = useState('필드');
   // const [userJwt, setUserJwt] = useState('');
 
   // if(window.localStorage.getItem("user")){
@@ -30,14 +30,21 @@ function App() {
     axios({
       method: 'get',
       url: '/user/details',
-      headers:{
+      // headers:{
+      //   'jwt': window.localStorage.getItem("user")
+      // }
+      params: {
         'jwt': window.localStorage.getItem("user")
       }
-      // params: {
-      //   jwt: window.localStorage.getItem("user")
-      // }
     }).then((response) => {
-      setUserDetail(response.data);
+      setNickname(response.data.nickname);
+      setEmail(response.data.email);
+      setField(response.data.field);
+
+      if(response.data.profile == '') {
+        setProfile('src/assets/basic-profile.png')
+      } else {setProfile(response.data.profile);}
+    
     }).catch((err) => {
       console.error(err)
     });
@@ -63,6 +70,7 @@ function App() {
 
   return (
     <div className="App">
+      <Provider store={store}>
       <BrowserRouter>
         <Header/>
         <Routes>
@@ -70,14 +78,14 @@ function App() {
           <Route path='/' element={<Main/>}/>
           
           <Route path='/signin' element={<Login/>}/>
-          {/* <Route path='/login' render={(props)=> <Login {...props} loginCallBack={loginCallBack}/>}></Route> */}
-          <Route path='/signup' element={<Join/>}/>
+        
           <Route path='/signup/mail' element={<JoinMail/>}/>
-          {/* <Route path='/edit' element={<Provider store={store}><Edit/></Provider>}/> */}
+          
           <Route path='/edit' element={<Edit/>}/>
           <Route path='/record' element={<Record/>}/>
         </Routes>
       </BrowserRouter>
+      </Provider>
       <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
       <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js" crossorigin></script>
       <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
