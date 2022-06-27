@@ -19,7 +19,7 @@ function App() {
   const [email, setEmail] = useState('이메일');
   const [nickname, setNickname] = useState('닉네임');
   const [profile, setProfile] = useState('');
-  const [field, setField] = useState('필드');
+  const [field, setField] = useState('back');
   // const [userJwt, setUserJwt] = useState('');
 
   // if(window.localStorage.getItem("user")){
@@ -30,12 +30,12 @@ function App() {
     axios({
       method: 'get',
       url: '/user/details',
-      // headers:{
+      headers:{
+        "Authorization": "Bearer " + localStorage.getItem("user")
+      }
+      // params: {
       //   'jwt': window.localStorage.getItem("user")
       // }
-      params: {
-        'jwt': window.localStorage.getItem("user")
-      }
     }).then((response) => {
       setNickname(response.data.nickname);
       setEmail(response.data.email);

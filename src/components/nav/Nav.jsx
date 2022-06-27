@@ -22,6 +22,14 @@ const Nav = (props) => {
 
   const navigate = useNavigate();
 
+  const isFront = () => {
+    if(field == 'front'){
+      return true
+    } else{
+      return false
+    }
+  }
+
   const logout = () => {
     toggleMenu();
     localStorage.removeItem("user");
@@ -61,7 +69,7 @@ const Nav = (props) => {
         <div id="container-user">
           <img src={profile} alt="" id="user-profile" />
           <div id="contianer-user-detail">
-            <Badge pill >{field}</Badge>
+            <Badge pill bg={isFront() ? 'primary' : 'success'}>{field}</Badge>
             <h5 id='user-nickname'>{nickname}님</h5>
           </div>
           <Button id='logout' onClick={() => {
