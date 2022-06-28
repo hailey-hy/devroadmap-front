@@ -70,20 +70,20 @@
 /* 꽃나무 */
 
 #img2{
-    top: -33%;
+    top: -29%;
     left: 90%;
     z-index: 10;
 }
 
 /* 울타리 */
 #img3{
-    top: 0%;
+    top: 5%;
     z-index: 0;
 }
 
 /* 새집 */
 #img4{
-    top: -1%;
+    top: 2%;
     left: 15%;
     z-index: 20;
 }
@@ -131,9 +131,9 @@
 
 /* 벤치의자 */
 #img10{
-    top: -10%;
+    top: -6%;
     left: 80%;
-    z-index: 25;
+    z-index: 15;
 }
 
 /* 튤립, 민들레 */
@@ -145,7 +145,7 @@
 
 /* 돌 */
 #img12{
-    top: 20%;
+    top: 25%;
     left: 10%;
     z-index: 20;
 }
@@ -166,7 +166,7 @@
 
 /* 다람쥐 그네 */
 #img15{
-    top: -20%;
+    top: -18%;
     left: 40%;
     z-index: 20;
 }
@@ -197,4 +197,8 @@
     top: 30%;
     left: 48%;
     z-index: 10;
+}
+
+#imgTest{
+    z-index: 1000;
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 import './garden.css'
 import img1 from '../../assets/img-garden/소나무.png';
@@ -22,6 +23,7 @@ import img16 from '../../assets/img-garden/정원사 앉아있는 버전.png';
 import img17 from '../../assets/img-garden/개미.png';
 import img18 from '../../assets/img-garden/지렁이.png';
 import img19 from '../../assets/img-garden/토끼풀.png';
+import imgTest from '../../assets/img-garden/덤불수정.png';
 
 // 개구리 3
 
@@ -50,6 +52,16 @@ const Garden = () => {
                 <img id='img17' class='garden-img' src={img17} alt="17"/>
                 <img id='img18' class='garden-img' src={img18} alt="18"/>
                 <img id='img19' class='garden-img' src={img19} alt="19"/>
+                <OverlayTrigger
+      overlay={
+        <Tooltip id={`tooltip-top`}>
+          <strong>타입 체커</strong>.
+        </Tooltip>
+      }
+    >
+      <img id='imgTest' class='garden-img' src={imgTest} alt="Test"/>
+    </OverlayTrigger>
+                
         </>
         
       )
