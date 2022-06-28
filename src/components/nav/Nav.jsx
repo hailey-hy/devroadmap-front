@@ -74,10 +74,13 @@ const Nav = (props) => {
   const userWithdraw = () => {
     axios({
       method: 'post',
-      url: '/edit/withdraw'
+      url: '/edit/withdraw',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("user")
+      }
     }).then((response) => {
       if(response.data == 'withdraw success'){
-
+        console.log('탈퇴')
       }
     })
   }
@@ -144,11 +147,11 @@ const Nav = (props) => {
         <Modal.Footer>
           <Button variant="secondary" onClick={() => {
             handleClose();
-            userWithdraw();
+            
             }}>
             취소
           </Button>
-          <Button variant="warning">탈퇴</Button>
+          <Button variant="warning" onClick={userWithdraw}>탈퇴</Button>
         </Modal.Footer>
       </Modal>
 

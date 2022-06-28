@@ -57,23 +57,24 @@
 
 /* 유저 정보 요약 창 */
 #container-user{
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: var(--color-white-transparent);
     display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-columns: 1.2fr 1fr 1fr;
     margin-top: 2rem;
     margin-bottom: 5rem;
     margin-right: 2rem;
     padding: 1rem;
     border-radius: 5px;
+    height: 125px;
 }
 
 #user-profile{
     border: 1px solid var(--color-grey);
-    margin: 0 2rem 0 0;
+    margin: 0 1.2rem 0 0;
 }
 
 #contianer-user-detail{
-    /* margin: 0 1rem; */
+    margin-top: 1rem;
 }
 
 #user-nickname{
@@ -82,19 +83,25 @@
 }
 
 #logout{
-    margin: 0.5rem 0rem;
+    margin: 1.6rem 0rem;
 }
 
 /* 상세 탭 */
 .go-tab{
-    margin-top: 2rem;
+    margin-top: 1.2rem;
     color: var(--color-white);
+    margin-right: 2rem;
+    padding: 0.5rem;
 }
 
 .go-tab:hover{
     cursor: pointer;
+    background-color: var(--color-white-transparent);
+    color: var(--color-black);
+    border-radius: 5px;
+    transition: var(--transition);
 }
 
 #user-delete{
-    margin-top: 10rem;
+    margin-top: 8rem;
 }
