@@ -1,22 +1,26 @@
+#edit{
+    height: 92vh;
+}
+
 .container-white{
-    position: absolute;
-    height: 62vh;
-    top: 53%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    height: fit-content;
+    top: 45%;
+    transform: translate(0, -50%);
     text-align: center;
     background-color: var(--color-white);
     border-radius: 10px;
     z-index: 1;
+    margin: auto;
 }
 
 #white-title{
     width: 200px;
-    margin-top: 1.5rem;
     margin-bottom: 3rem;
+    padding-top: 2rem;
 }
 
-.chunck-container-edit{
+/* .chunck-container-edit{
     display: grid;
     grid-template-columns: 0.8fr 1fr;
     justify-content: center;
@@ -24,6 +28,13 @@
     align-items: start;
     justify-items: center;
     grid-gap: 2rem;
+} */
+
+.chunck-for-divide{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .detail-container-edit{
@@ -46,4 +57,5 @@
 
 #btn-edit{
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }

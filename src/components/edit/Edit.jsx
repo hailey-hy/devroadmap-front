@@ -158,10 +158,11 @@ const Edit = () => {
 }
 
   return (
+    <div id="edit">
     <div className='container-white container'>
       <h3 id="white-title">회원 정보 수정</h3>
       <div className="chunck-container-edit">
-        <div>
+        <div className='chunck-for-divide'>
           <div className="detail-container-edit">
             <h5 className='detail-title'>프로필 사진</h5>
             <form className='img-container'>
@@ -189,7 +190,7 @@ const Edit = () => {
           </ButtonGroup>
           </div>
         </div>
-        <div>
+        <div className='chunck-for-divide'>
           <div className="detail-container-edit">
             <h5 className='detail-title'>닉네임</h5>
             <input className='login-input' type='text' value={nickname} onChange={handleNickname} placeholder='NICKNAME'/>
@@ -221,6 +222,7 @@ const Edit = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+    </div>
     </div>
   )
 }

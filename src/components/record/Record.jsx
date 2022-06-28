@@ -52,6 +52,7 @@ const Record = () => {
     }   
 
   return (
+    <div id="record">
     <div className='container-white container'>
         <h3 id="white-title">정원 기록</h3>
         <div id="container-records">
@@ -59,6 +60,7 @@ const Record = () => {
         </div>
         
         <Pagination>{items}</Pagination>
+    </div>
     </div>
   )
 }
