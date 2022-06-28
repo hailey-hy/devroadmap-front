@@ -20,35 +20,35 @@ function App() {
   const [nickname, setNickname] = useState('닉네임');
   const [profile, setProfile] = useState('');
   const [field, setField] = useState('front');
-  // const [userJwt, setUserJwt] = useState('');
+  const [userJwt, setUserJwt] = useState('');
 
   // if(window.localStorage.getItem("user")){
   //   setUserJwt(window.localStorage.getItem("user"));
   // }
 
-  // useEffect(() => {
-  //   axios({
-  //     method: 'get',
-  //     url: '/user/details',
-  //     headers:{
-  //       "Authorization": "Bearer " + localStorage.getItem("user")
-  //     }
-  //     // params: {
-  //     //   'jwt': window.localStorage.getItem("user")
-  //     // }
-  //   }).then((response) => {
-  //     setNickname(response.data.nickname);
-  //     setEmail(response.data.email);
-  //     setField(response.data.field);
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: '/user/details',
+      headers:{
+        "Authorization": "Bearer " + localStorage.getItem("user")
+      }
+      // params: {
+      //   'jwt': window.localStorage.getItem("user")
+      // }
+    }).then((response) => {
+      setNickname(response.data.nickname);
+      setEmail(response.data.email);
+      setField(response.data.field);
 
-  //     if(response.data.profile == '') {
-  //       setProfile('src/assets/basic-profile.png')
-  //     } else {setProfile(response.data.profile);}
+      if(response.data.profile == '') {
+        setProfile('src/assets/basic-profile.png')
+      } else {setProfile(response.data.profile);}
     
-  //   }).catch((err) => {
-  //     console.error(err)
-  //   });
-  // }, [])
+    }).catch((err) => {
+      console.error(err)
+    });
+  }, [])
 
 
 
