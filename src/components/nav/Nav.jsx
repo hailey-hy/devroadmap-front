@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
 import {BsJustify} from 'react-icons/bs'
 import {IoClose, IoGolfOutline} from 'react-icons/io5'
-import { Button, Badge } from 'react-bootstrap'
+import { Button, Badge, Modal } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import './nav.css'
 import { loginCheck } from '../../util/loginCheck'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 
 const Nav = (props) => {
 
@@ -56,6 +57,31 @@ const Nav = (props) => {
     navigate('/record')
   }
 
+  // 회원 탈퇴 모달 
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [showSecond, setShowSecond] = useState(false);
+
+  const handleCloseSecond = () => setShow(false);
+  const handleShowSecond = () => setShow(true);
+
+  // 회원 탈퇴 비즈니스 로직
+
+  const userWithdraw = () => {
+    axios({
+      method: 'post',
+      url: '/edit/withdraw'
+    }).then((response) => {
+      if(response.data == 'withdraw success'){
+
+      }
+    })
+  }
+
   if(localStorage.getItem("user")){
   return (
     <nav>
@@ -101,7 +127,53 @@ const Nav = (props) => {
         }}>친구 목록 (임시)</h3>
 
         {/* </div> */}
-        <Button id="user-delete" variant='warning'>회원 탈퇴</Button>
+        <Button id="user-delete" variant='warning' onClick={handleShow}>회원 탈퇴</Button>
+
+        <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>회원 탈퇴</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          정말 회원을 탈퇴할까요?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => {
+            handleClose();
+            userWithdraw();
+            }}>
+            취소
+          </Button>
+          <Button variant="warning">탈퇴</Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={showSecond}
+        onHide={handleCloseSecond}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>회원 탈퇴 완료!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          회원 탈퇴되었어요.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => {
+            handleCloseSecond();
+            logout();
+            goLogin();
+            }}>
+            닫기
+          </Button>
+        </Modal.Footer>
+      </Modal>
       </ul>
 
     </nav>  
