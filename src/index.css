@@ -67,6 +67,7 @@
   --color-box-variant: rgb(140, 200, 240);
   --color-transparent: rgba(62, 62, 62, 0.72);
   --color-white: #fff;
+  --color-white-transparent: rgba(255, 255, 255, 0.5);
   --color-grey: #ededed;
   --color-selected: #ddf2ff;
   --color-black: rgb(51, 51, 51);
