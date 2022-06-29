@@ -78,6 +78,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Main/>}/>
           <Route path='/signin' element={<Login/>}/>
+          <Route path='/signup' element={<Join/>}/>
           <Route path='/signup/mail' element={<JoinMail/>}/>
           <Route path='/edit' element={<Edit/>}/>
           <Route path='/record' element={<Record/>}/>
