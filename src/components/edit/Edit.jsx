@@ -136,7 +136,7 @@ const Edit = () => {
 
     axios({
       method: 'post',
-      url: '/edit/userdetatils',
+      url: 'https://localhost:8080/edit/userdetatils',
       headers: {
         "Content-Type": "multipart/form-data"
       },

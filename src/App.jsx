@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     axios({
       method: 'get',
-      url: '/user/details',
+      url: 'https://localhost:8080/user/details',
       params:{
         "Authorization": "Bearer " + localStorage.getItem("user")
       }

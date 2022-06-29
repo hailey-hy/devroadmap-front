@@ -21,7 +21,7 @@ const Roadmap = () => {
     // /history와 통신하여 유저가 이미 완료한 데이터 가져오기
     axios({
       method: 'get',
-      url: '/hitsory',
+      url: 'https://localhost:8080/history',
       params: {
         "Authorization": "Bearer " + localStorage.getItem("user")
       }
