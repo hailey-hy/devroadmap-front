@@ -15,14 +15,17 @@ const Record = () => {
     useEffect(() => {
         setLoading(true);
         axios({
-            method: 'get',
-            url: '/hitsory',
-            headers: {
+            method: 'post',
+            url: 'https://localhost:8080/history',
+            // headers: {
+            //   'jwt': window.localStorage.getItem("user")
+            // },
+            params: {
               'jwt': window.localStorage.getItem("user")
             }
         }).then((response)=> {
-            setRecord(response.data.complete_subjects);
-            setLoading(false);
+            // setRecord(response.data.complete_subjects);
+            // setLoading(false);
         })
     
     }, []);

@@ -57,6 +57,10 @@ const Nav = (props) => {
     navigate('/record')
   }
 
+  const goFriend = () => {
+    navigate('/friend')
+  }
+
   // 회원 탈퇴 모달 
 
   const [show, setShow] = useState(false);
@@ -126,8 +130,9 @@ const Nav = (props) => {
           toggleMenu()
         }}>정원 기록</h3>
         <h3 class='go-tab' onClick={() => {
+          goFriend()
           toggleMenu()
-        }}>친구 목록 (임시)</h3>
+        }}>친구 목록</h3>
 
         {/* </div> */}
         <Button id="user-delete" variant='warning' onClick={handleShow}>회원 탈퇴</Button>

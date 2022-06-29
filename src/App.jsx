@@ -11,6 +11,7 @@ import {createStore} from 'redux';
 import {Provider, useSelector, useDispatch, connect} from 'react-redux';
 import axios from 'axios';
 import { loginCheck } from './util/loginCheck';
+import FriendList from './components/friendList/FriendList';
 
 
 
@@ -75,15 +76,12 @@ function App() {
       <BrowserRouter>
         <Header/>
         <Routes>
-          
           <Route path='/' element={<Main/>}/>
-          
           <Route path='/signin' element={<Login/>}/>
-        
           <Route path='/signup/mail' element={<JoinMail/>}/>
-          
           <Route path='/edit' element={<Edit/>}/>
           <Route path='/record' element={<Record/>}/>
+          <Route path='/friend' element={<FriendList/>}/>
         </Routes>
       </BrowserRouter>
       </Provider>

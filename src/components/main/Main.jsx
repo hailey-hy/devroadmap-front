@@ -13,6 +13,7 @@ import cloud3 from '../../assets/img-garden/구름3.png';
 import cloud4 from '../../assets/img-garden/구름4.png';
 import cloud5 from '../../assets/img-garden/구름5.png';
 
+
 const Main = () => {
   loginCheck();
       
@@ -37,6 +38,7 @@ const Main = () => {
         <section>
           <Roadmap></Roadmap>
         </section>
+        
     </>
   )
 }

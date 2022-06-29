@@ -3,6 +3,7 @@ import './roadmap.css'
 import Objects from './Objects'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import Footer from '../footer/Footer'
 
 const Roadmap = () => {
 
@@ -57,6 +58,7 @@ const Roadmap = () => {
       <div id="container-roadmap">
         {obejct_list}
       </div>
+      <Footer></Footer>
     </div>
   )
 }
