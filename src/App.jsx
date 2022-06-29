@@ -38,13 +38,14 @@ function App() {
       //   'jwt': window.localStorage.getItem("user")
       // }
     }).then((response) => {
-      setNickname(response.data.nickname);
-      setEmail(response.data.email);
-      setField(response.data.field);
+      console.log(response.data)
+      // setNickname(response.data.nickname);
+      // setEmail(response.data.email);
+      // setField(response.data.field);
 
-      if(response.data.profile == '') {
-        setProfile('src/assets/basic-profile.png')
-      } else {setProfile(response.data.profile);}
+      // if(response.data.profile == '') {
+      //   setProfile('src/assets/basic-profile.png')
+      // } else {setProfile(response.data.profile);}
     
     }).catch((err) => {
       console.error(err)
