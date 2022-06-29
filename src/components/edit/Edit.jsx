@@ -138,11 +138,10 @@ const Edit = () => {
       method: 'post',
       url: '/edit/userdetatils',
       headers: {
-        "Content-Type": "application/text",
-        "Authorization": "Bearer " + localStorage.getItem("user")
-        // "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data"
       },
       params: {
+        "Authorization": "Bearer " + localStorage.getItem("user"),
         "nickname" : nickname,
         "email" : email,
         "password" : password,

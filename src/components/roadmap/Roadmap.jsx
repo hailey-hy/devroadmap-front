@@ -22,8 +22,8 @@ const Roadmap = () => {
     axios({
       method: 'get',
       url: '/hitsory',
-      headers: {
-        'jwt': window.localStorage.getItem("user")
+      params: {
+        "Authorization": "Bearer " + localStorage.getItem("user")
       }
     }).then((response)=> {
       const showLists= response.data.complete_subjects;
@@ -58,7 +58,7 @@ const Roadmap = () => {
       <div id="container-roadmap">
         {obejct_list}
       </div>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </div>
   )
 }

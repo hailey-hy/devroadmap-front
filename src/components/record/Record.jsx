@@ -21,7 +21,7 @@ const Record = () => {
             //   'jwt': window.localStorage.getItem("user")
             // },
             params: {
-              'jwt': window.localStorage.getItem("user")
+              "Authorization": "Bearer " + localStorage.getItem("user")
             }
         }).then((response)=> {
             // setRecord(response.data.complete_subjects);

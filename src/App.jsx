@@ -31,7 +31,7 @@ function App() {
     axios({
       method: 'get',
       url: '/user/details',
-      headers:{
+      params:{
         "Authorization": "Bearer " + localStorage.getItem("user")
       }
       // params: {
