@@ -19,6 +19,10 @@
     justify-content: center;
 }
 
+#friend-list{
+    margin-right: 1rem;
+}
+
 #add-btn{
     width: 35px;
     height: 35px;
@@ -38,18 +42,79 @@
 
 .friend{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.5fr;
+    grid-gap: 1rem;
     background-color: var(--color-selected);
     font-size: 15px;
-    width: 300px;
+    width: 350px;
+    border-radius: 5px;
+    padding: 0.5rem;
+    height: 5rem;
+}
+
+.friend-field{
+    margin: 1.2rem 0.2rem;
+}
+
+.friend-img{
+    height: 60px;
+    width: 60px;
+    border: 1px solid var(--color-white);
+}
+
+.friend-name, .friend-progress{
+    margin-top: 1.2rem;
+    font-size: 18px;
+}
+
+.friend-cancle{
+    margin-top: 1.2rem;
+    margin-left: 0.3rem;
 }
 
 .util{
     background-color: var(--color-grey);
     border-radius: 5px;
     padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 #util-search{
+    width: 380px;
+}
 
+#random-divider{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+#search-title{
+    text-align: left;
+    margin-left: 0.2rem;
+    margin-bottom: 0.6rem;
+    width: 200px;
+}
+
+.search-input{
+    margin: 0.4rem;
+    width: 230px;
+    height: 35px;
+    border: none;
+    border-radius: 3px;
+    padding: 0.4rem;
+    /* margin-top: 1.2rem; */
+
+}
+
+#btn-search{
+    width: 60px;
+    height: 38px;
+    margin-top: 0.35rem; 
+}
+
+#search-divider{
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    text-align: center;
+    justify-items: center
 }
