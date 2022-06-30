@@ -2,6 +2,7 @@ import React from 'react'
 import './record.css'
 
 const Bubbles = ({record, loading}) => {
+    if(record.length >= 1){
   return (
     <>
         {loading && <div> <h5>loading... </h5></div>}
@@ -18,7 +19,15 @@ const Bubbles = ({record, loading}) => {
             </div>
         ))}
     </>
-  );
+  )} else {
+      return(
+        <>
+            <br></br>
+            <br></br>
+            <h5>아직 기록이 없어요.</h5>
+        </>
+      )
+  }
 }
 
 export default Bubbles;

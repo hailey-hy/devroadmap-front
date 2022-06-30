@@ -24,9 +24,9 @@ const Record = () => {
               "Authorization": "Bearer " + localStorage.getItem("user")
             }
         }).then((response)=> {
-          console.log(response.data)
-            // setRecord(response.data.complete_subjects);
-            // setLoading(false);
+            setRecord(response.data.complete_subjects);
+            setLoading(false);
+            console.log(response.data.complete_subjects);
         })
     
     }, []);
