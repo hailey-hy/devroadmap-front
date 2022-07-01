@@ -12,7 +12,7 @@ import {Provider, useSelector, useDispatch, connect} from 'react-redux';
 import axios from 'axios';
 import { loginCheck } from './util/loginCheck';
 import FriendList from './components/friendList/FriendList';
-
+import basicImg from './assets/basic-profile.png'
 
 
 function App() {
@@ -34,18 +34,14 @@ function App() {
       params:{
         "Authorization": "Bearer " + localStorage.getItem("user")
       }
-      // params: {
-      //   'jwt': window.localStorage.getItem("user")
-      // }
     }).then((response) => {
-      console.log(response.data)
-      // setNickname(response.data.nickname);
-      // setEmail(response.data.email);
-      // setField(response.data.field);
-
-      // if(response.data.profile == '') {
-      //   setProfile('src/assets/basic-profile.png')
-      // } else {setProfile(response.data.profile);}
+      setNickname(response.data.nickname);
+      setEmail(response.data.email);
+      setField(response.data.field);
+      console.log(response.data.profile)
+      if(response.data.profile == null) {
+        setProfile(basicImg)
+      } else {setProfile(response.data.profile);}
     
     }).catch((err) => {
       console.error(err)

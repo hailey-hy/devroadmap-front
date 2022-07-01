@@ -23,7 +23,7 @@ const Bubbles = ({record, loading}) => {
       return(
         <>
             <br></br>
-            <br></br>
+            <br></br><br></br>
             <h5>아직 기록이 없어요.</h5>
         </>
       )
