@@ -57,7 +57,9 @@
 }
 
 .friend-field{
-    margin: 1.2rem 0.2rem;
+    margin: auto;
+    width: 50px;
+    height: 30px;
     line-height: 1.8;
 }
 
@@ -73,7 +75,11 @@
 
 .friend-name, .friend-progress{
     /* margin-top: 1.2rem; */
-    font-size: 18px;
+    font-size: 15px;
+}
+
+.friend-progress{
+
 }
 
 .friend-cancle{
@@ -128,10 +134,7 @@
     justify-items: center
 }
 
-.form-switch {
-    /* padding-right: 4.5em; */
-    margin-left: 5.5rem;
-}
+
 
 .add-btn-random{
     width: 25px;
@@ -159,6 +162,11 @@
     /* &:checked + .switch-label-theme .ball {
       transform: translateX(24px);  */
   }
+
+  .form-switch {
+    /* padding-right: 4.5em; */
+    margin-left: 4rem;
+}
   
   .switch-label {
     

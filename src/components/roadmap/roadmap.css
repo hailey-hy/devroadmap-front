@@ -22,6 +22,30 @@
     align-items: center;
 }
 
+@media screen and (max-width: 1380px){
+    #container-roadmap{
+        transform: translate(-50%, 68%);
+    }
+}
+
+@media screen and (max-width: 1059px){
+    #container-roadmap{
+        transform: translate(-50%, 48%);
+    }
+}
+
+@media screen and (max-width: 739px){
+    #container-roadmap{
+        transform: translate(-50%, 25%);
+    }
+}
+
+/* @media screen and (max-width: 739px){
+    #container-roadmap{
+        transform: translate(-50%, 28%);
+    }
+} */
+
 .container-bubble-object{
     /* display: grid;
     grid-template-columns: 1fr 4fr; */

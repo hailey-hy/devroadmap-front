@@ -35,7 +35,6 @@ const Nav = (props) => {
       } else {
         setProfile(response.data.profile)
       }
-      console.log(profile)
       setUserDetail(response.data);
       dispatch({type: 'load', nickname: nickname, email: email, field: field, profile: profile});
 

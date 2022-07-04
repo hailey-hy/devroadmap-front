@@ -3,6 +3,7 @@ import axios from 'axios';
 import './friendList.css'
 import { OverlayTrigger, Tooltip, Badge, Button, Form } from 'react-bootstrap'
 import {MdCancel} from 'react-icons/md'
+import {BsBellFill} from 'react-icons/bs'
 import { Pagination } from 'react-bootstrap';
 import FriendItem from './FriendItem';
 
@@ -79,7 +80,9 @@ const FriendList = () => {
                         </Tooltip>
                     }
                 >
-                    <div class="add-btn">+</div>
+                    <div class="add-btn">
+                        <BsBellFill/>
+                    </div>
                 </OverlayTrigger>
             </div>
             <div id="container-friend-divider">

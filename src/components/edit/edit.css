@@ -15,6 +15,14 @@
     /* padding: 1rem; */
 }
 
+@media screen and (max-width: 1050px){
+    .container-white{
+        position: relative;
+        top: 2rem;
+        transform: translate(0, 0);
+    }
+}
+
 #white-title{
     width: 200px;
     margin-bottom: 3rem;

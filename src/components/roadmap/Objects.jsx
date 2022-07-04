@@ -26,11 +26,8 @@ const Objects = (props) => {
       axios({
         method: 'post',
         url: '/subject/complete/add',
-        headers: {
-          "Content-Type": "application/text",
-          "Authorization": "Bearer " + localStorage.getItem("user")
-        },
         params: {
+          "Authorization": "Bearer " + localStorage.getItem("user"),
           'subject': index + 1
         }
       }).then(response => {
@@ -42,11 +39,8 @@ const Objects = (props) => {
       axios({
         method: 'post',
         url: '/subject/complete/withdraw',
-        headers: {
-          "Content-Type": "application/text",
-          "Authorization": "Bearer " + localStorage.getItem("user")
-        },
         params: {
+          "Authorization": "Bearer " + localStorage.getItem("user"),
           'subject': index + 1
         }
       }).then(response => {
