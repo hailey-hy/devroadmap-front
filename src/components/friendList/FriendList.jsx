@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import './friendList.css'
-import { OverlayTrigger, Tooltip, Badge, Button } from 'react-bootstrap'
+import { OverlayTrigger, Tooltip, Badge, Button, Form } from 'react-bootstrap'
 import {MdCancel} from 'react-icons/md'
 import { Pagination } from 'react-bootstrap';
 import FriendItem from './FriendItem';
@@ -100,22 +100,14 @@ const FriendList = () => {
                         <div id="random-divider">
                         <h4 id='search-title'>다른 정원 둘러보기</h4>
                         {/* <div id="search-on-off"> */}
-                            <div className="switch">
-                                <input
-                                    type="checkbox"
-                                    className='switch-checkbox'
-                                    checked={isChecked}
-                                    onChange={handleToggle}
-                                    id='switch-input'  // label의 htmlFor에 걸어줄 id
-                                />
-                                <label
-                                    className='switch-label'
-                                    htmlFor='switch-input'  // input id를 걸어준다
-                                >
-                                    <div className="ball" /> 
-                                </label>
-                                </div>
-                            </div>
+                        <div className="switch">
+                            <Form.Check 
+                                type="switch"
+                                id="custom-switch"
+                                label=""
+                            />
+                        </div>
+                    </div>
                         {/* </div> */}
                     <div className="friend">
                         <Badge pill className="friend-field">front</Badge>

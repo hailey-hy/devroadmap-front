@@ -128,6 +128,11 @@
     justify-items: center
 }
 
+.form-switch {
+    /* padding-right: 4.5em; */
+    margin-left: 5.5rem;
+}
+
 .add-btn-random{
     width: 25px;
     height: 25px;
