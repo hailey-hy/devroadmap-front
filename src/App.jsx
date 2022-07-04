@@ -14,26 +14,18 @@ import { loginCheck } from './util/loginCheck';
 import FriendList from './components/friendList/FriendList';
 
 
-// const AppWrapper = () => {
-//   const store = createStore(reducer);
-
-//   return (
-//     <Provider store={store}> // Set context
-//       <App /> // Now App has access to context
-//     </Provider>
-//   )
-// }
-
 function App() {
 
 
   function reducer(currentState, action){
     if(currentState === undefined){
       return {
+        defaultEmail: '',
         nickname: '',
         email: '',
         profile: '',
-        field: 'front'
+        field: 'front',
+        garden: []
       }
     }
     const newState = {...currentState};
@@ -42,15 +34,14 @@ function App() {
       newState.email = action.email
       newState.field = action.field;
       newState.profile = action.profile;
+    } else if(action.type === 'sent'){
+      newState.defaultEmail = action.defaultEmail;
+      console.log(newState.defaultEmail)
     }
     return newState
   }
 
   const store = createStore(reducer);
-
-
-  
-  
 
   return (
     <div className="App">

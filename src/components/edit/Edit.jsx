@@ -99,14 +99,11 @@ const Edit = () => {
   const onClickNickCheck = () => {
     axios({
       method: 'post',
-      url: '/edit/nickname/check',
-      headers: {
-        "Content-Type": "application/text",
-        "Authorization": "Bearer " + localStorage.getItem("user")
-        // "Content-Type": "multipart/form-data"
-      },
+      url: 'https://localhost:8080/edit/nickname/check',
       params: {
-        "nickname" : nickname,
+        "Authorization": "Bearer " + localStorage.getItem("user"),
+        "nickname" : nickname
+        // "Content-Type": "multipart/form-data"
       }
     }).then(response => {
       // if(response.data == 'ok'){

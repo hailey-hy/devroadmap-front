@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, {useState} from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import './join.css'
+import { useDispatch } from 'react-redux';
 
 const JoinMail = (props) => {
 
@@ -11,6 +12,8 @@ const JoinMail = (props) => {
     const handleEmail = (e) => {
         setEmail(e.target.value)
       }
+    
+    const dispatch = useDispatch();
       
     // 이메일 인증 버튼 클릭시 작동 함수
     const onClickJoinMail = () => {
@@ -22,6 +25,7 @@ const JoinMail = (props) => {
             }
         }).then(response => {
             handleShow();
+            dispatch({type: 'sent', defaultEmail: email})
         })
     }
 

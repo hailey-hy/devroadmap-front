@@ -3,14 +3,19 @@ import {Button, ButtonGroup, ToggleButton, Tooltip, OverlayTrigger, Modal} from 
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import './join.css'
+
 import { nicknameCheck } from '../../util/nicknameCheck';
 import {BiInfoCircle} from 'react-icons/bi'
+import { useSelector } from 'react-redux';
 
 const Join = (props) => {
-  const [nickname, setNickname] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordCheck, setPasswordCheck] = useState('')
+  const defaultEmail = useSelector(state => state.defaultEmail);
+  console.log(defaultEmail)
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+  
 
   const handleNickname = (e) => {
     setNickname(e.target.value)
@@ -212,7 +217,7 @@ const renderTooltip = (props) => (
           {/* 이메일 */}
           <div className="detail-container">
               <h5 className='detail-title'>이메일</h5>
-                <input className='login-input' type='text' value={email} onChange={handleEmail} placeholder='EMAIL'/>
+                <input className='login-input' type='text' value={defaultEmail} onChange={handleEmail} placeholder='EMAIL'/>
                 <Button className='id-check' variant="primary">확인</Button>
             </div>
             {/* 비밀번호 */}
