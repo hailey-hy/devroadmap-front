@@ -1,18 +1,50 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react';
 import {BsJustify} from 'react-icons/bs'
 import {IoClose, IoGolfOutline} from 'react-icons/io5'
 import { Button, Badge, Modal } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import './nav.css'
 import { loginCheck } from '../../util/loginCheck'
-import { useSelector } from 'react-redux'
-import axios from 'axios'
+import {createStore} from 'redux';
+import {Provider, useSelector, useDispatch, connect} from 'react-redux';
+import axios from 'axios';
+import basicImg from '../../assets/basic-profile.png'
 
 const Nav = (props) => {
+  const [userDetail, setUserDetail] = useState('');
+  const [email, setEmail] = useState('이메일');
+  const [nickname, setNickname] = useState('닉네임');
+  const [profile, setProfile] = useState('');
+  const [field, setField] = useState('front');
+  // const [userJwt, setUserJwt] = useState('');
+  const dispatch = useDispatch();
 
-  const nickname = useSelector((state) => state.nickname);
-  const profile = useSelector((state) => state.profile);
-  const field = useSelector((state) => state.field);
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'https://localhost:8080/user/details',
+      params:{
+        "Authorization": "Bearer " + localStorage.getItem("user")
+      }
+    }).then((response) => {
+      setNickname(response.data.nickname);
+      setEmail(response.data.email);
+      setField(response.data.field);
+      if(response.data.profile == null) {
+        setProfile(basicImg);
+      } else {
+        setProfile(response.data.profile)
+    }
+    setUserDetail(response.data);
+    dispatch({type: 'load', nickname: nickname, email: email, field: field, profile: profile});
+
+    }).catch((err) => {
+      console.error(err)
+    });
+  },[nickname])
+  
+
+
 
   const [isOpen, setMenu] = useState(false);
 

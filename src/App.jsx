@@ -12,58 +12,43 @@ import {Provider, useSelector, useDispatch, connect} from 'react-redux';
 import axios from 'axios';
 import { loginCheck } from './util/loginCheck';
 import FriendList from './components/friendList/FriendList';
-import basicImg from './assets/basic-profile.png'
 
+
+// const AppWrapper = () => {
+//   const store = createStore(reducer);
+
+//   return (
+//     <Provider store={store}> // Set context
+//       <App /> // Now App has access to context
+//     </Provider>
+//   )
+// }
 
 function App() {
-  const [userDetail, setUserDetail] = useState('');
-  const [email, setEmail] = useState('이메일');
-  const [nickname, setNickname] = useState('닉네임');
-  const [profile, setProfile] = useState('');
-  const [field, setField] = useState('front');
-  const [userJwt, setUserJwt] = useState('');
-
-  // if(window.localStorage.getItem("user")){
-  //   setUserJwt(window.localStorage.getItem("user"));
-  // }
-
-  useEffect(() => {
-    axios({
-      method: 'get',
-      url: 'https://localhost:8080/user/details',
-      params:{
-        "Authorization": "Bearer " + localStorage.getItem("user")
-      }
-    }).then((response) => {
-      setNickname(response.data.nickname);
-      setEmail(response.data.email);
-      setField(response.data.field);
-      console.log(response.data.profile)
-      if(response.data.profile == null) {
-        setProfile(basicImg)
-      } else {setProfile(response.data.profile);}
-    
-    }).catch((err) => {
-      console.error(err)
-    });
-  }, [])
-
 
 
   function reducer(currentState, action){
     if(currentState === undefined){
       return {
-        nickname: nickname,
-        email: email,
-        profile: profile,
-        field: field
+        nickname: '',
+        email: '',
+        profile: '',
+        field: 'front'
       }
     }
     const newState = {...currentState};
+    if(action.type === 'load'){
+      newState.nickname = action.nickname;
+      newState.email = action.email
+      newState.field = action.field;
+      newState.profile = action.profile;
+    }
     return newState
   }
 
   const store = createStore(reducer);
+
+
   
   
 
