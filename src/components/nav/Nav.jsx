@@ -30,13 +30,14 @@ const Nav = (props) => {
       setNickname(response.data.nickname);
       setEmail(response.data.email);
       setField(response.data.field);
-      if(response.data.profile == null) {
+      if(response.data.profile == undefined) {
         setProfile(basicImg);
       } else {
         setProfile(response.data.profile)
-    }
-    setUserDetail(response.data);
-    dispatch({type: 'load', nickname: nickname, email: email, field: field, profile: profile});
+      }
+      console.log(profile)
+      setUserDetail(response.data);
+      dispatch({type: 'load', nickname: nickname, email: email, field: field, profile: profile});
 
     }).catch((err) => {
       console.error(err)
