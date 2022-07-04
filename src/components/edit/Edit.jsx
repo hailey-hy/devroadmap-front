@@ -3,10 +3,15 @@ import { Button, ButtonGroup, ToggleButton, Modal } from 'react-bootstrap'
 import axios from 'axios';
 import './edit.css'
 import { nicknameCheck } from '../../util/nicknameCheck';
+import { useSelector } from 'react-redux';
 
 //회원 정보 수정 페이지
 
 const Edit = () => {
+
+  const userNickname = useSelector((state) => state.nickname);
+  const userProfile = useSelector((state) => state.profile);
+  const userField = useSelector((state) => state.field);
 
   const [nickname, setNickname] = useState('')
   const [email, setEmail] = useState('')
@@ -69,12 +74,19 @@ const Edit = () => {
   }
 
   //공부 유형
-  const [radioSecValue, setRadioSecValue] = useState('1');
+  const [radioSecValue, setRadioSecValue] = useState(userField);
 
   const radiosSec = [
     { name: 'front', value: 'front' },
     { name: 'back', value: 'back' }
   ];
+
+  // const radioTargets = document.querySelectorAll('.btn-check');
+  // radioTargets.forEach(target => {
+  //   if(target.value == userField){
+  //     target.setAttribute('active', '');
+  //   }
+  // });
 
   //중복 확인 관련
   const [nickCheck, setNickCheck] = useState(false);
@@ -165,7 +177,7 @@ const Edit = () => {
           <div className="detail-container-edit">
             <h5 className='detail-title'>프로필 사진</h5>
             <form className='img-container'>
-              <div id="img-edit" className="img-box"></div>
+              <div id="img-edit" className="img-box" background-image={userProfile}></div>
               <input id="img-upload" type="file" accept='image/*' onChange={onLoadFile}/>
             </form>
           </div>
@@ -192,7 +204,7 @@ const Edit = () => {
         <div className='chunck-for-divide'>
           <div className="detail-container-edit">
             <h5 className='detail-title'>닉네임</h5>
-            <input className='login-input' type='text' value={nickname} onChange={handleNickname} placeholder='NICKNAME'/>
+            <input className='login-input' type='text' value={nickname} onChange={handleNickname} placeholder={userNickname}/>
             <Button className='id-check' variant="primary" onClick={onClickNickCheck}>확인</Button>
           </div>
           <div className="detail-container-edit">
