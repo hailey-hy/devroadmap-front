@@ -5,7 +5,7 @@ import './roadmap.css'
 
 const Objects = (props) => {
 
-  console.log(props.number)
+  // console.log(props.number)
 
     const onCheck = (index) => {
       const target = document.getElementById(index);
