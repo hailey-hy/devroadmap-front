@@ -94,8 +94,10 @@
     margin-bottom: 1rem;
 }
 
+
+
 #util-search{
-    width: 380px;
+    /* width: 380px; */
 }
 
 #random-divider{
@@ -125,11 +127,14 @@
     width: 60px;
     height: 38px;
     margin-top: 0.35rem; 
+    margin-left: 0.4rem;
 }
 
 #search-divider{
-    display: grid;
-    grid-template-columns: 2.5fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    /* display: grid;
+    grid-template-columns: 2.5fr 1fr; */
     text-align: center;
     justify-items: center
 }
@@ -144,6 +149,7 @@
     border-radius: 5px;
     background-color: var(--color-box-variant);
     box-sizing: border-box;
+    text-align: center;
 }
 
 .add-btn-random:hover{
@@ -202,3 +208,75 @@
     left: 0%;
     margin-bottom: 1rem;
   }
+
+  #friend-add-pagination{
+    position: relative;
+    margin: 0;
+    top: 0%;
+    left: 0%;
+    margin-bottom: 1rem;
+  }
+
+  .friend-add{
+    display: grid;
+    grid-template-columns: 0.45fr 0.4fr 1fr 0.3fr;
+    grid-gap: 1rem;
+    background-color: var(--color-selected);
+    font-size: 15px;
+    width: 350px;
+    border-radius: 5px;
+    padding: 0.5rem;
+    height: 5rem;
+    margin: auto;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
+}
+
+  @media screen and (max-width: 520px){
+    .util{
+        width: 14rem;
+    }
+    #search-divider{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .friend {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
+        background-color: var(--color-selected);
+        font-size: 15px;
+        width: auto;
+        border-radius: 5px;
+        padding: 0.5rem;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+    .friend-add{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: auto;
+        height: auto;
+    }
+
+    .btn-friend-add{
+        text-align: center;
+    }
+
+    .friend-detail-divider{
+        margin-left: 1rem;
+    }
+    #random-divider {
+        display: grid;
+        grid-template-columns: 0;
+    }
+    .form-switch {
+        /* padding-right: 4.5em; */
+        margin-left: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    #friend-list {
+        margin-right: 0;
+    }
+}

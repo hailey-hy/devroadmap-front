@@ -4,29 +4,26 @@ import './friendList.css'
 import { OverlayTrigger, Tooltip, Badge, Button, Form } from 'react-bootstrap'
 import {MdCancel} from 'react-icons/md'
 import {BsBellFill} from 'react-icons/bs'
-import { Pagination } from 'react-bootstrap';
+import { Pagination, Modal } from 'react-bootstrap';
 import FriendItem from './FriendItem';
+import FriendAddList from './FriendAddList';
 
 const FriendList = () => {
+    //친구 신청 모달 관련 변수
+    const [show, setShow] = useState(false);
 
-    // 검색창 입력값 관련 변수
-    const [search, setSearch] = useState('')
-    const handleSearch = (e) => {
-        setSearch(e.target.value)
-     }
-    
-    // 스위치 관련 변수
-    const { isChecked, handleToggle } = useState('false')
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-    // 페이지네이션
+    //친구 신청 페이지네이션
 
-    const [record, setRecord] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [recordPerPage, setRecordPerPage] = useState(3);
+    const [recordAdd, setRecordAdd] = useState([]);
+    const [loadingAdd, setLoadingAdd] = useState(false);
+    const [currentPageAdd, setCurrentPageAdd] = useState(1);
+    const [recordAddPerPage, setRecordAddPerPage] = useState(3);
 
     useEffect(() => {
-        setLoading(true);
+        setLoadingAdd(true);
         axios({
             method: 'get',
             url: 'https://jsonplaceholder.typicode.com/users',
@@ -37,8 +34,71 @@ const FriendList = () => {
               "Authorization": "Bearer " + localStorage.getItem("user")
             }
         }).then((response)=> {
-            // setRecord(response.data.complete_subjects);
-            setRecord(response.data);
+            console.log(response.data.friend_list)
+            setRecordAdd(response.data);
+            // setRecordAdd(response.data);
+            setLoadingAdd(false);
+        })
+    
+    }, []);
+
+    const indexOfLastAdd = currentPageAdd * recordAddPerPage;
+    const indexOfFirstAdd = indexOfLastAdd - recordAddPerPage;
+    const currentRecordAdd = (recordAdd) => {
+        let currentRecordAdd = 0;
+        currentRecordAdd = recordAdd.slice(indexOfFirstAdd, indexOfLastAdd);
+        return currentRecordAdd;
+    };
+    const totalrecordAdd = recordAdd.length;
+
+    
+
+    let [activeAdd, setActiveAdd] = useState(1);
+    let itemsAdd = [];
+    for (let number = 1; number <= Math.ceil(recordAdd.length / recordAddPerPage); number++) {
+    itemsAdd.push(
+        <Pagination.Item key={number} active={number === activeAdd} onClick={() => {
+        setCurrentPageAdd(number)
+        setActiveAdd(number)
+        }}>
+        {number}
+        </Pagination.Item>,
+    );
+    }  
+
+
+
+    // 검색창 입력값 관련 변수
+    const [search, setSearch] = useState('')
+    const handleSearch = (e) => {
+        setSearch(e.target.value)
+     }
+    
+    // 스위치 관련 변수
+    const { isChecked, handleToggle } = useState('false')
+
+    // 친구 목록 페이지네이션
+
+    const [record, setRecord] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordPerPage, setRecordPerPage] = useState(3);
+
+    useEffect(() => {
+        setLoading(true);
+        axios({
+            method: 'get',
+            url: 'https://localhost:8080/friend',
+            // headers: {
+            //   'jwt': window.localStorage.getItem("user")
+            // },
+            params: {
+              "Authorization": "Bearer " + localStorage.getItem("user")
+            }
+        }).then((response)=> {
+            console.log(response.data.friend_list)
+            setRecord(response.data.friend_list);
+            // setRecord(response.data);
             setLoading(false);
         })
     
@@ -81,13 +141,13 @@ const FriendList = () => {
                     }
                 >
                     <div class="add-btn">
-                        <BsBellFill/>
+                        <BsBellFill onClick={handleShow}/>
                     </div>
                 </OverlayTrigger>
             </div>
             <div id="container-friend-divider">
                 <div id="friend-list">
-                    {/* 추후 컴포넌트 분리, 페이지네이션 필요 */}
+                    {/* 추후 컴포넌트 분리 필요 */}
                     <FriendItem record={currentRecord(record)} loading={loading}></FriendItem>
                     <Pagination id='friend-pagination'>{items}</Pagination>
                 </div>
@@ -125,6 +185,23 @@ const FriendList = () => {
                 </div>
             </div>
         </div>
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+            <Modal.Title>친구 신청 목록</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <FriendAddList record={currentRecord(recordAdd)} loading={loadingAdd}></FriendAddList>
+                    <Pagination id='friend-add-pagination'>{itemsAdd}</Pagination>
+            </Modal.Body>
+            <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+                취소
+            </Button>
+            {/* <Button variant="primary">
+                Save Changes
+            </Button> */}
+            </Modal.Footer>
+        </Modal>
     </div>
   )
 }

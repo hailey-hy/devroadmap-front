@@ -11,8 +11,8 @@ const FriendItem = ({record, loading}) => {
         <Badge pill className="friend-field">front</Badge>
         <div className="friend-img"></div>
         <div className="friend-detail-divider">
-            <h5 className="friend-name">{record.name}</h5>
-            <h5 className='friend-progress'>{record.id}</h5>
+            <h5 className="friend-name">{record.friend_nickname}</h5>
+            <h5 className='friend-progress'>{record.friend_progressRate}%</h5>
         </div>
         <MdCancel className='friend-cancle'/>
     </div>
