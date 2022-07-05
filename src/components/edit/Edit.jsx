@@ -174,7 +174,7 @@ const Edit = () => {
           <div className="detail-container-edit">
             <h5 className='detail-title'>프로필 사진</h5>
             <form className='img-container'>
-              <div id="img-edit" className="img-box" background-image={userProfile}></div>
+              <div id="img-edit" className="img-box" backgroundImage={userProfile}></div>
               <input id="img-upload" type="file" accept='image/*' onChange={onLoadFile}/>
             </form>
           </div>
