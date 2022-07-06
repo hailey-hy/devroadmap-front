@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
@@ -24,6 +24,7 @@ import img16 from '../../assets/img-garden/정원사 앉아있는 버전.png';
 import img17 from '../../assets/img-garden/개미.png';
 import img18 from '../../assets/img-garden/지렁이.png';
 import img19 from '../../assets/img-garden/연꽃.png';
+import img20 from '../../assets/img-garden/정원사 사다리 올라가는 버전.png';
 import { useEffect } from 'react';
 import axios from 'axios';
 
@@ -37,6 +38,8 @@ const Garden = () => {
 
   const frontList = useSelector(state => state.frontList);
   const backList = useSelector(state => state.backList);
+
+  const [savedItem, setSavedItem] = useState([]);
 
   const item = []
 
@@ -69,7 +72,7 @@ const Garden = () => {
             </Tooltip>
           }
         >
-      <img id={imgId} class='garden-img' src={require(`../../assets/img-garden/${imgSrc}.png`)} alt={i}/>
+      <img id={imgId} class='garden-img hide' src={require(`../../assets/img-garden/${imgSrc}.png`)} alt={i}/>
       </OverlayTrigger>
     )
   }
@@ -78,50 +81,29 @@ const Garden = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'https://localhost:8080/history/subject/compelete/check',
+      url: 'https://localhost:8080/history',
       params: {
         "Authorization": "Bearer " + localStorage.getItem("user")
       }
     }).then(response => {
-      console.log(response.data)
+      console.log(response.data.complete_subjects)
+      setSavedItem(response.data.complete_subjects)
     })
-  })
+  }, [])
 
+  for(let i = 1; i < savedItem.length; i++){
+    if(i in savedItem[i].object){
+    var target = document.getElementById('img' + i);
+    target.classList.remove('hide');
+    target.classList.add('show');
+    }
+  }
   
   
     return (
         <>  
           {item}
-          {/* <img id='img1' class='garden-img' src={img1} alt="1"/>
-          <img id='img2' class='garden-img' src={img2} alt="2"/>
-          <img id='img3' class='garden-img' src={img3} alt="3"/>
-          <img id='img4' class='garden-img' src={img4} alt="4"/>
-          <img id='img5' class='garden-img' src={img5} alt="5"/>
-          <img id='img6' class='garden-img' src={img6} alt="6"/>
-          <img id='img7' class='garden-img' src={img7} alt="7"/>
-          <img id='img8' class='garden-img' src={img8} alt="8"/>
-          <img id='img9' class='garden-img' src={img9} alt="9"/>
-          <img id='img10' class='garden-img' src={img10} alt="10"/>
-          <img id='img11a' class='garden-img' src={img11a} alt="11"/>
-          <img id='img11b' class='garden-img' src={img11b} alt="11"/>
-          <img id='img11c' class='garden-img' src={img11c} alt="11"/>
-          <img id='img12' class='garden-img' src={img12} alt="12"/>
-          <img id='img13' class='garden-img' src={img13} alt="13"/>
-          <img id='img14' class='garden-img' src={img14} alt="14"/>
-          <img id='img15' class='garden-img' src={img15} alt="15"/>
-          <img id='img16' class='garden-img' src={img16} alt="16"/>
-          <img id='img17' class='garden-img' src={img17} alt="17"/>
-          <img id='img18' class='garden-img' src={img18} alt="18"/>
-          <img id='img19' class='garden-img' src={img19} alt="19"/> */}
-          {/* <OverlayTrigger
-            overlay={
-              <Tooltip id={`tooltip-top`}>
-                <strong>타입 체커</strong>.
-              </Tooltip>
-            }
-          >
-            
-          </OverlayTrigger>                */}
+          <img id='img22' class='garden-img hide' src={img20} alt='22'/>
         </>
         
       )

@@ -193,6 +193,13 @@
     z-index: 30;
 }
 
+/* 사다리 올라가는 정원사 */
+#img22{
+    top: 80%;
+    left: 29%;
+    z-index: 30;
+}
+
 #imgTest{
     z-index: 1000;
 }
@@ -200,3 +207,12 @@
 .tooltips{
     z-index: 1000;
 }
+
+/* 로드맵 항목 체크에 따라 숨기기/보여주기 */
+.hide{
+    display: none;
+}
+
+/* .show{
+    display: block
+} */
