@@ -35,9 +35,11 @@ const Record = () => {
     // 페이지네이션
     const indexOfLast = currentPage * recordPerPage;
     const indexOfFirst = indexOfLast - recordPerPage;
+    const recordArray = Array.from(record);
     const currentRecord = (record) => {
+      console.log(record)
       let currentRecord = 0;
-      currentRecord = record.slice(indexOfFirst, indexOfLast);
+      currentRecord = recordArray.slice(indexOfFirst, indexOfLast);
       return currentRecord;
     };
     const totalrecord = record.length;

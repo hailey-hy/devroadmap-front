@@ -28,7 +28,7 @@ const Objects = (props) => {
 
     const add = (index) => {
       console.log(index)
-      //튤립, 민들레, 토끼풀
+      //튤립, 민들레, 토끼풀은 함께 처리
       if(index == 10) {
         var targetId = 'img' + 11;
         var target = document.getElementById(targetId);
@@ -58,6 +58,7 @@ const Objects = (props) => {
         target.classList.remove('hide');
       }
 
+      //정원사, 사다리
       const ladder = document.getElementById('img16');
       const gardener = document.getElementById('img18');
       const sittingGardener = document.getElementById('img22');
@@ -73,7 +74,7 @@ const Objects = (props) => {
         url: '/subject/complete/add',
         params: {
           "Authorization": "Bearer " + localStorage.getItem("user"),
-          'subject': subject
+          "subject": subject
         }
       }).then(response => {
         console.log('체크 성공');

@@ -28,11 +28,11 @@ const Roadmap = () => {
     }).then((response)=> {
       const showLists= response.data.complete_subjects;
       // "complete_subjects":[{"object":1,"completedate":"2022-06-24 04:42:07.0"}, ...]
-      // showLists.map(list => {
-      //   const target = document.getElementById(list.object);
-      //   target.classList.remove('un-checked');
-      //   target.classList.add('checked');
-      // })
+      showLists.map(list => {
+        const target = document.getElementById(list.object);
+        target.classList.remove('un-checked');
+        target.classList.add('checked');
+      })
       console.log(showLists)
     })
   }, [])

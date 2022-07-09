@@ -12,6 +12,7 @@ import {Provider, useSelector, useDispatch, connect} from 'react-redux';
 import axios from 'axios';
 import { loginCheck } from './util/loginCheck';
 import FriendList from './components/friendList/FriendList';
+import FriendGarden from './components/friendGarden/FriendGarden';
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
           <Route path='/edit' element={<Edit/>}/>
           <Route path='/record' element={<Record/>}/>
           <Route path='/friend' element={<FriendList/>}/>
+          <Route path='/friend/garden' element={<FriendGarden/>}/>
         </Routes>
       </BrowserRouter>
       </Provider>

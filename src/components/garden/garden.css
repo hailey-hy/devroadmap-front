@@ -53,6 +53,16 @@
     left: 5%;
 }
 
+#bird{
+    z-index: 1000;
+    top: 15%;
+    left: 10%;
+}
+
+#bird:hover{
+    cursor: pointer;
+}
+
 #img0{
     top: 28%;
     left: 30%;
