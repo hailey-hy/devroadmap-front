@@ -1,20 +1,45 @@
+//친구 목록에 나올 친구 컴포넌트
+
+import axios from 'axios'
 import React from 'react'
 import { Badge } from 'react-bootstrap'
 import {MdCancel} from 'react-icons/md'
 import './friendList.css'
 
 const FriendItem = ({record, loading}) => {
+
+  const disconnect = (e) => {
+    var friend_nickname = e.target.id;
+    axios({
+      method: 'post',
+      url: 'https://localhost:8080/friend/disconnect',
+      params: {
+        "Authorization": "Bearer " + localStorage.getItem("user"),
+        "friendnickname": friend_nickname
+      }
+    }).then(response => {
+      if(response.data === 'disconnect success'){
+        var targetID = friend_nickname
+        var target = document.getElementById({targetID});
+        target.classList.add('hide');
+      }
+    })
+  }
+
   return (
     <>
     {record.map((record) => (
-    <div className="friend">
+    <div className="friend" id={record.friend_nickname}>
         <Badge pill className="friend-field">front</Badge>
         <div className="friend-img"></div>
         <div className="friend-detail-divider">
             <h5 className="friend-name">{record.friend_nickname}</h5>
             <h5 className='friend-progress'>{record.friend_progressRate}%</h5>
         </div>
-        <MdCancel className='friend-cancle'/>
+        <div className="friend-cancle" id={record.friend_nickname} onClick={
+          disconnect}>
+          <MdCancel className="friend-cancle-img"/>
+        </div>
     </div>
     ))}
     </>

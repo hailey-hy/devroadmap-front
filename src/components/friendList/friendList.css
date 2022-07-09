@@ -83,8 +83,17 @@
 }
 
 .friend-cancle{
-    margin-top: 1.2rem;
+    margin-top: 1.5rem;
     margin-left: 0.3rem;
+    z-index: 1000;
+}
+
+.friend-cancle:hover{
+    cursor: pointer;
+}
+
+.friend-cancle-img{
+    pointer-events: none;
 }
 
 .util{
@@ -231,6 +240,10 @@
     margin-bottom: 1rem;
     margin-top: 1rem;
 
+}
+
+.hide{
+    display: none;
 }
 
   @media screen and (max-width: 520px){
