@@ -52,6 +52,15 @@
     margin: auto;
 }
 
+/* #nick-alert{
+    font-size: 13px;
+    z-index: 1000;
+} */
+
+#tooltip-nickCheck{
+    z-index: 1000;
+}
+
 .id-check{
     margin-bottom: 0.18rem;
 }
@@ -98,6 +107,11 @@
     border-color: var(--color-white);
     background-size: cover;
     /* background-image: url('../../assets/basic-profile.png'); */
+}
+
+#email-input{
+    pointer-events: none; 
+    margin-right: 3.8rem;
 }
 
 #go-back{

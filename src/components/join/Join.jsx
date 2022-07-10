@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Button, ButtonGroup, ToggleButton, Tooltip, OverlayTrigger, Modal} from 'react-bootstrap'
+import React, {useState, useEffect, useRef} from 'react';
+import {Button, ButtonGroup, ToggleButton, Tooltip, Overlay, OverlayTrigger, Modal} from 'react-bootstrap'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import './join.css'
@@ -9,8 +9,9 @@ import {BiInfoCircle} from 'react-icons/bi'
 import { useSelector } from 'react-redux';
 
 const Join = (props) => {
-  const defaultEmail = useSelector(state => state.defaultEmail);
-  console.log(defaultEmail)
+  // const defaultEmail = useSelector(state => state.defaultEmail);
+  const defaultEmail = window.localStorage.getItem("email");
+  console.log(defaultEmail);
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,24 +19,28 @@ const Join = (props) => {
   
 
   const handleNickname = (e) => {
-    setNickname(e.target.value)
+    setNickname(e.target.value);
   }
 
   const handleEmail = (e) => {
-    setEmail(e.target.value)
+    setEmail(e.target.value);
   }
 
-  const handlePassword = (e) => {
-      const pwAlertMsg = document.querySelector('#pw-alert');
-      setPassword(e.target.value)
-      if (password.length >= 4 && password.length < 12) {
-        setPwCheck(true);
-        pwAlertMsg.innerHTML = '';
-      } else {
-        setPwCheck(false);
-        pwAlertMsg.innerHTML = '4자리 이상 12자리 이하';
-      } 
+  // const handlePassword = (e) => {
+  //     const pwAlertMsg = document.querySelector('#pw-alert');
+  //     setPassword(e.target.value)
+  //     if (password.length >= 4 && password.length < 12) {
+  //       setPwCheck(true);
+  //       pwAlertMsg.innerHTML = '';
+  //     } else {
+  //       setPwCheck(false);
+  //       pwAlertMsg.innerHTML = '4자리 이상 12자리 이하';
+  //     } 
       
+  // }
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
   }
 
   const handlePasswordCheck = (e) => {
@@ -120,13 +125,19 @@ const renderTooltip = (props) => (
   }
 
   //중복 확인 관련
-  const [nickCheck, setNickCheck] = useState(true);
+  const [nickCheck, setNickCheck] = useState(false);
+  
   const [pwCheck, setPwCheck] = useState(false);
   const [pwDoubleCheck, setPwDoubleCheck] = useState(false);
 
-  //닉네임 중복 확인 관련
+
+
+  //닉네임 중복 확인 툴팁, 버튼
+  const [showNickCheck, setShowNickCheck] = useState(false);
+  const [showNickCheck2, setShowNickCheck2] = useState(false);
+  const target = useRef(null);
+
   const nickServerCheck = () => {
-    const idAlertMsg = document.querySelector('#nick-alert');
     axios({
       method: 'get',
       url: '/signup/nickname/',
@@ -134,20 +145,46 @@ const renderTooltip = (props) => (
         "nickname" : nickname}
     }).then((response) => {
       if(response.data == 'ok'){
+      // setNickCheck(true);
+      setShowNickCheck(true);
+      setShowNickCheck2(false);
       setNickCheck(true);
-      idAlertMsg.innerHTML = '사용할 수 있는 닉네임입니다.'
       } else {
-        idAlertMsg.innerHTML = '사용할 수 없는 닉네임입니다.'
+        setShowNickCheck2(true);
+        setShowNickCheck(false);
+        setNickCheck(false);
       }
     }).catch((err) => {
       console.error(err)
     })
   }
   
-  //비밀번호 자리 수 확인
+  //비밀번호 중복 확인 툴팁
+  const [showPwCheck, setShowPwCheck] = useState(false);
+  const [showPwCheck2, setShowPwCheck2] = useState(false);
+  const [showPwCheck3, setShowPwCheck3] = useState(false);
+  const targetPw = useRef(null);
+
+  //비밀번호 확인 버튼
   const onClickPwDoubleCheck = () => {
-    if(password == passwordCheck){
+    if(password.length < 4 || password.length > 10){
+      setPwCheck(false);
+      setPwDoubleCheck(false);
+      setShowPwCheck(false);
+      setShowPwCheck2(false);
+      setShowPwCheck3(true);
+    }else if(password == passwordCheck){
+      setPwCheck(true);
       setPwDoubleCheck(true);
+      setShowPwCheck(true);
+      setShowPwCheck2(false);
+      setShowPwCheck3(false);
+    }else{
+      setPwCheck(false);
+      setPwDoubleCheck(false);
+      setShowPwCheck2(true);
+      setShowPwCheck(false);
+      setShowPwCheck3(false);
     }
   }
 
@@ -185,13 +222,29 @@ const renderTooltip = (props) => (
           <div>
             {/* 닉네임 */}
             <div className="detail-container">
-              <div id="detail-pw">
+              <div id="detail-pw" >
                 <h5 className='detail-title'>닉네임</h5>
-                <h5 id='nick-alert'></h5>
+                <Overlay target={target.current} show={showNickCheck} placement="top-end" id="tooltip-nickCheck">
+                  {(props) => (
+                    <Tooltip id="nick-alert" {...props}>
+                      사용 가능한 닉네임이에요.
+                    </Tooltip>
+                  )}
+                </Overlay>
+                <Overlay target={target.current} show={showNickCheck2} placement="top-end">
+                  {(props) => (
+                    <Tooltip id="nick-alert" {...props}>
+                      다른 닉네임을 사용해 주세요.
+                    </Tooltip>
+                  )}
+                </Overlay>
+                {/* <h5 id='nick-alert'></h5> */}
               </div>
-                <input className='login-input' type='text' value={nickname} onChange={handleNickname} placeholder='NICKNAME'/>
+              <div ref={target}>
+                <input className='login-input' type='text'  value={nickname} onChange={handleNickname} placeholder='NICKNAME'/>
                 <Button className='id-check' variant="primary" onClick={nickServerCheck}>확인</Button>
-              
+              </div>
+
             </div>
             <div className="detail-container">
                 <h5 className='detail-title'>공부 분야</h5>
@@ -215,19 +268,42 @@ const renderTooltip = (props) => (
           </div>
         <div>
           {/* 이메일 */}
-          <div className="detail-container">
+          <div className="detail-container" id='detail-email'>
               <h5 className='detail-title'>이메일</h5>
-                <input className='login-input' type='text' value={defaultEmail} onChange={handleEmail} placeholder='EMAIL'/>
-                <Button className='id-check' variant="primary">확인</Button>
+                <input className='login-input' id='email-input' type='text' value={defaultEmail} onChange={handleEmail}/>
+                {/* <Button className='id-check' variant="primary">확인</Button> */}
             </div>
             {/* 비밀번호 */}
             <div className="detail-container">
               <div id="detail-pw">
                 <h5 className='detail-title pw'>비밀번호</h5>
-                <h5 className='pw' id='pw-alert'></h5>
+                {/* <h5 className='pw' id='pw-alert'></h5> */}
               </div>
-                <input id='input-pw' className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/>
+                <div ref={targetPw}>
+                  <input id='input-pw' className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/>
+                </div>
                 <input className='login-input' type='password' value={passwordCheck} onChange={handlePasswordCheck} placeholder='PW CHECK'/>
+                <Overlay target={targetPw.current} show={showPwCheck} placement="top-end">
+                  {(props) => (
+                    <Tooltip id="nick-alert" {...props}>
+                  비밀번호 확인 완료!
+                    </Tooltip>
+                  )}
+                </Overlay>
+                <Overlay target={targetPw.current} show={showPwCheck2} placement="top-end">
+                  {(props) => (
+                    <Tooltip id="nick-alert" {...props}>
+                  비밀번호가 일치하지 않아요.
+                    </Tooltip>
+                  )}
+                </Overlay>
+                <Overlay target={targetPw.current} show={showPwCheck3} placement="top-end">
+                  {(props) => (
+                    <Tooltip id="nick-alert" {...props}>
+                  4~10자리 비밀번호를 <br/> 사용해 주세요.
+                    </Tooltip>
+                  )}
+                </Overlay>
                 <Button className='id-check' variant="primary" onClick={onClickPwDoubleCheck}>확인</Button>
             </div>
         </div>
