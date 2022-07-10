@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import { Badge } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
 
 const SearchResult = (props) => {
   // result: "ok"
@@ -9,7 +8,6 @@ const SearchResult = (props) => {
 // search_user_field: "front"
 // search_user_joindate: "2022-06-23 01:57:48.0"
 // search_user_nickname: "해연"
-const myNickname = useSelector(state => state.nickname);
 
 const accept = (e) => {
   console.log(e.target.id)
@@ -24,9 +22,10 @@ const accept = (e) => {
     }).then(response => {
       if(response.data === 'ok'){
           var targetID = e.target.id;
-          var target = document.getElementById({targetID});
+          var target = document.getElementById(targetID);
           console.log(target);
-          // target.classList.add('hide');
+          target.classList.add('complete');
+          target.innerHTML = '신청 완료!';
         }
     })
 }

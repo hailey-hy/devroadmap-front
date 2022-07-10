@@ -242,8 +242,17 @@
 
 }
 
-.hide{
-    display: none;
+.complete{
+    pointer-events: none;
+    width: 70px;
+    font-size: 13px;
+    line-height: 1.85;
+    /* color: #3758a0; */
+    color: var(--color-white);
+    background-color: rgb(17, 87, 153);;
+    font-weight: 700;
+    /* box-sizing: border-box;
+    border: 2px solid white; */
 }
 
   @media screen and (max-width: 520px){
