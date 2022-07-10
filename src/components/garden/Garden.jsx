@@ -58,15 +58,16 @@ const Garden = () => {
     var imgId = 'img' + i;
     var imgSrc = imgList[i - 1];
     if(field === 'front'){
-      if(i < 11){
+      if(i <= 11){
         var msg = frontList[i - 1];
-      }else if(i == 21) {
+      }
+      else if(i == 21) {
         var msg = frontList[5];
       }else if(i >= 14){
         var msg = frontList[i - 3];
       }
     } else {
-      if(i < 11){
+      if(i <= 11){
         var msg = backList[i - 1];
       }else if(i >= 14){
         var msg = backList[i - 3];
