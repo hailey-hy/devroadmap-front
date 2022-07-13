@@ -7,9 +7,11 @@ const JoinMail = (props) => {
 
     // 이메일 입력 관련 변수 및 함수
     const [email, setEmail] = useState('')
+    const defaultEmail = window.localStorage.getItem("email");
+    console.log(defaultEmail);
 
     const handleEmail = (e) => {
-        setEmail(e.target.value)
+        setEmail(e.target.value);
       }
     
     // const dispatch = useDispatch();
@@ -20,7 +22,7 @@ const JoinMail = (props) => {
             method: 'post',
             url: '/signup/mail',
             params: {
-                "email" : email
+                "email" : defaultEmail
             }
         }).then(response => {
             handleShow();

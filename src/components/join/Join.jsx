@@ -109,7 +109,7 @@ const renderTooltip = (props) => (
       },
       params: {
         "nickname" : nickname,
-        "email" : email,
+        "email" : defaultEmail,
         "password" : password,
         "field" : radioSecValue
       }
