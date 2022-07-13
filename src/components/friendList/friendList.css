@@ -20,7 +20,17 @@
 }
 
 #friend-list{
-    margin-right: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+#friend-list-detail{
+    height: 288px;
+}
+
+#friend-util{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .add-btn{
@@ -148,7 +158,9 @@
     justify-items: center
 }
 
-
+.hide{
+    display: none;
+}
 
 .add-btn-random{
     width: 25px;
@@ -215,7 +227,7 @@
     margin: 0;
     top: 0%;
     left: 0%;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   #friend-add-pagination{
@@ -239,7 +251,6 @@
     margin: auto;
     margin-bottom: 1rem;
     margin-top: 1rem;
-
 }
 
 .complete{
@@ -253,6 +264,19 @@
     font-weight: 700;
     /* box-sizing: border-box;
     border: 2px solid white; */
+}
+
+#container-no-friend{
+    /* padding: 2.7rem 5.8rem 2.7rem 5.8rem; */
+    height: 117.9px;
+    width: 344px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+#title-no-friend{
+    margin-top: 1.7rem;
 }
 
   @media screen and (max-width: 520px){
@@ -300,5 +324,8 @@
     }
     #friend-list {
         margin-right: 0;
+    }
+    #container-no-friend{
+        width: 14rem;
     }
 }

@@ -18,32 +18,41 @@ const FriendItem = ({record, loading}) => {
         "friendnickname": friend_nickname
       }
     }).then(response => {
-      if(response.data === 'disconnect success'){
-        var targetID = friend_nickname
-        var target = document.getElementById({targetID});
+      if(response.data === 'ok'){
+        var targetID = e.target.id;
+        var target = document.getElementById(targetID);
         target.classList.add('hide');
       }
     })
   }
-
-  return (
-    <>
-    {record.map((record) => (
-    <div className="friend" id={record.friend_nickname}>
-        <Badge pill className="friend-field">front</Badge>
-        <div className="friend-img"></div>
-        <div className="friend-detail-divider">
-            <h5 className="friend-name">{record.friend_nickname}</h5>
-            <h5 className='friend-progress'>{record.friend_progressRate}%</h5>
+  if(record.length === 0){
+    return (
+      <>
+        <div className="util" id='container-no-friend'>
+          <h5 id='title-no-friend'>아직 친구가 없어요.</h5>
         </div>
-        <div className="friend-cancle" id={record.friend_nickname} onClick={
-          disconnect}>
-          <MdCancel className="friend-cancle-img"/>
-        </div>
-    </div>
-    ))}
-    </>
-  )
+      </>
+    )
+  } else {
+    return (
+      <>
+      {record.map((record) => (
+      <div className="friend" id={record.friend_nickname}>
+          <Badge pill className="friend-field">front</Badge>
+          <div className="friend-img"></div>
+          <div className="friend-detail-divider">
+              <h5 className="friend-name">{record.friend_nickname}</h5>
+              <h5 className='friend-progress'>{record.friend_progressRate}%</h5>
+          </div>
+          <div className="friend-cancle" id={record.friend_nickname} onClick={
+            disconnect}>
+            <MdCancel className="friend-cancle-img"/>
+          </div>
+      </div>
+      ))}
+      </>
+    )
+  }
 }
 
 export default FriendItem

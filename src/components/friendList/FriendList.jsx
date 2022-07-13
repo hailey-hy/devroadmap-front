@@ -136,7 +136,7 @@ const FriendList = () => {
             setLoading(false);
         })
     
-    }, []);
+    });
 
     const indexOfLast = currentPage * recordPerPage;
     const indexOfFirst = indexOfLast - recordPerPage;
@@ -166,20 +166,20 @@ const FriendList = () => {
     //랜덤 친구 추천
     const [random, setRandom] = useState([]);
 
-    useEffect(() => {
-        // setLoading(true);
-        axios({
-            method: 'get',
-            url: 'https://localhost:8080',
-            params: {
-              "Authorization": "Bearer " + localStorage.getItem("user")
-            }
-        }).then((response)=> {
-            setRandom(response.data);
-            // setLoading(false);
-        })
+    // useEffect(() => {
+    //     // setLoading(true);
+    //     axios({
+    //         method: 'get',
+    //         url: 'https://localhost:8080',
+    //         params: {
+    //           "Authorization": "Bearer " + localStorage.getItem("user")
+    //         }
+    //     }).then((response)=> {
+    //         setRandom(response.data);
+    //         // setLoading(false);
+    //     })
     
-    }, []);
+    // }, []);
 
   return (
     <div id='friend'>
@@ -200,8 +200,9 @@ const FriendList = () => {
             </div>
             <div id="container-friend-divider">
                 <div id="friend-list">
-                    {/* 추후 컴포넌트 분리 필요 */}
-                    <FriendItem record={currentRecord(record)} loading={loading}></FriendItem>
+                    <div id="friend-list-detail">
+                        <FriendItem record={currentRecord(record)} loading={loading}></FriendItem>
+                    </div>
                     <Pagination id='friend-pagination'>{items}</Pagination>
                 </div>
                 <div id="friend-util">
