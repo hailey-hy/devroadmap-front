@@ -17,7 +17,7 @@ import axios from 'axios'
 
 
 const Main = () => {
-  // loginCheck();
+  loginCheck();
 
   const [savedItem, setSavedItem] = useState([]);
 
