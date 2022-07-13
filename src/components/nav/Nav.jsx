@@ -111,12 +111,13 @@ const Nav = (props) => {
     axios({
       method: 'post',
       url: '/edit/withdraw',
-      headers: {
+      params: {
         "Authorization": "Bearer " + localStorage.getItem("user")
       }
     }).then((response) => {
       if(response.data == 'withdraw success'){
         console.log('탈퇴')
+        setShowSecond(true);
       }
     })
   }
