@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {useState} from 'react'
 import { Button, Modal } from 'react-bootstrap'
+import Garden from '../garden/Garden'
 import './join.css'
 
 const JoinMail = (props) => {
@@ -39,6 +40,9 @@ const JoinMail = (props) => {
 
   return (
     <>
+    <div id="login-garden">
+        <Garden login={true}></Garden>
+    </div>
     <div className="container-login">
         <h3 id='login-title'>회원가입 (1/2)</h3>
         <br/>

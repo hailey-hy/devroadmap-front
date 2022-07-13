@@ -79,7 +79,7 @@ const Objects = (props) => {
       }).then(response => {
         console.log('체크 성공');
       })
-    }
+      }
 
     const withdraw = (index) => {
       if(index == 10) {

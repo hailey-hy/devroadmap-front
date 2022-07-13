@@ -38,7 +38,7 @@ import axios from 'axios';
 
 // 개구리 3
 
-const Garden = () => {
+const Garden = (props) => {
 
 
   const field = useSelector(state => state.field);
@@ -76,19 +76,28 @@ const Garden = () => {
       }
     }
 
+    // if(props.)
+    console.log(props.login);
     
+    //로그인에서 접근할 경우 툴팁 해제
+    if(props.login === true || props.join === true){
+      item.push(
+        <img id={imgId} class='garden-img' src={require(`../../assets/img-garden/${imgSrc}.png`)} alt={i}/>
+      )
+    }
 
-    item.push(
-      <OverlayTrigger
-          overlay={
-            <Tooltip id={`tooltip-top`} className='tooltips'>
-              <strong>{msg}</strong>
-            </Tooltip>
-          }
-        >
-      <img id={imgId} class='garden-img hide' src={require(`../../assets/img-garden/${imgSrc}.png`)} alt={i}/>
-      </OverlayTrigger>
-    )
+    else{
+      item.push(
+        <OverlayTrigger
+            overlay={
+              <Tooltip id={`tooltip-top`} className='tooltips'>
+                <strong>{msg}</strong>
+              </Tooltip>
+            }
+          >
+        <img id={imgId} class='garden-img hide' src={require(`../../assets/img-garden/${imgSrc}.png`)} alt={i}/>
+        </OverlayTrigger>
+    )}
   }
 
   // const ladder = document.getElementById('img16');
@@ -139,7 +148,15 @@ const Garden = () => {
         </div>
         <div id="container-garden">
           {item}
+          <OverlayTrigger
+          overlay={
+            <Tooltip id={`tooltip-top`} className='tooltips'>
+              <strong>CSS 프레임워크, <br></br>서버 사이드 렌더링</strong>
+            </Tooltip>
+          }
+        >
           <img id='img22' class='garden-img hide' src={img20} alt='22'/>
+        </OverlayTrigger>
         </div>  
         </>
         

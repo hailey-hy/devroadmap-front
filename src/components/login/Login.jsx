@@ -6,35 +6,6 @@ import { useNavigate } from "react-router-dom";
 import Garden from '../garden/Garden';
 
 import '../garden/garden.css'
-import grass from '../../assets/img-garden/땅.png';
-import sun from '../../assets/img-garden/해.png';
-import cloud1 from '../../assets/img-garden/구름1.png';
-import cloud2 from '../../assets/img-garden/구름2.png';
-import cloud3 from '../../assets/img-garden/구름3.png';
-import cloud4 from '../../assets/img-garden/구름4.png';
-import cloud5 from '../../assets/img-garden/구름5.png';
-import bird from '../../assets/img-garden/새.png'
-import img1 from '../../assets/img-garden/소나무.png';
-import img2 from '../../assets/img-garden/꽃나무.png';
-import img3 from '../../assets/img-garden/울타리.png';
-import img4 from '../../assets/img-garden/새집.png';
-import img5 from '../../assets/img-garden/토끼.png';
-import img6 from '../../assets/img-garden/연못.png';
-import img7 from '../../assets/img-garden/개구리.png';
-import img8 from '../../assets/img-garden/분수대.png';
-import img9 from '../../assets/img-garden/두더지.png';
-import img10 from '../../assets/img-garden/벤치의자.png';
-import img11a from '../../assets/img-garden/튤립.png';
-import img11b from '../../assets/img-garden/민들레.png';
-import img11c from '../../assets/img-garden/토끼풀.png';
-import img12 from '../../assets/img-garden/돌.png';
-import img13 from '../../assets/img-garden/덤불.png';
-import img14 from '../../assets/img-garden/사다리.png';
-import img15 from '../../assets/img-garden/다람쥐 그네.png';
-import img16 from '../../assets/img-garden/정원사 앉아있는 버전.png';
-import img17 from '../../assets/img-garden/개미.png';
-import img18 from '../../assets/img-garden/지렁이.png';
-import img19 from '../../assets/img-garden/연꽃.png';
 
 // const onClickLogin = (email, password) => {
 // 	const data = {
@@ -101,21 +72,23 @@ const Login = (props) => {
   
   // const item = [];
 
-  // for(let i = 1; i <= 29; i++){
-  //   var target = document.getElementById('img' + i);
-  //   console.log(target);
-  //   var imgId = 'img' + i;
-  //   // target.classList.remove('hide');
-  //   item.push(
-  //     <img id={imgId} class='garden-img hide' src={require(`../../assets/img-garden/${imgSrc}.png`)} alt={i}/>
-  //   )
-  // }
+    const targets = document.getElementsByClassName('hide');
+    console.log(targets);
+    
+    // for(let i = 0; i < targets.length; i++){
+    //   console.log(targets[i]);
+    //   targets[i].classList.remove('hide');
+    // }
+    // target.classList.remove('hide');
+
 
   
   
   return (
     <>
-      <Garden></Garden>
+      <div id="login-garden">
+        <Garden login={true}></Garden>
+      </div>
       <div className="container-login">
           <h3 id='login-title'>로그인</h3>
           {/* 소셜 로그인 (중지)

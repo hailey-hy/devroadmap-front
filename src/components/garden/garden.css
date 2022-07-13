@@ -226,3 +226,7 @@
 /* .show{
     display: block
 } */
+
+#login-garden{
+    pointer-events: none;
+}

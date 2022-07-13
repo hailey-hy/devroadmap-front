@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import {Button, ButtonGroup, ToggleButton, Tooltip, Overlay, OverlayTrigger, Modal} from 'react-bootstrap'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import Garden from '../garden/Garden';
 import './join.css'
 
 import { nicknameCheck } from '../../util/nicknameCheck';
@@ -216,6 +217,10 @@ const renderTooltip = (props) => (
   // }
 
   return (
+    <>
+    <div id="login-garden">
+        <Garden login={true}></Garden>
+    </div>
     <div id="join-second" className="container-login">
         <h3 id='login-title'>회원가입 (2/2)</h3>
         <div className="chunck-container">
@@ -325,6 +330,7 @@ const renderTooltip = (props) => (
         </Modal.Footer>
       </Modal>
     </div>
+    </>
   )
 }
 
