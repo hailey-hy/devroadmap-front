@@ -15,7 +15,7 @@ const Nav = (props) => {
   const [email, setEmail] = useState('이메일');
   const [nickname, setNickname] = useState('닉네임');
   const [profile, setProfile] = useState('');
-  const [field, setField] = useState('front');
+  const [field, setField] = useState('');
   // const [userJwt, setUserJwt] = useState('');
   const dispatch = useDispatch();
 
@@ -41,7 +41,7 @@ const Nav = (props) => {
     }).catch((err) => {
       console.error(err)
     });
-  },[nickname])
+  },[field])
   
 
 

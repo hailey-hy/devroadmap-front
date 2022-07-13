@@ -33,7 +33,7 @@ const accept = (e) => {
 if(props.result.result === 'ok'){
   return (
     <div className="friend-add">
-          <Badge pill className="friend-field">front</Badge>
+          <Badge pill bg={props.result.search_user_field === 'front' ? 'primary' : 'success'} className="friend-field">{props.result.search_user_field}</Badge>
           <div className="friend-img"></div>
           <div className="friend-detail-divider">
               <h5 className="friend-name">{props.result.search_user_nickname}</h5>

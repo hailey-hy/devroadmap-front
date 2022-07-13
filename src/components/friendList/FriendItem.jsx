@@ -8,6 +8,8 @@ import './friendList.css'
 
 const FriendItem = ({record, loading}) => {
 
+
+  //친구 끊기
   const disconnect = (e) => {
     var friend_nickname = e.target.id;
     axios({
@@ -28,7 +30,6 @@ const FriendItem = ({record, loading}) => {
       // console.log(delTarget)
       // if(delTarget.length === 0){
       //   console.log('ad')
-        
       // }
     })
   }
@@ -36,7 +37,7 @@ const FriendItem = ({record, loading}) => {
   if(record.length === 0){
     return (
       <>
-        <div id='container-no-friend'>
+        <div className='util' id='container-no-friend'>
           <h5 id='title-no-friend'>아직 친구가 없어요.</h5>
         </div>
       </>
@@ -46,7 +47,7 @@ const FriendItem = ({record, loading}) => {
       <>
       {record.map((record) => (
       <div className="friend" id={record.friend_nickname}>
-          <Badge pill className="friend-field">front</Badge>
+          <Badge pill bg={record.friend_field === 'front' ? 'primary' : 'success'} className='front friend-field'>{record.friend_field}</Badge>
           <div className="friend-img"></div>
           <div className="friend-detail-divider">
               <h5 className="friend-name">{record.friend_nickname}</h5>
