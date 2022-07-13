@@ -65,6 +65,8 @@ const Garden = () => {
         var msg = frontList[5];
       }else if(i >= 14){
         var msg = frontList[i - 3];
+      }else if(i == 22){
+        var msg = "CSS 프레임워크, 서버 사이드 렌더링";
       }
     } else {
       if(i <= 11){
@@ -73,6 +75,9 @@ const Garden = () => {
         var msg = backList[i - 3];
       }
     }
+
+    
+
     item.push(
       <OverlayTrigger
           overlay={
@@ -85,6 +90,17 @@ const Garden = () => {
       </OverlayTrigger>
     )
   }
+
+  // const ladder = document.getElementById('img16');
+  //   const gardener = document.getElementById('img18');
+  //   const sittingGardener = document.getElementById('img22');
+
+  //   if(!ladder.classList.contains('hide') 
+  //       && !gardener.classList.contains('hide')){
+  //           if(field === 'front'){
+  //             msg = 
+  //           }
+  //     }
 
 
   // useEffect(() => {
