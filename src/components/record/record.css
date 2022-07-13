@@ -3,7 +3,27 @@
 }
 
 #container-records{
-    height: 255px;
+    height: 500px;
+}
+
+/* 씨앗 그림 */
+/* .seed-container{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+} */
+
+.seed{
+    width: 40px;
+    height: 40px;
+    margin-top: 1rem;
+}
+
+/* 정원사 그림 */
+.gardener{
+    width: 50px;
+    height: 50px;
+    margin-top: 0.5rem;
 }
 
 /* 말풍선 내부 */
@@ -16,7 +36,7 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    margin-left: 4rem;
+    margin-left: 1rem;
 }
 
 .record-bubble:after {
@@ -44,11 +64,12 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    padding-top: 1.5rem;
+    padding: 1rem;
 }
 
 .record-date{
     border-right: 1px solid black;
+    font-size: 15px;
 }
 
 /* 페이지네이션 바 */
@@ -62,4 +83,8 @@
 
 #record-none{
     margin-top: 2rem;
+}
+
+.hide{
+    display: none;
 }

@@ -26,7 +26,7 @@ const Record = () => {
         }).then((response)=> {
             setRecord(response.data.complete_subjects);
             setLoading(false);
-            console.log(response.data.complete_subjects);
+            console.log(response.data);
         })
     
     }, []);
@@ -60,12 +60,11 @@ const Record = () => {
   return (
     <div id="record">
     <div className='container-white container'>
+      <div id="container-records">
         <h3 id="white-title">정원 기록</h3>
-        <div id="container-records">
         <Bubbles record={currentRecord(record)} loading={loading}></Bubbles>
-        </div>
-        
         <Pagination>{items}</Pagination>
+        </div>
     </div>
     </div>
   )
