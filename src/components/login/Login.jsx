@@ -43,12 +43,7 @@ const Login = (props) => {
 
     axios({
       method: 'post',
-      url: '/signin',
-      // headers: {
-      //   "Access-Control-Allow-Origin": "https://localhost:8080/",
-      //   "Access-Control-Allow-Credentials": "true"
-      //   // "jwtToken": ""
-      // },
+      url: 'https://localhost:8080/signin',
       params: {
         "email" : email,
         "password" : password

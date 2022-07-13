@@ -29,18 +29,26 @@ const Main = () => {
         "Authorization": "Bearer " + localStorage.getItem("user")
       }
     }).then(response => {
-      console.log(response.data.complete_subjects)
-      setSavedItem(response.data.complete_subjects)
+      console.log(response.data.complete_subjects);
+      const savedItem = response.data.complete_subjects;
+      console.log(savedItem);
+
+       for(let i = 0; i < savedItem.length; i++){
+          var targetID = savedItem[i].object + 1
+          var target = document.getElementById('img' + targetID);
+          target.classList.remove('hide');
+
+          if(targetID === 11){
+            var target = document.getElementById('img' + 12);
+            target.classList.remove('hide');
+
+            var target = document.getElementById('img' + 13);
+            target.classList.remove('hide');
+          }
+        }
     })
   }, [])
 
-  for(let i = 1; i < savedItem.length; i++){
-    if(i in savedItem[i].object){
-    var target = document.getElementById('img' + i);
-    target.classList.remove('hide');
-    target.classList.add('show');
-    }
-  }
       
   return (
     <>
