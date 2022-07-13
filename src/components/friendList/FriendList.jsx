@@ -111,6 +111,30 @@ const FriendList = () => {
     // 스위치 관련 변수
     const { isChecked, handleToggle } = useState('false')
 
+    //스위치 관련 함수
+    const onCheckedElement = (checked, item) => {
+        if (checked) {
+            console.log('체크');
+            onChecked();
+        } else {
+            console.log('해제');
+            onChecked();
+        }
+    }
+
+    //스위치 ON
+    const onChecked = () => {
+        axios({
+            method: 'get',
+                url: 'https://localhost:8080/friend/matchornot',
+                params: {
+                    "Authorization": "Bearer " + localStorage.getItem("user")
+                }
+        }).then(response => {
+            console.log(response.data);
+        })
+    }
+
     // 친구 목록 페이지네이션
 
     const [record, setRecord] = useState([]);
@@ -169,20 +193,22 @@ const FriendList = () => {
     //랜덤 친구 추천
     const [random, setRandom] = useState([]);
 
-    // useEffect(() => {
-    //     // setLoading(true);
-    //     axios({
-    //         method: 'get',
-    //         url: 'https://localhost:8080',
-    //         params: {
-    //           "Authorization": "Bearer " + localStorage.getItem("user")
-    //         }
-    //     }).then((response)=> {
-    //         setRandom(response.data);
-    //         // setLoading(false);
-    //     })
+    useEffect(() => {
+        // setLoading(true);
+        axios({
+            method: 'get',
+            url: 'https://localhost:8080/friend/match',
+            params: {
+              "Authorization": "Bearer " + localStorage.getItem("user")
+            }
+        }).then((response)=> {
+            setRandom(response.data);
+            console.log(response.data);
+            console.log(random);
+            // setLoading(false);
+        })
     
-    // }, []);
+    }, []);
 
   return (
     <div id='friend'>
@@ -226,6 +252,10 @@ const FriendList = () => {
                                 type="switch"
                                 id="custom-switch"
                                 label=""
+                                onChange={e => {
+                                        onCheckedElement(e.target.checked);
+                                      }
+                                }
                             />
                         </div>
                     </div>
