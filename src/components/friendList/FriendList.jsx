@@ -118,6 +118,9 @@ const FriendList = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [recordPerPage, setRecordPerPage] = useState(3);
 
+    const delTarget = document.getElementsByClassName('friend');
+    console.log(delTarget);
+
     useEffect(() => {
         setLoading(true);
         axios({
@@ -136,7 +139,7 @@ const FriendList = () => {
             setLoading(false);
         })
     
-    });
+    }, []);
 
     const indexOfLast = currentPage * recordPerPage;
     const indexOfFirst = indexOfLast - recordPerPage;

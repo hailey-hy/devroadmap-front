@@ -26,6 +26,7 @@
 
 #friend-list-detail{
     height: 288px;
+    width: 350px;
 }
 
 #friend-util{
@@ -276,7 +277,7 @@
 }
 
 #title-no-friend{
-    margin-top: 1.7rem;
+    padding-top: 5rem;
 }
 
   @media screen and (max-width: 520px){
@@ -305,7 +306,9 @@
         width: auto;
         height: auto;
     }
-
+    #friend-list-detail{
+        width: 224px;
+    }
     .btn-friend-add{
         text-align: center;
     }

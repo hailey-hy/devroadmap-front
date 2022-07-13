@@ -21,14 +21,22 @@ const FriendItem = ({record, loading}) => {
       if(response.data === 'ok'){
         var targetID = e.target.id;
         var target = document.getElementById(targetID);
-        target.classList.add('hide');
+        // target.classList.add('hide');
+        target.remove();
       }
+      // var delTarget = document.getElementsByClassName('friend');
+      // console.log(delTarget)
+      // if(delTarget.length === 0){
+      //   console.log('ad')
+        
+      // }
     })
   }
+  
   if(record.length === 0){
     return (
       <>
-        <div className="util" id='container-no-friend'>
+        <div id='container-no-friend'>
           <h5 id='title-no-friend'>아직 친구가 없어요.</h5>
         </div>
       </>
