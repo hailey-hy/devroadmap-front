@@ -12,7 +12,7 @@
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
+    width: 1000px;
     height: 350px;
 }
 
@@ -55,7 +55,7 @@
 
 #bird{
     z-index: 1000;
-    top: 15%;
+    top: 0%;
     left: 10%;
 }
 
@@ -63,11 +63,11 @@
     cursor: pointer;
 }
 
-#img0{
+/* #img0{
     top: 28%;
     left: 30%;
     z-index: 1000;
-}
+} */
 
 /* 소나무 */
 
