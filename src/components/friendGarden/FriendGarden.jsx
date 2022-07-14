@@ -15,8 +15,9 @@ import bird from '../../assets/img-garden/새.png'
 
 const FriendGarden = () => {
 
-  //친구 완료 항목 api
-  
+  //친구 정원 api
+  const [friendOrNot, setFriendOrNot] = useState(true);
+  const [friendName, setFriendName] = useState('');
   
   useEffect(() => {
         axios({
@@ -26,6 +27,11 @@ const FriendGarden = () => {
             "Authorization": "Bearer " + localStorage.getItem("user")
           }
         }).then(response => {
+
+        //친구 정보 불러오기
+
+
+        //친구 완료 항목
           const savedItem = [];
 
           console.log(response.data.complete_subjects)
@@ -38,6 +44,12 @@ const FriendGarden = () => {
             target.classList.add('show');
             }
         }
+
+        //친구 여부에 따라 버튼 바꾸기
+        if (friendOrNot === false){
+          var target = document.getElementById('btn-note');
+          target.innerHTML = '친구 신청';
+        }
       })
       }, [])
     
@@ -46,16 +58,52 @@ const FriendGarden = () => {
 
   // 친구 여부에 따라 다른 버튼 내용
   const noteOrAdd = () => {
-
+    if (friendOrNot === false){
+      friendAdd();
+    } else {
+      handleShowMsg();
+    }
   }
 
-  //방명록 모달창 관련 변수
+  //친구 신청 관련 모음
+  const friendAdd = () => {
+    axios({
+      method: 'get',
+      url: 'https://localhost:8080/',
+      params: {
+        "Authorization": "Bearer " + localStorage.getItem("user")
+      }
+    }).then(response => {
+      var target = document.getElementById('btn-note');
+      target.innerHTML = '친구 신청 완료!';
+      target.style.pointerEvents = 'none';
+    });
+  }
+
+  //방명록 모달창 관련 모음
   const [showMsg, setShowMsg] = useState(false);
 
   const handleCloseMsg = () => setShowMsg(false);
   const handleShowMsg = () => setShowMsg(true);
 
-  
+  const sendNote = () => {
+    axios({
+      method: 'get',
+      url: 'https://localhost:8080/',
+      params: {
+        "Authorization": "Bearer " + localStorage.getItem("user")
+      }
+    }).then(response => {
+      handleShow();
+    })
+  }
+
+  //방명록 남긴 이후 모달창 관련 모음
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   return (
     <div>
@@ -63,14 +111,14 @@ const FriendGarden = () => {
 
           {/* 친구 정원 알림창 */}
           <div id="container-friend-notion">
-            <h5 id='friend-notion-title'>님의 정원입니다.</h5>
-            <Button id='btn-note' variant="primary" onClick={handleShowMsg}>방명록 남기기</Button>
+            <h5 id='friend-notion-title'>{friendName}님의 정원입니다.</h5>
+            <Button id='btn-note' variant="primary" onClick={noteOrAdd}>방명록 남기기</Button>
           </div>
 
           {/* 방명록 남기기 모달 창 */}
           <Modal show={showMsg} onHide={handleCloseMsg}>
             <Modal.Header closeButton>
-              <Modal.Title>님께 방명록 남기기</Modal.Title>
+              <Modal.Title>{friendName}님께 방명록 남기기</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <Form>
@@ -87,11 +135,31 @@ const FriendGarden = () => {
               <Button variant="secondary" onClick={handleCloseMsg}>
                 취소
               </Button>
-              <Button variant="primary" onClick={handleCloseMsg}>
+              <Button variant="primary" onClick={sendNote}>
                 남기기
               </Button>
             </Modal.Footer>
           </Modal>
+
+          {/* <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+          >
+          <Modal.Header closeButton>
+            </Modal.Header>
+            <Modal.Body>
+              방명록을 남겼어요.
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={() => {
+                handleClose();
+                }}>
+                확인
+              </Button>
+            </Modal.Footer>
+          </Modal> */}
     </div>
   )
 }
