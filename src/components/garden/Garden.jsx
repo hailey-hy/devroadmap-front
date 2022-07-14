@@ -49,6 +49,15 @@ const Garden = (props) => {
 
   // const [savedItem, setSavedItem] = useState([]);
 
+
+
+  if(props.friend === true){
+    var birdControl = 'hide';
+    // bird.classList.add('hide');
+  } else {
+    var birdControl = 'show';
+  }
+
   const item = []
 
   const imgList = ['소나무', '꽃나무', '울타리', '새집', '토끼', '연못', '개구리', '분수대', '두더지', '벤치의자', '튤립', 
@@ -87,6 +96,8 @@ const Garden = (props) => {
     }
 
     else{
+
+
       item.push(
         <OverlayTrigger
             overlay={
@@ -100,6 +111,7 @@ const Garden = (props) => {
     )}
   }
 
+  
   // const ladder = document.getElementById('img16');
   //   const gardener = document.getElementById('img18');
   //   const sittingGardener = document.getElementById('img22');
@@ -129,7 +141,6 @@ const Garden = (props) => {
   //   if(i in savedItem[i].object){
   //   var target = document.getElementById('img' + i);
   //   target.classList.remove('hide');
-  //   target.classList.add('show');
   //   }
   // }
   
@@ -144,7 +155,9 @@ const Garden = (props) => {
           <img id='cloud3' class='garden-img' src={cloud3} alt=""/>
           <img id='cloud4' class='garden-img' src={cloud4} alt=""/>
           <img id='cloud5' class='garden-img' src={cloud5} alt=""/>
-          <img id='bird' class='garden-img' src={bird} alt=""/>
+          <div id="bird-container" className={birdControl}>
+            <img id='bird' class='garden-img bird' src={bird} alt=""/>
+          </div>
         </div>
         <div id="container-garden">
           {item}

@@ -1,0 +1,20 @@
+#container-friend-notion{
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 120px;
+    background-color: var(--color-transparent);
+    text-align: center;
+}
+
+#friend-notion-title{
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--color-white);
+}
+
+#btn-note{
+    margin-top: 0.7rem;
+}

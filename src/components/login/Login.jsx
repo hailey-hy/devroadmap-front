@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button'
+import { Modal } from 'react-bootstrap'
 import './login.css'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
@@ -60,7 +61,8 @@ const Login = (props) => {
       
     }).catch(error => {
       console.error(error);
-      setResult("로그인 실패")
+      // setResult("로그인 실패")
+      setShow(true);
     });
   }
 
@@ -81,7 +83,11 @@ const Login = (props) => {
     // }
     // target.classList.remove('hide');
 
+  //로그인 실패 모달
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   
   
   return (
@@ -104,6 +110,28 @@ const Login = (props) => {
           <Button className='btn-login' onClick={onClickLogin}>로그인</Button>
           <h5 id='login-back' onClick={goJoin}>회원가입</h5>
       </div>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+      <Modal.Header closeButton>
+          <Modal.Title>로그인 실패</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          이메일 또는 비밀번호를 확인해 주세요.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => {
+            handleClose();
+            
+            }}>
+            확인
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }

@@ -56,7 +56,7 @@
 #bird{
     z-index: 1000;
     top: 0%;
-    left: 10%;
+    left: 4%;
 }
 
 #bird:hover{
@@ -72,9 +72,10 @@
 /* 소나무 */
 
 #img1{
-    top: -12%;
+    top: -6%;
     left: 24%;
     z-index: 10;
+    opacity:.99;
 }
 
 /* 꽃나무 */
