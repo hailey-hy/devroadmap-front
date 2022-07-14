@@ -52,9 +52,6 @@ const FriendGarden = () => {
         }
       })
       }, [])
-    
-     
-      
 
   // 친구 여부에 따라 다른 버튼 내용
   const noteOrAdd = () => {
@@ -86,6 +83,8 @@ const FriendGarden = () => {
   const handleCloseMsg = () => setShowMsg(false);
   const handleShowMsg = () => setShowMsg(true);
 
+  const [text, setText] = useState('');
+
   const sendNote = () => {
     axios({
       method: 'get',
@@ -98,11 +97,32 @@ const FriendGarden = () => {
     })
   }
 
+
+  //방명록 텍스트 관련
+    
+    const textCounter = (e) => {
+      setText(e.target.value)
+
+      //글자 수 세기
+      var textCount = e.target.value.length;
+      console.log(e.target.value);
+      console.log(e.target.value.length);
+
+      const target = document.getElementById('text-count');
+
+      if(textCount <= 200){
+        target.innerHTML = '(' + textCount + '/200)';
+      } else {
+        target.innerHTML = '(200/200)'
+      }
+    }
+
   //방명록 남긴 이후 모달창 관련 모음
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
 
 
   return (
@@ -127,9 +147,10 @@ const FriendGarden = () => {
                   controlId="exampleForm.ControlTextarea1"
                 >
                   <Form.Label>200자 이하의 메시지만 남길 수 있습니다.</Form.Label>
-                  <Form.Control as="textarea" rows={3} />
+                  <Form.Control as="textarea" rows={3} onChange={textCounter} maxlength='200'/>
                 </Form.Group>
               </Form>
+              <div id="text-count">(0/200)</div>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleCloseMsg}>
