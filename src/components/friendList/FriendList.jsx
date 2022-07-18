@@ -10,7 +10,8 @@ import { Pagination, Modal } from 'react-bootstrap';
 import FriendItem from './FriendItem';
 import FriendAddList from './FriendAddList';
 import SearchResult from './SearchResult';
-import RandomFriend from './RandomFriend';
+import RandomFriendBack from './RandomFriendBack';
+import RandomFriendFront from './RandomFriendFront';
 import { useSelector } from 'react-redux';
 
 const FriendList = () => {
@@ -109,16 +110,20 @@ const FriendList = () => {
     const [showTooltip, setShowTooltip] = useState(false);
     
     // 스위치 관련 변수
-    const { isChecked, handleToggle } = useState('false')
+    const { isChecked, handleToggle } = useState("false");
+    const [switchCheck, setSwitchCheck] = useState(false)
 
     //스위치 관련 함수
     const onCheckedElement = (checked, item) => {
         if (checked) {
             console.log('체크');
             onChecked();
+            setSwitchCheck(true)
+            
         } else {
             console.log('해제');
             onChecked();
+            setSwitchCheck(false)
         }
     }
 
@@ -191,24 +196,13 @@ const FriendList = () => {
     }  
 
     //랜덤 친구 추천
-    const [random, setRandom] = useState([]);
-
-    useEffect(() => {
-        // setLoading(true);
-        axios({
-            method: 'get',
-            url: 'https://localhost:8080/friend/match',
-            params: {
-              "Authorization": "Bearer " + localStorage.getItem("user")
-            }
-        }).then((response)=> {
-            setRandom(response.data);
-            console.log(response.data);
-            console.log(random);
-            // setLoading(false);
-        })
-    
-    }, []);
+    let randomItems = [];
+    if(switchCheck === true){
+        randomItems.push(
+            <RandomFriendFront/>,
+            <RandomFriendBack/>
+        )
+    }
 
   return (
     <div id='friend'>
@@ -260,7 +254,7 @@ const FriendList = () => {
                         </div>
                     </div>
                         {/* </div> */}
-                        <RandomFriend record={random}/>
+                        {randomItems}
                     </div>
                 </div>
             </div>

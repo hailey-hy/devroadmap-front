@@ -26,7 +26,7 @@
 
 #friend-list-detail{
     height: 288px;
-    width: 350px;
+    width: 382px;
 }
 
 #friend-util{
@@ -116,6 +116,7 @@
     border-radius: 5px;
     padding: 1rem;
     margin-bottom: 1rem;
+    width: 382px;
 }
 
 
@@ -273,15 +274,15 @@
 
 #container-no-friend{
     /* padding: 2.7rem 5.8rem 2.7rem 5.8rem; */
-    height: 117.9px;
-    width: 344px;
+    height: 300px;
+    width: 382px;
     justify-content: center;
     text-align: center;
     align-items: center;
 }
 
 #title-no-friend{
-    padding-top: 5rem;
+    padding: 6.5rem 0rem 6.5rem 0rem;
 }
 
   @media screen and (max-width: 520px){
