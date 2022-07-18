@@ -37,7 +37,7 @@ if(props.result.result === 'ok'){
           <div className="friend-img"></div>
           <div className="friend-detail-divider">
               <h5 className="friend-name">{props.result.search_user_nickname}</h5>
-              <h5 className='friend-progress'>{props.result.result}%</h5>
+              <h5 className='friend-progress'>{props.result.search_user_progressrate}%</h5>
           </div>
           <div class="add-btn-random btn-friend-add" id={props.result.search_user_nickname} onClick={
               accept}>+</div>
