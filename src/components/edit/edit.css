@@ -5,7 +5,7 @@
 .container-white{
     position: relative;
     height: fit-content;
-    top: 45%;
+    top: 48%;
     transform: translate(0, -50%);
     text-align: center;
     background-color: var(--color-white);
