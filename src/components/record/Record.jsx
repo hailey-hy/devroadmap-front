@@ -17,9 +17,6 @@ const Record = () => {
         axios({
             method: 'get',
             url: 'https://localhost:8080/history',
-            // headers: {
-            //   'jwt': window.localStorage.getItem("user")
-            // },
             params: {
               "Authorization": "Bearer " + localStorage.getItem("user")
             }

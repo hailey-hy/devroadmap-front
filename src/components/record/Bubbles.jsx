@@ -37,15 +37,21 @@ const Bubbles = ({record, loading}) => {
             item.push(
                 <div className="container-content">
                 <div className='gardener-container'>
+                    <div>
                     <img src={gardener} alt="" className={imgGardener}/>
-                </div>
-                <div className='seed-container'>
+                    </div>
                     <img src={seed} alt="seed" className='seed'/>
                 </div>
+                {/* <div className='seed-container'>
+                    <img src={seed} alt="seed" className='seed'/>
+                </div> */}
                 <div className="record-bubble">
                     <div className='container-bubble'>
+                        
                         <h5 className='record-date'>{record[i].completedate}</h5>
-                        <h5 className='record-subject'>{subject}</h5>
+                        
+                            <h5 className='record-subject'>{subject}</h5>
+                        
                     </div>
                 </div>
             </div>

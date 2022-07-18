@@ -3,7 +3,7 @@
 }
 
 #container-records{
-    height: 500px;
+    height: fit-content;
 }
 
 /* 씨앗 그림 */
@@ -54,9 +54,15 @@
 }
 
 .container-content{
-    display: grid;
-    grid-template-columns: 0.6fr 0.6fr 3fr;
+    display: flex;
+    /* grid-template-columns: 0.6fr 0.6fr 3fr; */
+    flex-wrap: wrap;
     margin-bottom: 1.5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 .container-bubble{
     display: grid;
@@ -67,6 +73,13 @@
     padding: 1rem;
 }
 
+.gardener-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100px;
+    margin-bottom: 0.5rem;
+}
+
 .record-date{
     border-right: 1px solid black;
     font-size: 15px;
@@ -75,10 +88,9 @@
 /* 페이지네이션 바 */
 .pagination{
     justify-content: center;
-    margin-top: 5rem;
-    position: absolute;
-    top: 70%;
-    left: 45%;
+    margin-top: 4rem;
+    padding-bottom: 4rem;
+    position: relative;
 }
 
 #record-none{
@@ -87,4 +99,43 @@
 
 .hide{
     display: none;
+}
+
+@media screen and (max-width: 939px){
+    .container-content{
+        justify-content: left;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .container-content{
+        justify-content: left;
+    }
+    .record-bubble, .container-bubble{
+        height: fit-content;
+    }
+    .container-bubble{
+        display: block;
+    }
+    .record-date{
+        margin-bottom: 1.5rem;
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 440px){
+    .container-content{
+        justify-content: left;
+        margin: auto;
+    }
+    .record-bubble, .container-bubble{
+        height: fit-content;
+    }
+    .container-bubble{
+        display: block;
+    }
+    .record-date{
+        margin-bottom: 1.5rem;
+        width: 200px;
+    }
 }

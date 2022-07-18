@@ -52,7 +52,7 @@ const Objects = (props) => {
           var subject = index + 1
         }else if(index >= 11){
           var targetId = 'img' + (index + 3);
-          var subject = index + 3
+          var subject = index + 1
         }
         var target = document.getElementById(targetId);
         target.classList.remove('hide');
@@ -105,7 +105,7 @@ const Objects = (props) => {
           var subject = index + 1
         }else if(index >= 11){
           var targetId = 'img' + (index + 3);
-          var subject = index + 3
+          var subject = index + 1
         }
         var target = document.getElementById(targetId);
         target.classList.add('hide');
