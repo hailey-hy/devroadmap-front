@@ -7,41 +7,46 @@ import './friendList.css'
 import axios from 'axios'
 
 const FriendAddList = ({record, loading}) => {
-    const accept = (friend_nickname) => {
+  console.log(record)
+    const accept = (e) => {
+      console.log(e.target.id)
         axios({
             method: 'post',
             url: 'https://localhost:8080/friend/proposal/acceptornot',
             params: {
               "Authorization": "Bearer " + localStorage.getItem("user"),
-              "friendnickname": friend_nickname,
+              "friendnickname": e.target.id,
               "acceptornot": true
             }
           }).then(response => {
             if(response.data === 'ok'){
-                var targetID = friend_nickname
-                var target = document.getElementById({targetID});
-                target.classList.add('hide');
+              var targetID = e.target.id;
+              var target = document.getElementById(targetID);
+              console.log(target);
+              target.classList.add('complete');
+              target.innerHTML = '신청 완료!';
               }
           })
     }
-
+    if(record.length > 0){
     return (
       <>
       {record.map((record) => (
       <div className="friend-add">
-          <Badge pill className="friend-field">front</Badge>
+          <Badge pill className="friend-field" bg={record.friend_field === 'front' ? 'primary' : 'success'}>{record.friend_field}</Badge>
           <div className="friend-img"></div>
           <div className="friend-detail-divider">
-              <h5 className="friend-name">{record.name}</h5>
-              <h5 className='friend-progress'>{record.bs}%</h5>
+              <h5 className="friend-name">{record.friend_nickname}</h5>
+              <h5 className='friend-progress'>{record.friend_progressRate}%</h5>
           </div>
           {/* <MdCancel className='friend-cancle'/> */}
-          <div class="add-btn-random btn-friend-add" onClick={(friend_nickname) => {
-              accept(friend_nickname)}}>+</div>
+          <div class="add-btn-random btn-friend-add" id={record.friend_nickname} onClick={
+              accept}>+</div>
       </div>
       ))}
       </>
     )
+  }
   }
 
 export default FriendAddList

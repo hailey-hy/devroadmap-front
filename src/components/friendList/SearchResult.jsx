@@ -30,6 +30,20 @@ const accept = (e) => {
     })
 }
 
+const items = [];
+if (props.result.search_user_friendornot === 'already friend'){
+  items.push(
+    <div id="already-friend">
+      친구
+    </div>
+  )
+} else {
+  items.push(
+    <div class="add-btn-random btn-friend-add" id={props.result.search_user_nickname} onClick={
+      accept}>+</div>
+  )
+}
+
 if(props.result.result === 'ok'){
   return (
     <div className="friend-add">
@@ -39,8 +53,7 @@ if(props.result.result === 'ok'){
               <h5 className="friend-name">{props.result.search_user_nickname}</h5>
               <h5 className='friend-progress'>{props.result.search_user_progressrate}%</h5>
           </div>
-          <div class="add-btn-random btn-friend-add" id={props.result.search_user_nickname} onClick={
-              accept}>+</div>
+          {items}
       </div>
   )
 }
