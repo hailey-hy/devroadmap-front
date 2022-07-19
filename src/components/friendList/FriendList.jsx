@@ -94,6 +94,8 @@ const FriendList = () => {
             }).then(response => {
                 console.log(response.data);
                 setSearchResult(response.data);
+            }).catch(err => {
+                setSearchResult([]);
             })
         }else{
             setShowTooltip(true);
