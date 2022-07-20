@@ -5,16 +5,28 @@
 }
 
 #container-roadmap{
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex;
+    flex-wrap: wrap; */
     position: absolute;
-    background-color: var(--color-white);
-    border-radius: 10px;
+    /* background-color: var(--color-white); */
+    /* border-radius: 10px; */
     height: auto;
     width: 80vw;
     top: 53%;
     left: 50%;
     transform: translate(-50%, 80%);
+    /* padding: 2.5rem; */
+    /* flex-direction: row;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    align-items: center; */
+}
+
+#container-roadmap-content{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--color-white);
+    border-radius: 10px;
     padding: 2.5rem;
     flex-direction: row;
     align-content: flex-start;

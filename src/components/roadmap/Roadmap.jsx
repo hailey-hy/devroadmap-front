@@ -56,12 +56,20 @@ const Roadmap = () => {
   }
 
   return (
+    <>
     <div id='roadmap'>
       <div id="container-roadmap">
+        <div id="container-roadmap-content">
         {obejct_list}
+        </div>
+        <Footer/>
       </div>
+      
       {/* <Footer></Footer> */}
+      
     </div>
+    
+    </>
   )
 }
 

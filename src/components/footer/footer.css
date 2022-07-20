@@ -1,7 +1,52 @@
 #footer{
+    margin-top: 4.5rem;
+    border-top: 1px solid white;
+}
+
+
+
+.footer-team-detail{
     
+    width: 200px;
 }
 
 .footer-content{
+    font-size: 14px;
+    text-align: center;
+    /* margin-bottom: 0; */
+}
+
+.footer-copy{
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+.footer-name{
     font-size: 13px;
+    text-align: center;
+}
+
+.footer-email{
+    margin-top: 0;
+    font-size: 11px;
+    text-align: center;
+}
+
+.footer-team{
+    /* display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    align-items: center; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 2rem;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.footer-content-detail-grid{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 }
