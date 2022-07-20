@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Tooltip, OverlayTrigger, Modal, Button, Pagination, Badge } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import Memo from '../note/Memo';
 
 import './garden.css'
 import grass from '../../assets/img-garden/땅.png';
@@ -111,7 +112,73 @@ const Garden = (props) => {
     )}
   }
 
-  
+
+  //안읽은 메시지 데이터 불러오는 api
+  const [record, setRecord] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordPerPage, setRecordPerPage] = useState(2);
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'https://jsonplaceholder.typicode.com/users',
+      params: {
+        "Authorization": "Bearer " + localStorage.getItem("user")
+      }
+    }).then(response => {
+        setRecord(response.data);
+        setLoading(false);
+      })
+  })
+
+  //안 읽은 메시지 모달 창
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  //안 읽은 메시지 페이지네이션
+  const indexOfLast = currentPage * recordPerPage;
+    const indexOfFirst = indexOfLast - recordPerPage;
+    const recordArray = Array.from(record);
+    const currentRecord = (record) => {
+      console.log(record)
+      let currentRecord = 0;
+      currentRecord = recordArray.slice(indexOfFirst, indexOfLast);
+      return currentRecord;
+    };
+    const totalrecord = record.length;
+
+    let [active, setActive] = useState(1);
+    let items = [];
+    for (let number = 1; number <= Math.ceil(record.length / recordPerPage); number++) {
+    items.push(
+        <Pagination.Item key={number} active={number === active} onClick={() => {
+        setCurrentPage(number)
+        setActive(number)
+        }}>
+        {number}
+        </Pagination.Item>,
+    )}
+
+  //안읽은 메시지가 없을 경우 모달 창
+  const [show2, setShow2] = useState(false);
+
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
+
+  //새 클릭시 작동 함수
+  const onBird = () => {
+    if(record.length > 0){
+      handleShow();
+    }
+    else{
+      handleShow2();
+    }
+  }
+
+
   // const ladder = document.getElementById('img16');
   //   const gardener = document.getElementById('img18');
   //   const sittingGardener = document.getElementById('img22');
@@ -155,8 +222,10 @@ const Garden = (props) => {
           <img id='cloud3' class='garden-img' src={cloud3} alt=""/>
           <img id='cloud4' class='garden-img' src={cloud4} alt=""/>
           <img id='cloud5' class='garden-img' src={cloud5} alt=""/>
-          <div id="bird-container" className={birdControl}>
-            <img id='bird' class='garden-img bird' src={bird} alt=""/>
+          <div id="bird-container" className={onBird}>
+            <img id='bird' class='garden-img bird' src={bird} alt="" onClick={handleShow}/>
+            <Badge bg="danger" className='bird-alert'>{record.length}</Badge>
+            <span className="visually-hidden">unread messages</span>
           </div>
         </div>
         <div id="container-garden">
@@ -171,6 +240,35 @@ const Garden = (props) => {
           <img id='img22' class='garden-img hide' src={img20} alt='22'/>
         </OverlayTrigger>
         </div>  
+
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+            <Modal.Title>안읽은 메시지</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Memo record={currentRecord(record)} loading={loading}></Memo>
+              <Pagination>{items}</Pagination>
+            </Modal.Body>
+            <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+                닫기
+            </Button>
+            </Modal.Footer>
+        </Modal>
+
+        <Modal show={show2} onHide={handleClose2}>
+            <Modal.Header closeButton>
+            <Modal.Title>안읽은 메시지</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+             읽지 않은 메시지가 없습니다.
+            </Modal.Body>
+            <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose2}>
+                닫기
+            </Button>
+            </Modal.Footer>
+        </Modal>
         </>
         
       )

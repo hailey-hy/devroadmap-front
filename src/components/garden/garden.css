@@ -53,10 +53,20 @@
     left: 5%;
 }
 
-#bird{
+#bird-container{
+    display: grid;
+    grid-template-columns: 1fr 0.1fr;
+    width: 200px;
     z-index: 1000;
     top: 0%;
     left: 4%;
+}
+
+#bird{
+    z-index: 1000;
+    /* top: 0%;
+    left: 4%; */
+    position: relative;
 }
 
 #bird:hover{
@@ -230,4 +240,13 @@
 
 #login-garden{
     pointer-events: none;
+}
+
+
+
+.bird-alert{
+    position: relative;
+    left: -80%;
+    margin-top: 2.4rem;
+    height: 20px;
 }

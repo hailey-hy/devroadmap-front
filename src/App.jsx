@@ -13,6 +13,7 @@ import axios from 'axios';
 import { loginCheck } from './util/loginCheck';
 import FriendList from './components/friendList/FriendList';
 import FriendGarden from './components/friendGarden/FriendGarden';
+import Note from './components/note/Note';
 
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
           <Route path='/record' element={<Record/>}/>
           <Route path='/friend' element={<FriendList/>}/>
           <Route path='/friend/garden' element={<FriendGarden/>}/>
+          <Route path='/note' element={<Note/>}/>
         </Routes>
       </BrowserRouter>
       </Provider>

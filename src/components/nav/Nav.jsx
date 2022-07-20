@@ -81,16 +81,16 @@ const Nav = (props) => {
     navigate('/edit');
   }
 
-  const goRoadmap = () => {
-    navigate('/')
-  }
-
   const goRecord = () => {
     navigate('/record')
   }
 
   const goFriend = () => {
     navigate('/friend')
+  }
+
+  const goNote = () => {
+    navigate('/note')
   }
 
   // 회원 탈퇴 모달 
@@ -151,14 +151,6 @@ const Nav = (props) => {
             toggleMenu()
           }}>메인</h3>
         <h3 class='go-tab' onClick={() => {
-          goRoadmap()
-          toggleMenu()
-        }}>로드맵</h3>
-        <h3 class='go-tab' onClick={() => {
-          goEdit()
-          toggleMenu()
-        }}>회원 정보 수정</h3>
-        <h3 class='go-tab' onClick={() => {
           goRecord()
           toggleMenu()
         }}>정원 기록</h3>
@@ -166,6 +158,14 @@ const Nav = (props) => {
           goFriend()
           toggleMenu()
         }}>친구 목록</h3>
+        <h3 class='go-tab' onClick={() => {
+          goNote()
+          toggleMenu()
+        }}>방명록</h3>
+        <h3 class='go-tab' onClick={() => {
+          goEdit()
+          toggleMenu()
+        }}>회원 정보 수정</h3>
 
         {/* </div> */}
         <Button id="user-delete" variant='warning' onClick={handleShow}>회원 탈퇴</Button>
