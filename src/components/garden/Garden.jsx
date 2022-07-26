@@ -50,10 +50,12 @@ const Garden = (props) => {
 
   //친구 정원에서 접근할 경우를 구분하여 새 표시
   if(props.friend === true){
-    var birdControl = 'hide';
+    var birdControl = 'hide garden-img bird';
     // bird.classList.add('hide');
-  } else {
-    var birdControl = 'show';
+  } else if (! window.localStorage.getItem("user")){
+    var birdControl = 'hide garden-img bird';
+  }else {
+    var birdControl = 'show garden-img bird';
   }
 
   //전체 이미지 표시
@@ -254,8 +256,8 @@ const Garden = (props) => {
           <img id='cloud3' class='garden-img' src={cloud3} alt=""/>
           <img id='cloud4' class='garden-img' src={cloud4} alt=""/>
           <img id='cloud5' class='garden-img' src={cloud5} alt=""/>
-          <div id="bird-container" className={onBird}>
-            <img id='bird' class='garden-img bird' src={bird} alt="" onClick={handleShow}/>
+          <div id="bird-container" className={birdControl}>
+            <img id='bird' class={birdControl} src={bird} alt="" onClick={onBird}/>
             <Badge bg="danger" className='bird-alert'>{record.length}</Badge>
             <span className="visually-hidden">unread messages</span>
           </div>

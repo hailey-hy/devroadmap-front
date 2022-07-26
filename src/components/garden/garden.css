@@ -231,7 +231,7 @@
 
 /* 로드맵 항목 체크에 따라 숨기기/보여주기 */
 .hide{
-    display: none;
+    visibility: hidden;
 }
 
 /* .show{
