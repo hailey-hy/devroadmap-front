@@ -6,8 +6,8 @@
 
 
 .footer-team-detail{
-    
     width: 200px;
+    margin-top: 1rem;
 }
 
 .footer-content{
@@ -38,11 +38,14 @@
     align-content: flex-start;
     justify-content: space-evenly;
     align-items: center; */
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr; */
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 2rem;
     text-align: center;
     justify-items: center;
+    justify-content: center;
     align-items: center;
 }
 
