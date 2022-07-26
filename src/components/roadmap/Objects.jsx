@@ -74,7 +74,7 @@ const Objects = (props) => {
         url: '/subject/complete/add',
         params: {
           "Authorization": "Bearer " + localStorage.getItem("user"),
-          "subject": subject
+          "subject": subject - 1
         }
       }).then(response => {
         console.log('체크 성공');
@@ -135,7 +135,7 @@ const Objects = (props) => {
         url: '/subject/complete/withdraw',
         params: {
           "Authorization": "Bearer " + localStorage.getItem("user"),
-          'subject': subject
+          'subject': subject - 1
         }
       }).then(response => {
         console.log('체크 해제');
@@ -146,7 +146,7 @@ const Objects = (props) => {
         <div className='bubble-object un-checked' id={props.number} tabindex='1' onClick={() => {
             onCheck(props.number);
         }}>
-            <h5>{props.number + 1}</h5>
+            <h5>{props.number}</h5>
             <h5 className='bubble-subject'>{props.name}</h5>
         </div>
   )

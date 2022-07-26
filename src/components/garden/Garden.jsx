@@ -37,21 +37,18 @@ import img20 from '../../assets/img-garden/정원사 사다리 올라가는 버�
 import { useEffect } from 'react';
 import axios from 'axios';
 
-// 개구리 3
 
 const Garden = (props) => {
 
 
   const field = useSelector(state => state.field);
-  console.log(field);
 
   const frontList = useSelector(state => state.frontList);
   const backList = useSelector(state => state.backList);
 
-  // const [savedItem, setSavedItem] = useState([]);
 
 
-
+  //친구 정원에서 접근할 경우를 구분하여 새 표시
   if(props.friend === true){
     var birdControl = 'hide';
     // bird.classList.add('hide');
@@ -59,6 +56,7 @@ const Garden = (props) => {
     var birdControl = 'show';
   }
 
+  //전체 이미지 표시
   const item = []
 
   const imgList = ['소나무', '꽃나무', '울타리', '새집', '토끼', '연못', '개구리', '분수대', '두더지', '벤치의자', '튤립', 
@@ -75,19 +73,23 @@ const Garden = (props) => {
         var msg = frontList[5];
       }else if(i >= 14){
         var msg = frontList[i - 3];
-      }else if(i == 22){
-        var msg = "CSS 프레임워크, 서버 사이드 렌더링";
       }
+      // else if(i == 22){
+      //   var msg = "CSS 프레임워크, 서버 사이드 렌더링";
+      // }
     } else {
-      if(i <= 11){
+      if(i == 1){
+        var msg = backList[i];
+      }
+      else if(i <= 11){
         var msg = backList[i - 1];
       }else if(i >= 14){
         var msg = backList[i - 3];
       }
     }
 
-    // if(props.)
-    console.log(props.login);
+
+
     
     //로그인에서 접근할 경우 툴팁 해제
     if(props.login === true || props.join === true){
@@ -113,6 +115,36 @@ const Garden = (props) => {
   }
 
 
+  //사다리 + 정원사 툴팁 표시
+  const items2 = [];
+
+  if(field == 'front'){
+    items2.push(
+      <OverlayTrigger
+          overlay={
+            <Tooltip id={`tooltip-top`} className='tooltips'>
+              <strong>CSS 프레임워크, <br></br>서버 사이드 렌더링</strong>
+            </Tooltip>
+          }
+        >
+          <img id='img22' class='garden-img hide' src={img20} alt='22'/>
+        </OverlayTrigger>
+    )
+  } else {
+    items2.push(
+      <OverlayTrigger
+        overlay={
+          <Tooltip id={`tooltip-top`} className='tooltips'>
+            <strong>검색엔진, <br></br>컨테이너화 vs 가상화</strong>
+          </Tooltip>
+        }
+      >
+        <img id='img22' class='garden-img hide' src={img20} alt='22'/>
+      </OverlayTrigger>
+    )
+  }
+
+
   //안읽은 메시지 데이터 불러오는 api
   const [record, setRecord] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -130,7 +162,7 @@ const Garden = (props) => {
         setRecord(response.data);
         setLoading(false);
       })
-  })
+  }, [])
 
   //안 읽은 메시지 모달 창
   const [show, setShow] = useState(false);
@@ -230,15 +262,7 @@ const Garden = (props) => {
         </div>
         <div id="container-garden">
           {item}
-          <OverlayTrigger
-          overlay={
-            <Tooltip id={`tooltip-top`} className='tooltips'>
-              <strong>CSS 프레임워크, <br></br>서버 사이드 렌더링</strong>
-            </Tooltip>
-          }
-        >
-          <img id='img22' class='garden-img hide' src={img20} alt='22'/>
-        </OverlayTrigger>
+          {items2}
         </div>  
 
         <Modal show={show} onHide={handleClose}>

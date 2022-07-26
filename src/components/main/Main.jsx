@@ -29,12 +29,13 @@ const Main = () => {
         "Authorization": "Bearer " + localStorage.getItem("user")
       }
     }).then(response => {
-      console.log(response.data.complete_subjects);
+     
       const savedItem = response.data.complete_subjects;
-      console.log(savedItem);
+      
 
        for(let i = 0; i < savedItem.length; i++){
-          var targetID = savedItem[i].object + 1
+          var targetID = savedItem[i].object
+          console.log(targetID)
           var target = document.getElementById('img' + targetID);
           target.classList.remove('hide');
 
