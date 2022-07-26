@@ -1,15 +1,12 @@
-import axios from 'axios';
-import {useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+// import instance from '../api';
 
-export const nicknameCheck = (props) => {
-    axios({
-        method: 'post',
-        url: '/edit/nickname/check'
-    }).then(response => {
-        console.log(response.data)
-        if (response.data == 'ok'){
-            
-        }
-    });
-}
+// export const nicknameCheck = (props) => {
+//     instance({
+//         method: 'post',
+//         url: '/edit/nickname/check'
+//     }).then(response => {
+//         console.log(response.data)
+//         if (response.data == 'ok'){
+//         }
+//     });
+// }

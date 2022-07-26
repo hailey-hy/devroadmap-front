@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios';
+import instance from '../../api';
 import './friendGarden.css'
 import { Button, Modal, Form } from 'react-bootstrap';
 import Garden from '../garden/Garden'
@@ -20,12 +20,9 @@ const FriendGarden = () => {
   const [friendName, setFriendName] = useState('');
   
   useEffect(() => {
-        axios({
+        instance({
           method: 'get',
-          url: 'https://localhost:8080/',
-          params: {
-            "Authorization": "Bearer " + localStorage.getItem("user")
-          }
+          url: '',
         }).then(response => {
 
         //친구 정보 불러오기
@@ -64,12 +61,8 @@ const FriendGarden = () => {
 
   //친구 신청 관련 모음
   const friendAdd = () => {
-    axios({
-      method: 'get',
-      url: 'https://localhost:8080/',
-      params: {
-        "Authorization": "Bearer " + localStorage.getItem("user")
-      }
+    instance({
+      url: ''
     }).then(response => {
       var target = document.getElementById('btn-note');
       target.innerHTML = '친구 신청 완료!';
@@ -86,12 +79,8 @@ const FriendGarden = () => {
   const [text, setText] = useState('');
 
   const sendNote = () => {
-    axios({
-      method: 'get',
-      url: 'https://localhost:8080/',
-      params: {
-        "Authorization": "Bearer " + localStorage.getItem("user")
-      }
+    instance({
+      url: ''
     }).then(response => {
       handleShow();
     })
@@ -126,7 +115,7 @@ const FriendGarden = () => {
 
 
   return (
-    <div>
+    <section>
           <Garden friend={true}></Garden>
 
           {/* 친구 정원 알림창 */}
@@ -181,7 +170,7 @@ const FriendGarden = () => {
               </Button>
             </Modal.Footer>
           </Modal> */}
-    </div>
+    </section>
   )
 }
 

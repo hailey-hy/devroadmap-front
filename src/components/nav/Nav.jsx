@@ -7,7 +7,7 @@ import './nav.css'
 import { loginCheck } from '../../util/loginCheck'
 import {createStore} from 'redux';
 import {Provider, useSelector, useDispatch, connect} from 'react-redux';
-import axios from 'axios';
+import instance from '../../api';
 import basicImg from '../../assets/basic-profile.png'
 
 const Nav = (props) => {
@@ -20,12 +20,8 @@ const Nav = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios({
-      method: 'get',
-      url: 'https://localhost:8080/user/details',
-      params:{
-        "Authorization": "Bearer " + localStorage.getItem("user")
-      }
+    instance({
+      url: '/user/details',
     }).then((response) => {
       setNickname(response.data.nickname);
       setEmail(response.data.email);
@@ -108,12 +104,9 @@ const Nav = (props) => {
   // 회원 탈퇴 비즈니스 로직
 
   const userWithdraw = () => {
-    axios({
+    instance({
       method: 'post',
       url: '/edit/withdraw',
-      params: {
-        "Authorization": "Bearer " + localStorage.getItem("user")
-      }
     }).then((response) => {
       if(response.data == 'withdraw success'){
         console.log('탈퇴')

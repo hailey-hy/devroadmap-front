@@ -1,4 +1,4 @@
-import axios from 'axios';
+import instance from '../../api';
 import React, {useEffect, useState} from 'react'
 import './record.css'
 import Bubbles from './Bubbles';
@@ -14,12 +14,9 @@ const Record = () => {
     
     useEffect(() => {
         setLoading(true);
-        axios({
+        instance({
             method: 'get',
-            url: 'https://localhost:8080/history',
-            params: {
-              "Authorization": "Bearer " + localStorage.getItem("user")
-            }
+            url: '/history',
         }).then((response)=> {
             setRecord(response.data.complete_subjects);
             setLoading(false);

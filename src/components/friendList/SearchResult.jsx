@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import instance from '../../api'
 import { Badge } from 'react-bootstrap'
 
 const SearchResult = (props) => {
@@ -11,11 +11,10 @@ const SearchResult = (props) => {
 
 const accept = (e) => {
   console.log(e.target.id)
-  axios({
+  instance({
       method: 'post',
-      url: 'https://localhost:8080/friend/proposal/acceptornot',
+      url: '/friend/proposal/acceptornot',
       params: {
-        "Authorization": "Bearer " + localStorage.getItem("user"),
         "friendnickname": e.target.id,
         "acceptornot": true
       }

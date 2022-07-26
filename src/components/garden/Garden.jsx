@@ -12,30 +12,9 @@ import cloud3 from '../../assets/img-garden/구름3.png';
 import cloud4 from '../../assets/img-garden/구름4.png';
 import cloud5 from '../../assets/img-garden/구름5.png';
 import bird from '../../assets/img-garden/새.png'
-import img1 from '../../assets/img-garden/소나무.png';
-import img2 from '../../assets/img-garden/꽃나무.png';
-import img3 from '../../assets/img-garden/울타리.png';
-import img4 from '../../assets/img-garden/새집.png';
-import img5 from '../../assets/img-garden/토끼.png';
-import img6 from '../../assets/img-garden/연못.png';
-import img7 from '../../assets/img-garden/개구리.png';
-import img8 from '../../assets/img-garden/분수대.png';
-import img9 from '../../assets/img-garden/두더지.png';
-import img10 from '../../assets/img-garden/벤치의자.png';
-import img11a from '../../assets/img-garden/튤립.png';
-import img11b from '../../assets/img-garden/민들레.png';
-import img11c from '../../assets/img-garden/토끼풀.png';
-import img12 from '../../assets/img-garden/돌.png';
-import img13 from '../../assets/img-garden/덤불.png';
-import img14 from '../../assets/img-garden/사다리.png';
-import img15 from '../../assets/img-garden/다람쥐 그네.png';
-import img16 from '../../assets/img-garden/정원사 앉아있는 버전.png';
-import img17 from '../../assets/img-garden/개미.png';
-import img18 from '../../assets/img-garden/지렁이.png';
-import img19 from '../../assets/img-garden/연꽃.png';
 import img20 from '../../assets/img-garden/정원사 사다리 올라가는 버전.png';
 import { useEffect } from 'react';
-import axios from 'axios';
+import instance from '../../api';
 
 
 const Garden = (props) => {
@@ -76,9 +55,6 @@ const Garden = (props) => {
       }else if(i >= 14){
         var msg = frontList[i - 3];
       }
-      // else if(i == 22){
-      //   var msg = "CSS 프레임워크, 서버 사이드 렌더링";
-      // }
     } else {
       if(i == 1){
         var msg = backList[i];
@@ -89,8 +65,6 @@ const Garden = (props) => {
         var msg = backList[i - 3];
       }
     }
-
-
 
     
     //로그인에서 접근할 경우 툴팁 해제
@@ -154,12 +128,8 @@ const Garden = (props) => {
   const [recordPerPage, setRecordPerPage] = useState(2);
 
   useEffect(() => {
-    axios({
-      method: 'get',
+    instance({
       url: 'https://jsonplaceholder.typicode.com/users',
-      params: {
-        "Authorization": "Bearer " + localStorage.getItem("user")
-      }
     }).then(response => {
         setRecord(response.data);
         setLoading(false);
@@ -211,40 +181,6 @@ const Garden = (props) => {
       handleShow2();
     }
   }
-
-
-  // const ladder = document.getElementById('img16');
-  //   const gardener = document.getElementById('img18');
-  //   const sittingGardener = document.getElementById('img22');
-
-  //   if(!ladder.classList.contains('hide') 
-  //       && !gardener.classList.contains('hide')){
-  //           if(field === 'front'){
-  //             msg = 
-  //           }
-  //     }
-
-
-  // useEffect(() => {
-  //   axios({
-  //     method: 'get',
-  //     url: 'https://localhost:8080/history',
-  //     params: {
-  //       "Authorization": "Bearer " + localStorage.getItem("user")
-  //     }
-  //   }).then(response => {
-  //     console.log(response.data.complete_subjects)
-  //     setSavedItem(response.data.complete_subjects)
-  //   })
-  // }, [])
-
-  // for(let i = 1; i < savedItem.length; i++){
-  //   if(i in savedItem[i].object){
-  //   var target = document.getElementById('img' + i);
-  //   target.classList.remove('hide');
-  //   }
-  // }
-  
   
     return (
         <>

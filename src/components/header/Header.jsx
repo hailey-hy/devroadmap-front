@@ -11,7 +11,6 @@ const Header = () => {
     <header>
       <div className="container-header">
         <h1 className='header-title'>(가제)개발 정원</h1>
-        {/* <Nav navOpen= {navOpen}/> */}
         <Nav/>
       </div>
     </header>

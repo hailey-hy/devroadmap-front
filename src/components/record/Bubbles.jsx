@@ -42,12 +42,9 @@ const Bubbles = ({record, loading}) => {
                     </div>
                     <img src={seed} alt="seed" className='seed'/>
                 </div>
-                {/* <div className='seed-container'>
-                    <img src={seed} alt="seed" className='seed'/>
-                </div> */}
                 <div className="record-bubble">
                     <div className='container-bubble'>
-                        
+
                         <h5 className='record-date'>{record[i].completedate}</h5>
                         
                             <h5 className='record-subject'>{subject}</h5>
@@ -55,20 +52,6 @@ const Bubbles = ({record, loading}) => {
                     </div>
                 </div>
             </div>
-            // {record.map((record) => (
-            //     <div className="container-content">
-            //         <div className='gardener-container'></div>
-            //         <div className='seed-container'>
-            //             <img src={seed} alt="seed" className='seed'/>
-            //         </div>
-            //         <div className="record-bubble">
-            //             <div className='container-bubble'>
-            //                 <h5 className='record-date'>{record.completedate}</h5>
-            //                 <h5 className='record-subject'>{record.object}</h5>
-            //             </div>
-            //         </div>
-            //     </div>
-            // ))}
             )}
 
   return (

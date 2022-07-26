@@ -1,4 +1,4 @@
-import axios from 'axios'
+import instance from '../../api'
 import React, {useState} from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import Garden from '../garden/Garden'
@@ -19,11 +19,11 @@ const JoinMail = (props) => {
       
     // 이메일 인증 버튼 클릭시 작동 함수
     const onClickJoinMail = () => {
-        axios({
+        instance({
             method: 'post',
             url: '/signup/mail',
             params: {
-                "email" : defaultEmail
+                "email" : email
             }
         }).then(response => {
             handleShow();
@@ -62,10 +62,6 @@ const JoinMail = (props) => {
         <Modal.Body>
             <p>입력하신 이메일로 인증 메일이 발송되었습니다. <br/> 메일에서 인증 링크를 클릭해 주세요.</p>
         </Modal.Body>
-
-        {/* <Modal.Footer>
-            <Button variant="secondary"></Button>
-        </Modal.Footer> */}
     </Modal>
     </>
   )

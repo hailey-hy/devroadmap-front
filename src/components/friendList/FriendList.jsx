@@ -1,7 +1,7 @@
 //친구 목록 페이지
 
 import React, {useEffect, useState, useRef} from 'react'
-import axios from 'axios';
+import instance from '../../api'
 import './friendList.css'
 import { Overlay, OverlayTrigger, Tooltip, Badge, Button, Form } from 'react-bootstrap'
 import {MdCancel} from 'react-icons/md'
@@ -30,12 +30,8 @@ const FriendList = () => {
 
     useEffect(() => {
         setLoadingAdd(true);
-        axios({
-            method: 'get',
-            url: 'https://localhost:8080/friend/proposal/receive',
-            params: {
-              "Authorization": "Bearer " + localStorage.getItem("user")
-            }
+        instance({
+            url: '/friend/proposal/receive',
         }).then((response)=> {
             console.log(response.data.friend_list)
             setRecordAdd(response.data);
@@ -84,11 +80,9 @@ const FriendList = () => {
         if(search.length > 0 && search != myNickname){
             setShowTooltip(false);
             handleShowSearch();
-            axios({
-                method: 'get',
-                url: 'https://localhost:8080/friend/search',
+            instance({
+                url: '/friend/search',
                 params: {
-                "Authorization": "Bearer " + localStorage.getItem("user"),
                 "searchnickname" : search
                 }
             }).then(response => {
@@ -131,12 +125,8 @@ const FriendList = () => {
 
     //스위치 ON
     const onChecked = () => {
-        axios({
-            method: 'get',
-                url: 'https://localhost:8080/friend/matchornot',
-                params: {
-                    "Authorization": "Bearer " + localStorage.getItem("user")
-                }
+        instance({
+            url: '/friend/matchornot',
         }).then(response => {
             console.log(response.data);
         })
@@ -154,15 +144,8 @@ const FriendList = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios({
-            method: 'get',
-            url: 'https://localhost:8080/friend',
-            // headers: {
-            //   'jwt': window.localStorage.getItem("user")
-            // },
-            params: {
-              "Authorization": "Bearer " + localStorage.getItem("user")
-            }
+        instance({
+            url: '/friend',
         }).then((response)=> {
             console.log(response.data.friend_list)
             setRecord(response.data.friend_list);
@@ -207,7 +190,7 @@ const FriendList = () => {
     }
 
   return (
-    <div id='friend'>
+    <section id='friend'>
         <div className='container-white container'>
             <div id="friend-title-divider">
                 <h3 id="white-title">친구 목록</h3>
@@ -304,7 +287,7 @@ const FriendList = () => {
         )}
       </Overlay>
 
-    </div>
+    </section>
   )
 }
 

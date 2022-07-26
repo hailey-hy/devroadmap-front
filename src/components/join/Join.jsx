@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Button, ButtonGroup, ToggleButton, Tooltip, Overlay, OverlayTrigger, Modal} from 'react-bootstrap'
-import axios from 'axios';
+import instance from '../../api';
 import { useNavigate } from "react-router-dom";
 import Garden from '../garden/Garden';
 import './join.css'
@@ -101,7 +101,7 @@ const renderTooltip = (props) => (
     if(nickCheck == true && pwCheck == true && pwDoubleCheck == true){
     console.log(radioSecValue);
 
-    axios({
+    instance({
       method: 'post',
       url: '/signup',
       headers: {
@@ -115,7 +115,8 @@ const renderTooltip = (props) => (
         "field" : radioSecValue
       }
     }).then(response => {
-      navigate('/signin');
+      handleShow2();
+      // navigate('/signin');
     }).catch(err => {
       console.error(err);
     });
@@ -139,7 +140,7 @@ const renderTooltip = (props) => (
   const target = useRef(null);
 
   const nickServerCheck = () => {
-    axios({
+    instance({
       method: 'get',
       url: '/signup/nickname/',
       params: {
@@ -194,6 +195,15 @@ const renderTooltip = (props) => (
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // 완료 모달창 관련
+
+  const [show2, setShow2] = useState(false);
+
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
+
+  const goLogin = () => navigate('/');
 
   //프로필 사진 미리보기
   // useEffect(() => {
@@ -325,6 +335,21 @@ const renderTooltip = (props) => (
         <Modal.Body>완료되지 않은 항목이 있어요. <br/> 정상적인 회원가입을 위해 모든 항목을 완료해 주세요.</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
+            닫기
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={show2} onHide={handleClose2}>
+        <Modal.Header closeButton>
+          <Modal.Title>회원가입 완료!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>회원가입이 완료되었어요.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => {
+            handleClose2();
+            goLogin();
+            }}>
             닫기
           </Button>
         </Modal.Footer>

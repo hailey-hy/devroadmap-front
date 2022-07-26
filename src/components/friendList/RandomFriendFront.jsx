@@ -1,18 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import { Badge } from 'react-bootstrap'
-import axios from 'axios'
+import instance from '../../api';
 
 const RandomFriendFront = () => {
   const [random2, setRandom2] = useState([]);
 
   useEffect(() => {
     // setLoading(true);
-    axios({
-        method: 'get',
-        url: 'https://localhost:8080/friend/match',
-        params: {
-          "Authorization": "Bearer " + localStorage.getItem("user")
-        }
+    instance({
+        url: '/friend/match',
     }).then((response)=> {
         setRandom2(response.data.matching[1]);
         console.log(response.data);
@@ -23,11 +19,10 @@ const RandomFriendFront = () => {
 
     const accept = (e) => {
       console.log(e.target.id)
-        axios({
+        instance({
             method: 'post',
-            url: 'https://localhost:8080/friend/proposal/acceptornot',
+            url: '/friend/proposal/acceptornot',
             params: {
-              "Authorization": "Bearer " + localStorage.getItem("user"),
               "friendnickname": e.target.id,
               "acceptornot": true
             }

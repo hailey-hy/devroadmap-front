@@ -2,29 +2,11 @@ import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button'
 import { Modal } from 'react-bootstrap'
 import './login.css'
-import axios from 'axios'
+import instance from '../../api'
 import { useNavigate } from "react-router-dom";
 import Garden from '../garden/Garden';
 
 import '../garden/garden.css'
-
-// const onClickLogin = (email, password) => {
-// 	const data = {
-// 		email,
-// 		password,
-// 	};
-// 	axios.post('/login', data).then(response => {
-// 		const { accessToken } = response.data;
-
-// 		// API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-// 		axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-
-// 		// accessToken을 localStorage, cookie 등에 저장하지 않는다!
-
-// 	}).catch(error => {
-// 		console.error(error);
-// 	});
-// }
 
 const Login = (props) => {
 
@@ -45,9 +27,9 @@ const Login = (props) => {
   // login 버튼 클릭 이벤트
   const onClickLogin = () => {
 
-    axios({
+    instance({
       method: 'post',
-      url: 'https://localhost:8080/signin',
+      url: '/signin',
       params: {
         "email" : email,
         "password" : password
@@ -62,26 +44,14 @@ const Login = (props) => {
     }).catch(error => {
       console.error(error);
       // setResult("로그인 실패")
-      setShow(true);
+      handleShow();
     });
   }
 
   const goJoin = () => {
     navigate('/signup/mail');
   }
-
   
-  
-  // const item = [];
-
-    const targets = document.getElementsByClassName('hide');
-    console.log(targets);
-    
-    // for(let i = 0; i < targets.length; i++){
-    //   console.log(targets[i]);
-    //   targets[i].classList.remove('hide');
-    // }
-    // target.classList.remove('hide');
 
   //로그인 실패 모달
   const [show, setShow] = useState(false);
@@ -124,11 +94,11 @@ const Login = (props) => {
           이메일 또는 비밀번호를 확인해 주세요.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => {
+          <Button variant="secondary" onClick={() => {
             handleClose();
             
             }}>
-            확인
+            닫기
           </Button>
         </Modal.Footer>
       </Modal>

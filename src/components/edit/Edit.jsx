@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Button, ButtonGroup, ToggleButton, Modal } from 'react-bootstrap'
-import axios from 'axios';
+import instance from '../../api';
 import './edit.css'
 import { nicknameCheck } from '../../util/nicknameCheck';
 import { useSelector } from 'react-redux';
@@ -97,18 +97,16 @@ const Edit = () => {
 
   //닉네임 확인
   const onClickNickCheck = () => {
-    axios({
+    instance({
       method: 'post',
-      url: 'https://localhost:8080/edit/nickname/check',
+      url: '/edit/nickname/check',
       params: {
-        "Authorization": "Bearer " + localStorage.getItem("user"),
         "nickname" : nickname
-        // "Content-Type": "multipart/form-data"
       }
     }).then(response => {
-      // if(response.data == 'ok'){
-      //   setNickCheck(true);
-      // }
+      if(response.data == 'ok'){
+        setNickCheck(true);
+      }
     }).catch(err => {
       console.error(err);
     });
@@ -143,14 +141,13 @@ const Edit = () => {
     const formdata = new FormData();
     formdata.append('uploadImage', files[0]);
 
-    axios({
+    instance({
       method: 'post',
-      url: 'https://localhost:8080/edit/userdetatils',
+      url: '/edit/userdetatils',
       headers: {
         "Content-Type": "multipart/form-data"
       },
       params: {
-        "Authorization": "Bearer " + localStorage.getItem("user"),
         "nickname" : nickname,
         "email" : email,
         "password" : password,
@@ -166,7 +163,7 @@ const Edit = () => {
 }
 
   return (
-    <div id="edit">
+    <section id="edit">
     <div className='container-white container'>
       <h3 id="white-title">회원 정보 수정</h3>
       <div className="chunck-container-edit">
@@ -231,7 +228,7 @@ const Edit = () => {
         </Modal.Footer>
       </Modal>
     </div>
-    </div>
+    </section>
   )
 }
 

@@ -4,17 +4,16 @@ import React from 'react'
 import { Badge, Button } from 'react-bootstrap'
 import {MdCancel} from 'react-icons/md'
 import './friendList.css'
-import axios from 'axios'
+import instance from '../../api'
 
 const FriendAddList = ({record, loading}) => {
   console.log(record)
     const accept = (e) => {
       console.log(e.target.id)
-        axios({
+        instance({
             method: 'post',
-            url: 'https://localhost:8080/friend/proposal/acceptornot',
+            url: '/friend/proposal/acceptornot',
             params: {
-              "Authorization": "Bearer " + localStorage.getItem("user"),
               "friendnickname": e.target.id,
               "acceptornot": true
             }

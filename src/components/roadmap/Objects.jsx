@@ -1,7 +1,7 @@
-import axios from 'axios';
+
 import React, {} from 'react'
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import instance from '../../api';
 import './roadmap.css'
 
 const Objects = (props) => {
@@ -10,7 +10,7 @@ const Objects = (props) => {
 
   const field = useSelector(state => state.field);
 
-  
+  const dispatch = useDispatch();
 
     const onCheck = (index) => {
       const target = document.getElementById(index);
@@ -69,15 +69,23 @@ const Objects = (props) => {
           gardener.classList.add('hide');
           sittingGardener.classList.remove('hide');
       }
-      axios({
-        method: 'get',
+      instance({
         url: '/subject/complete/add',
         params: {
-          "Authorization": "Bearer " + localStorage.getItem("user"),
           "subject": subject - 1
         }
       }).then(response => {
         console.log('체크 성공');
+      }).catch(err => {
+        console.error(err);
+      });
+
+      instance({
+        url: '/progressrate',
+      }).then(response => {
+        console.log(response.data)
+        // setRate(response.data.progressRate);
+        dispatch({type: 'load-progress', progress: response.data.progressRate})
       })
       }
 
@@ -130,15 +138,20 @@ const Objects = (props) => {
         //     ladder.classList.add('hide');
         // }
 
-      axios({
-        method: 'get',
+      instance({
         url: '/subject/complete/withdraw',
         params: {
-          "Authorization": "Bearer " + localStorage.getItem("user"),
           'subject': subject - 1
         }
       }).then(response => {
         console.log('체크 해제');
+      })
+
+      instance({
+        url: '/progressrate',
+      }).then(response => {
+        console.log(response.data)
+        dispatch({type: 'load-progress', progress: response.data.progressRate})
       })
     }
 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './roadmap.css'
 import Objects from './Objects'
-import axios from 'axios'
+import instance from '../../api'
 import { useSelector } from 'react-redux'
 import Footer from '../footer/Footer'
 
@@ -20,12 +20,9 @@ const Roadmap = () => {
     };
 
     // /history와 통신하여 유저가 이미 완료한 데이터 가져오기
-    axios({
+    instance({
       method: 'get',
-      url: 'https://localhost:8080/history',
-      params: {
-        "Authorization": "Bearer " + localStorage.getItem("user")
-      }
+      url: '/history',
     }).then((response)=> {
       setShowLists(response.data.complete_subjects);
     })
@@ -70,9 +67,6 @@ const Roadmap = () => {
         </div>
         <Footer/>
       </div>
-      
-      {/* <Footer></Footer> */}
-      
     </div>
     
     </>

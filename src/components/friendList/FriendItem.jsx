@@ -1,6 +1,6 @@
 //친구 목록에 나올 친구 컴포넌트
 
-import axios from 'axios'
+import instance from '../../api'
 import React, {useState} from 'react'
 import { Badge, Modal, Button } from 'react-bootstrap'
 import {MdCancel} from 'react-icons/md'
@@ -26,11 +26,10 @@ const FriendItem = ({record, loading}) => {
 //  친구 끊기
   const disconnect = (e) => {
     var friend_nickname = disconnectFriend;
-    axios({
+    instance({
       method: 'post',
-      url: 'https://localhost:8080/friend/disconnect',
+      url: '/friend/disconnect',
       params: {
-        "Authorization": "Bearer " + localStorage.getItem("user"),
         "friendnickname": friend_nickname
       }
     }).then(response => {
