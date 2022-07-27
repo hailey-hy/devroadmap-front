@@ -16,7 +16,7 @@ const Roadmap = () => {
   useEffect(() => {
     //  리덕스 store에 저장된 field 확인하여 백/프론트 다른 내용 보여주기
     if(userType == 'back'){
-      setTotal(19);
+      setTotal(18);
     };
 
     // /history와 통신하여 유저가 이미 완료한 데이터 가져오기

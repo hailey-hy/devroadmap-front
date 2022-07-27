@@ -13,7 +13,7 @@ if(localStorage.getItem("user")){
     })
 } else {
 
-    //회원 가입 api 요청시 JWT 토큰 미포함
+    //회원 가입, 로그인 api 요청시 JWT 토큰 미포함
 
     var instance = axios.create({
         baseURL: "https://localhost:8080",
