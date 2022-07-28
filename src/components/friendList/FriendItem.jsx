@@ -5,6 +5,7 @@ import React, {useState} from 'react'
 import { Badge, Modal, Button } from 'react-bootstrap'
 import {MdCancel} from 'react-icons/md'
 import './friendList.css'
+import { useNavigate } from 'react-router-dom'
 
 const FriendItem = ({record, loading}) => {
 
@@ -46,6 +47,16 @@ const FriendItem = ({record, loading}) => {
       // }
     })
   }
+
+//친구 정원으로 이동
+
+const navigate = useNavigate();
+
+const goFriend = (friend) => {
+  window.localStorage.setItem("friend-nickname", friend.friend_nickname);
+  window.localStorage.setItem("friend-email", friend.friend_email);
+  navigate('/friend/garden')
+}
   
   if(record.length === 0){
     return (
@@ -59,7 +70,9 @@ const FriendItem = ({record, loading}) => {
     return (
       <>
       {record.map((record) => (
-      <div className="friend" id={record.friend_nickname}>
+      <div className="friend go-friend" id={record.friend_nickname} onClick={() => {
+        goFriend(record);
+      }}>
           <Badge pill bg={record.friend_field === 'front' ? 'primary' : 'success'} className='front friend-field'>{record.friend_field}</Badge>
           <div className="friend-img"></div>
           <div className="friend-detail-divider">

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Badge } from 'react-bootstrap'
 import {MdCancel} from 'react-icons/md'
 import instance from '../../api'
+import { useNavigate } from 'react-router-dom'
 
 const RandomFriendBack = () => {
   const [random1, setRandom1] = useState([]);
@@ -19,6 +20,8 @@ const RandomFriendBack = () => {
   }, []);
 
   console.log(random1)
+
+  //친구 신청
     const accept = (e) => {
       console.log(e.target.id)
         instance({
@@ -37,10 +40,22 @@ const RandomFriendBack = () => {
               }
           })
     }
+
+    //친구 정원 이동
+    const navigate = useNavigate();
+
+    const goFriend = (friend) => {
+      window.localStorage.setItem("friend-nickname", friend.match_user_back_nickname);
+      window.localStorage.setItem("friend-email", friend.match_user_back_email);
+      navigate('/friend/garden')
+    }
+
     if(random1.result === "ok"){
   return (
     <>
-      <div className="friend" >
+      <div className="friend go-friend" onClick={() => {
+        goFriend(random1);
+      }}>
         <Badge pill className="friend-field" bg='success'>back</Badge>
         <div className="friend-img">
             <img src={random1.match_user_back_profile} alt="" />

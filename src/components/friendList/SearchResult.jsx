@@ -1,6 +1,7 @@
 import React from 'react'
 import instance from '../../api'
 import { Badge } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 const SearchResult = (props) => {
   // result: "ok"
@@ -29,6 +30,14 @@ const accept = (e) => {
     })
 }
 
+const navigate = useNavigate();
+
+const goFriend = (friend) => {
+  window.localStorage.setItem("friend-nickname", friend.search_user_nickname);
+  window.localStorage.setItem("friend-email", friend.search_user_email);
+  navigate('/friend/garden')
+}
+
 const items = [];
 if (props.result.search_user_friendornot === 'already friend'){
   items.push(
@@ -45,7 +54,9 @@ if (props.result.search_user_friendornot === 'already friend'){
 
 if(props.result.result === 'ok'){
   return (
-    <div className="friend-add">
+    <div className="friend-add go-friend" onClick={() => {
+      goFriend(props.result);
+    }}>
           <Badge pill bg={props.result.search_user_field === 'front' ? 'primary' : 'success'} className="friend-field">{props.result.search_user_field}</Badge>
           <div className="friend-img"></div>
           <div className="friend-detail-divider">

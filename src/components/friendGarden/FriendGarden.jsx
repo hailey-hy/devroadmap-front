@@ -17,12 +17,15 @@ const FriendGarden = () => {
 
   //친구 정원 api
   const [friendOrNot, setFriendOrNot] = useState(true);
-  const [friendName, setFriendName] = useState('');
+  const friendName = localStorage.getItem("friend-nickname");
+  const friendEmail = localStorage.getItem("friend-email");
   
   useEffect(() => {
         instance({
           method: 'get',
           url: '',
+          params: {
+            }
         }).then(response => {
 
         //친구 정보 불러오기
@@ -62,7 +65,12 @@ const FriendGarden = () => {
   //친구 신청 관련 모음
   const friendAdd = () => {
     instance({
-      url: ''
+      method: 'post',
+          url: '/friend/proposal/acceptornot',
+          params: {
+            "friendnickname": friendName,
+            "acceptornot": true
+          }
     }).then(response => {
       var target = document.getElementById('btn-note');
       target.innerHTML = '친구 신청 완료!';
@@ -80,7 +88,11 @@ const FriendGarden = () => {
 
   const sendNote = () => {
     instance({
-      url: ''
+      url: '/guestbook/write',
+      params: {
+        "serReceive": friendEmail,
+        "message": text
+      }
     }).then(response => {
       handleShow();
     })
