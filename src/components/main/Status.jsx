@@ -41,10 +41,11 @@ const Status = (prop) => {
     <div className='container-status'>
         <div className="container-status-main">
         <Badge pill bg={isFront() ? 'primary' : 'success'}>{field}</Badge>
-            <h5 id="status-d-day">현재 진도를 시작한지 {}일</h5>
+            <h5 id="status-d-day">공부를 시작한지 {}일</h5>
         </div>
         <h5 id="status-percent">전체 진도율 {rate}%</h5>
     </div>
+    
   )
 }
 

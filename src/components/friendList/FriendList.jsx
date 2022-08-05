@@ -42,11 +42,13 @@ const FriendList = () => {
 
     const indexOfLastAdd = currentPageAdd * recordAddPerPage;
     const indexOfFirstAdd = indexOfLastAdd - recordAddPerPage;
+    const recordArrayAdd = Array.from(recordAdd);
     const currentRecordAdd = (recordAdd) => {
         let currentRecordAdd = 0;
-        currentRecordAdd = recordAdd.slice(indexOfFirstAdd, indexOfLastAdd);
+        currentRecordAdd = recordArrayAdd.slice(indexOfFirstAdd, indexOfLastAdd);
         return currentRecordAdd;
     };
+
     const totalrecordAdd = recordAdd.length;
 
     
@@ -77,7 +79,7 @@ const FriendList = () => {
     const myNickname = useSelector(state => state.nickname);
 
     const onSearch = () => {
-        if(search.length > 0 && search != myNickname){
+        if(search.length > 0 && search != myNickname && ! search in record){
             setShowTooltip(false);
             handleShowSearch();
             instance({
@@ -250,12 +252,12 @@ const FriendList = () => {
             <Modal.Title>친구 신청 목록</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <FriendAddList record={currentRecord(recordAdd)} loading={loadingAdd}></FriendAddList>
+                <FriendAddList record={currentRecordAdd(recordAdd)} loading={loadingAdd}></FriendAddList>
                     <Pagination id='friend-add-pagination'>{itemsAdd}</Pagination>
             </Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-                취소
+                닫기
             </Button>
             {/* <Button variant="primary">
                 Save Changes
@@ -266,7 +268,7 @@ const FriendList = () => {
         {/* 친구 검색 모달 창 */}
         <Modal show={showSearch} onHide={handleCloseSearch}>
             <Modal.Header closeButton>
-            <Modal.Title>친구 검색 결과</Modal.Title>
+            <Modal.Title>정원사 검색 결과</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <SearchResult result={searchResult}/>
@@ -282,7 +284,7 @@ const FriendList = () => {
         <Overlay target={target.current} show={showTooltip} placement="top">
         {(props) => (
           <Tooltip id="overlay-example" {...props}>
-            친구 이름을 입력해 주세요.
+            검색할 정원사의 이름을 입력해 주세요.
           </Tooltip>
         )}
       </Overlay>

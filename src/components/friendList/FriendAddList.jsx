@@ -24,7 +24,7 @@ const FriendAddList = ({record, loading}) => {
             var target = document.getElementById(targetID);
             console.log(target);
             target.classList.add('complete');
-            target.innerHTML = '신청 완료!';
+            target.innerHTML = '등록 완료!';
             }
         })
   }
@@ -57,6 +57,13 @@ const FriendAddList = ({record, loading}) => {
       ))}
       </>
     )
+  } else {
+    return (
+      <h5 id='alret-no-add-friend'>
+      아직 친구 신청이 없어요.
+    </h5>
+    )
+    
   }
   }
 

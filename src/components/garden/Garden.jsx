@@ -129,7 +129,7 @@ const Garden = (props) => {
 
   useEffect(() => {
     instance({
-      url: 'https://jsonplaceholder.typicode.com/users',
+      url: '/guestbook/bird/list',
     }).then(response => {
         setRecord(response.data);
         setLoading(false);

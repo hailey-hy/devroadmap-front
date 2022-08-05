@@ -72,13 +72,15 @@ const goFriend = (friend) => {
       {record.map((record) => (
       <div className="friend go-friend" id={record.friend_nickname} onClick={() => {
         goFriend(record);
-      }}>
+      }}> 
+          {/* <div className="select-friend"> */}
           <Badge pill bg={record.friend_field === 'front' ? 'primary' : 'success'} className='front friend-field'>{record.friend_field}</Badge>
           <div className="friend-img"></div>
           <div className="friend-detail-divider">
               <h5 className="friend-name">{record.friend_nickname}</h5>
               <h5 className='friend-progress'>{record.friend_progressRate}%</h5>
           </div>
+          {/* </div> */}
           <div className="friend-cancle" id={record.friend_nickname} onClick={
             handleShow}>
             <MdCancel className="friend-cancle-img"/>

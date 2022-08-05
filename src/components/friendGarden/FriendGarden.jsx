@@ -90,7 +90,7 @@ const FriendGarden = () => {
     instance({
       url: '/guestbook/write',
       params: {
-        "serReceive": friendEmail,
+        "userReceive": friendEmail,
         "message": text
       }
     }).then(response => {
