@@ -18,19 +18,29 @@
     margin-bottom: 1rem;
 }
 
+/* .container-memo-detail{
+    display: flex;
+    flex-wrap: wrap;
+    
+} */
+
 .memo-name{
-    font-size: 15px;
+    font-size: 13px;
+    padding-right: 0.5rem;
     border-right: 1px solid black;
 }
 
 .memo-date{
-    font-size: 15px;
+    font-size: 13px;
+    width: 180px;
 }
 
 .memo-grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 220px;
+    display: flex;
+    flex-wrap: wrap;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
+    /* width: 220px; */
     margin-left: 1rem;
     margin-bottom: 0.5rem;
 }
@@ -41,6 +51,10 @@
 
 .memo-bubble{
     margin-bottom: 1rem;
+}
+
+#no-memo{
+    margin-top: 5rem;
 }
 
 @media screen and (max-width: 939px){

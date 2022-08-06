@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import './note.css'
 import Memo from './Memo'
-import axios from 'axios'
+import instance from '../../api'
 import { Pagination } from 'react-bootstrap';
 
 const Note = () => {
@@ -13,14 +13,10 @@ const Note = () => {
     
     useEffect(() => {
         setLoading(true);
-        axios({
-            method: 'get',
-            url: 'https://jsonplaceholder.typicode.com/users',
-            params: {
-              "Authorization": "Bearer " + localStorage.getItem("user")
-            }
+        instance({
+            url: '/guestbook/receive/all'
         }).then((response)=> {
-            setRecord(response.data);
+            setRecord(response.data.guestbook_list);
             setLoading(false);
             console.log(response.data);
         })
