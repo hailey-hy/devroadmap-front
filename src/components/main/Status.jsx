@@ -8,15 +8,23 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-const Status = (prop) => {
+const Status = (props) => {
 
   //공부 분야 관련
-
-  const field = useSelector((state) => state.field);
+  let field = useSelector((state) => state.field);
+  const friendField = props.friendField
   const rate = useSelector((state) => state.progress);
+  console.log(props.friendField)
+
+    // if(props.friend === true){
+    //   let field = props.friend-field
+    // } else {
+    //   let field = useSelector((state) => state.field);
+    // }
+
 
   const isFront = () => {
-    if(field == 'front'){
+    if((props.friend === false && field == 'front') || (props.friend === true && props.friendField === 'front')){
       return true
     } else{
       return false
@@ -36,17 +44,30 @@ const Status = (prop) => {
         })
       }, [rate])
 
-
-  return (
-    <div className='container-status'>
-        <div className="container-status-main">
-        <Badge pill bg={isFront() ? 'primary' : 'success'}>{field}</Badge>
-            <h5 id="status-d-day">공부를 시작한지 {}일</h5>
-        </div>
-        <h5 id="status-percent">전체 진도율 {rate}%</h5>
-    </div>
-    
-  )
+  if(props.friend === true){
+    console.log(props)
+    return(
+      <div className='container-status'>
+          <div className="container-status-main">
+          <Badge pill bg={isFront() ? 'primary' : 'success'}>{props.friendField}</Badge>
+              
+          </div>
+      </div>
+    )
+  }
+  else {
+    return (
+      <div className='container-status'>
+          <div className="container-status-main">
+          <Badge pill bg={isFront() ? 'primary' : 'success'}>{field}</Badge>
+              <h5 id="status-d-day">공부를 시작한지 {}일</h5>
+          </div>
+          <h5 id="status-percent">전체 진도율 {rate}%</h5>
+      </div>
+      
+    )
+  }
+  
 }
 
 export default Status

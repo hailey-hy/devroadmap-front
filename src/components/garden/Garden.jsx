@@ -46,7 +46,7 @@ const Garden = (props) => {
   for(let i = 1; i <= imgList.length; i++){
     var imgId = 'img' + i;
     var imgSrc = imgList[i - 1];
-    if(field === 'front'){
+    if((props.friend === false && field == 'front') || (props.friend === true && props.friend-field === 'front')){
       if(i <= 11){
         var msg = frontList[i - 1];
       }
@@ -94,7 +94,7 @@ const Garden = (props) => {
   //사다리 + 정원사 툴팁 표시
   const items2 = [];
 
-  if(field == 'front'){
+  if((props.friend === false && field == 'front') || (props.friend === true && props.friend-field === 'front')){
     items2.push(
       <OverlayTrigger
           overlay={

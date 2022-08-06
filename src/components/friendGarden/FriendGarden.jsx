@@ -3,6 +3,7 @@ import instance from '../../api';
 import './friendGarden.css'
 import { Button, Modal, Form } from 'react-bootstrap';
 import Garden from '../garden/Garden'
+import Status from '../main/Status';
 import './friendGarden.css'
 import grass from '../../assets/img-garden/땅.png';
 import sun from '../../assets/img-garden/해.png';
@@ -19,38 +20,55 @@ const FriendGarden = () => {
   const [friendOrNot, setFriendOrNot] = useState(true);
   const friendName = localStorage.getItem("friend-nickname");
   const friendEmail = localStorage.getItem("friend-email");
+  const [friendField, setFriendField] = useState('front');
   
   useEffect(() => {
         instance({
-          method: 'get',
-          url: '',
+          url: '/friend/details',
           params: {
+            'friendNickname' : friendName
             }
         }).then(response => {
 
         //친구 정보 불러오기
-
-
+          setFriendField(response.data.user_field)
+          console.log(friendField)
         //친구 완료 항목
-          const savedItem = [];
+          let savedItem = [];
 
           console.log(response.data.complete_subjects)
           savedItem = response.data.complete_subjects;
 
           for(let i = 1; i < savedItem.length; i++){
-            if(i in savedItem[i].object){
-            var target = document.getElementById('img' + i);
+            var targetID = savedItem[i].object
+            console.log(targetID);
+            var target = document.getElementById('img' + targetID);
             target.classList.remove('hide');
             target.classList.add('show');
-            }
-        }
 
-        //친구 여부에 따라 버튼 바꾸기
-        if (friendOrNot === false){
+            if(targetID === 11){
+              var target = document.getElementById('img' + 12);
+              target.classList.remove('hide');
+  
+              var target = document.getElementById('img' + 13);
+              target.classList.remove('hide');
+            }
+            }
+      
+      })
+      instance({
+        url: '/friendornot',
+        params: {
+          'friendNickname' : friendName
+          }
+      }).then(response => {
+        if (response.data === 'no'){
           var target = document.getElementById('btn-note');
           target.innerHTML = '친구 신청';
         }
       })
+      //친구 여부에 따라 버튼 바꾸기
+      
       }, [])
 
   // 친구 여부에 따라 다른 버튼 내용
@@ -94,6 +112,7 @@ const FriendGarden = () => {
         "message": text
       }
     }).then(response => {
+      handleCloseMsg();
       handleShow();
     })
   }
@@ -128,8 +147,8 @@ const FriendGarden = () => {
 
   return (
     <section>
-          <Garden friend={true}></Garden>
-
+          <Garden friend={true} friend-field={friendField}></Garden>
+          <Status friend={true} friendField={friendField}></Status>
           {/* 친구 정원 알림창 */}
           <div id="container-friend-notion">
             <h5 id='friend-notion-title'>{friendName}님의 정원입니다.</h5>
@@ -163,14 +182,15 @@ const FriendGarden = () => {
             </Modal.Footer>
           </Modal>
 
-          {/* <Modal
+          <Modal
             show={show}
             onHide={handleClose}
             backdrop="static"
             keyboard={false}
           >
           <Modal.Header closeButton>
-            </Modal.Header>
+            <Modal.Title>방명록 작성 완료!</Modal.Title>
+          </Modal.Header>
             <Modal.Body>
               방명록을 남겼어요.
             </Modal.Body>
@@ -181,7 +201,7 @@ const FriendGarden = () => {
                 확인
               </Button>
             </Modal.Footer>
-          </Modal> */}
+          </Modal>
     </section>
   )
 }

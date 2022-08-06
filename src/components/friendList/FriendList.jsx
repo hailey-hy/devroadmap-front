@@ -79,7 +79,7 @@ const FriendList = () => {
     const myNickname = useSelector(state => state.nickname);
 
     const onSearch = () => {
-        if(search.length > 0 && search != myNickname && ! search in record){
+        if(search.length > 0 && search != myNickname && !(search in record)){
             setShowTooltip(false);
             handleShowSearch();
             instance({
@@ -142,14 +142,12 @@ const FriendList = () => {
     const [recordPerPage, setRecordPerPage] = useState(3);
 
     const delTarget = document.getElementsByClassName('friend');
-    console.log(delTarget);
 
     useEffect(() => {
         setLoading(true);
         instance({
             url: '/friend',
         }).then((response)=> {
-            console.log(response.data.friend_list)
             setRecord(response.data.friend_list);
             // setRecord(response.data);
             setLoading(false);
@@ -164,7 +162,6 @@ const FriendList = () => {
 
         let currentRecord = 0;
             currentRecord = recordArray.slice(indexOfFirst, indexOfLast);
-            console.log(currentRecord)
         return currentRecord;
     };
     const totalrecord = record.length;
