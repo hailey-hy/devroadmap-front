@@ -50,7 +50,7 @@ const RandomFriendFront = () => {
   if(random2.result === "ok"){
   return (
     <>
-      <div className="friend" onClick={() => {
+      <div className="friend go-friend" onClick={() => {
         goFriend(random2);
       }}>
         <Badge pill className="friend-field">front</Badge>
