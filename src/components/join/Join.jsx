@@ -137,28 +137,40 @@ const renderTooltip = (props) => (
   //닉네임 중복 확인 툴팁, 버튼
   const [showNickCheck, setShowNickCheck] = useState(false);
   const [showNickCheck2, setShowNickCheck2] = useState(false);
+  const [showNickCheck3, setShowNickCheck3] = useState(false);
   const target = useRef(null);
 
   const nickServerCheck = () => {
-    instance({
-      method: 'get',
-      url: '/signup/nickname/',
-      params: {
-        "nickname" : nickname}
-    }).then((response) => {
-      if(response.data == 'ok'){
-      // setNickCheck(true);
-      setShowNickCheck(true);
+    const lowerNick = nickname.toLowerCase();
+    if(nickname == lowerNick){
+      instance({
+        method: 'get',
+        url: '/signup/nickname/',
+        params: {
+          "nickname" : nickname}
+      }).then((response) => {
+        if(response.data == 'ok'){
+        // setNickCheck(true);
+        setShowNickCheck(true);
+        setShowNickCheck2(false);
+        setShowNickCheck3(false);
+        setNickCheck(true);
+        } else {
+          setShowNickCheck2(true);
+          setShowNickCheck(false);
+          setShowNickCheck3(false);
+          setNickCheck(false);
+        }
+      }).catch((err) => {
+        console.error(err)
+      })
+    } else {
+      setShowNickCheck3(true);
+      setShowNickCheck(false);
       setShowNickCheck2(false);
-      setNickCheck(true);
-      } else {
-        setShowNickCheck2(true);
-        setShowNickCheck(false);
-        setNickCheck(false);
-      }
-    }).catch((err) => {
-      console.error(err)
-    })
+      setNickCheck(false);
+    }
+    
   }
   
   //비밀번호 중복 확인 툴팁
@@ -250,6 +262,13 @@ const renderTooltip = (props) => (
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
                       다른 닉네임을 사용해 주세요.
+                    </Tooltip>
+                  )}
+                </Overlay>
+                <Overlay target={target.current} show={showNickCheck3} placement="top-end">
+                  {(props) => (
+                    <Tooltip id="nick-alert" {...props}>
+                      닉네임은 한글, 영문 소문자, 숫자만 포함 가능해요.
                     </Tooltip>
                   )}
                 </Overlay>
