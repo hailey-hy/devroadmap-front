@@ -14,10 +14,9 @@ const accept = (e) => {
   console.log(e.target.id)
   instance({
       method: 'post',
-      url: '/friend/proposal/acceptornot',
+      url: '/friend/proposal/send',
       params: {
-        "friendnickname": e.target.id,
-        "acceptornot": true
+        "proposalTo": e.target.id
       }
     }).then(response => {
       if(response.data === 'ok'){
@@ -47,7 +46,7 @@ if (props.result.search_user_friendornot === 'already friend'){
   )
 } else {
   items.push(
-    <div class="add-btn-random btn-friend-add" id={props.result.search_user_nickname} onClick={
+    <div class="add-btn-random btn-friend-add" id={props.result.search_user_email} onClick={
       accept}>+</div>
   )
 }
@@ -55,7 +54,7 @@ if (props.result.search_user_friendornot === 'already friend'){
 if(props.result.result === 'ok'){
   return (
     <div className="friend-add go-friend" onClick={() => {
-      goFriend(props.result);
+      // goFriend(props.result);
     }}>
           <Badge pill bg={props.result.search_user_field === 'front' ? 'primary' : 'success'} className="friend-field">{props.result.search_user_field}</Badge>
           <div className="friend-img"></div>
