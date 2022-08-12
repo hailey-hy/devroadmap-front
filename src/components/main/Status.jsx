@@ -15,6 +15,7 @@ const Status = (props) => {
   const friendField = props.friendField
   const rate = useSelector((state) => state.progress);
   console.log(props.friendField)
+  console.log(props.friend)
 
     // if(props.friend === true){
     //   let field = props.friend-field
@@ -24,7 +25,7 @@ const Status = (props) => {
 
 
   const isFront = () => {
-    if((props.friend === false && field == 'front') || (props.friend === true && props.friendField === 'front')){
+    if((props.friend === true && props.friendField === 'front') || (field == 'front')){
       return true
     } else{
       return false
