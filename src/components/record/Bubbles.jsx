@@ -21,9 +21,9 @@ const Bubbles = ({record, loading}) => {
             console.log(record[i].user_field)
             
             if(field === 'front'){
-                var subject = frontList[subject_num];
+                var subject = frontList[subject_num - 1];
             }else{
-                var subject = backList[subject_num];
+                var subject = backList[subject_num - 1];
             }
             console.log(subject);
 
