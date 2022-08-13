@@ -84,13 +84,14 @@ const Objects = (props) => {
         console.error(err);
       });
 
-      instance({
+      setTimeout(() => {
+        instance({
         url: '/progressrate',
       }).then(response => {
         console.log(response.data)
-        // setRate(response.data.progressRate);
         dispatch({type: 'load-progress', progress: response.data.progressRate})
       })
+      }, 500)
       }
 
     const withdraw = (index) => {
@@ -151,12 +152,14 @@ const Objects = (props) => {
         console.log('체크 해제');
       })
 
-      instance({
+      setTimeout(() => {
+        instance({
         url: '/progressrate',
       }).then(response => {
         console.log(response.data)
         dispatch({type: 'load-progress', progress: response.data.progressRate})
       })
+      }, 500)
     }
 
   return (
