@@ -25,19 +25,39 @@ const Main = () => {
       const savedItem = response.data.complete_subjects;
 
        for(let i = 0; i < savedItem.length; i++){
-          var targetID = savedItem[i].object
-          console.log(targetID)
+        var targetID = savedItem[i].object
+        console.log(targetID)
+
+        if(targetID <= 10){
           var target = document.getElementById('img' + targetID);
           target.classList.remove('hide');
-
-          if(targetID === 11){
-            var target = document.getElementById('img' + 12);
-            target.classList.remove('hide');
-
-            var target = document.getElementById('img' + 13);
-            target.classList.remove('hide');
-          }
         }
+        else if(targetID === 11){
+          var target = document.getElementById('img' + 11);
+          target.classList.remove('hide');
+
+          var target = document.getElementById('img' + 12);
+          target.classList.remove('hide');
+
+          var target = document.getElementById('img' + 13);
+          target.classList.remove('hide');
+        }
+        else if(targetID >= 12){
+          var targetID = savedItem[i].object + 2
+          var target = document.getElementById('img' + targetID);
+          target.classList.remove('hide');
+        }
+      }
+      const ladder = document.getElementById('img16');
+      const gardener = document.getElementById('img18');
+      const sittingGardener = document.getElementById('img22');
+
+      if(!ladder.classList.contains('hide') 
+        && !gardener.classList.contains('hide')){
+          ladder.classList.add('hide');
+          gardener.classList.add('hide');
+          sittingGardener.classList.remove('hide');
+      }
     })
   }, [])
 

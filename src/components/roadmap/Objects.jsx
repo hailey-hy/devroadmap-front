@@ -29,7 +29,7 @@ const Objects = (props) => {
     const add = (index) => {
       console.log(index)
       //튤립, 민들레, 토끼풀은 함께 처리
-      if(index == 10) {
+      if(index == 11) {
         var targetId = 'img' + 11;
         var target = document.getElementById(targetId);
         target.classList.remove('hide');
@@ -48,10 +48,14 @@ const Objects = (props) => {
           var targetId = 'img' + 6;
         }
         else if(index < 10){
-          var targetId = 'img' + (index + 1);
+          var targetId = 'img' + (index );
           var subject = index + 1
-        }else if(index >= 11){
-          var targetId = 'img' + (index + 3);
+        }else if(index > 11 && field == 'back'){
+          var targetId = 'img' + (index + 2);
+          var subject = index + 1
+        }
+        else if(index > 11){
+          var targetId = 'img' + (index + 2);
           var subject = index + 1
         }
         var target = document.getElementById(targetId);
