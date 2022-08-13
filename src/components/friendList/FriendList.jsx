@@ -111,28 +111,7 @@ const FriendList = () => {
     const { isChecked, handleToggle } = useState("false");
     const [switchCheck, setSwitchCheck] = useState(false)
 
-    //스위치 관련 함수
-    const onCheckedElement = (checked, item) => {
-        if (checked) {
-            console.log('체크');
-            onChecked();
-            setSwitchCheck(true)
-            
-        } else {
-            console.log('해제');
-            onChecked();
-            setSwitchCheck(false)
-        }
-    }
 
-    //스위치 ON
-    const onChecked = () => {
-        instance({
-            url: '/friend/matchornot',
-        }).then(response => {
-            console.log(response.data);
-        })
-    }
 
     // 친구 목록 페이지네이션
 
@@ -178,6 +157,38 @@ const FriendList = () => {
         </Pagination.Item>,
     );
     }  
+
+    //스위치 관련 함수
+
+    useEffect(() => {
+        instance({
+            url : '/matchingornot'
+        }).then((response) => {
+            console.log(response.data)
+        })
+    }, [])
+
+    const onCheckedElement = (checked, item) => {
+        if (checked) {
+            console.log('체크');
+            onChecked();
+            setSwitchCheck(true)
+            
+        } else {
+            console.log('해제');
+            onChecked();
+            setSwitchCheck(false)
+        }
+    }
+
+    //스위치 ON
+    const onChecked = () => {
+        instance({
+            url: '/friend/matchornot',
+        }).then(response => {
+            console.log(response.data);
+        })
+    }
 
     //랜덤 친구 추천
     let randomItems = [];
