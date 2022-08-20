@@ -65,6 +65,7 @@ const FriendGarden = () => {
         if (response.data === 'no'){
           var target = document.getElementById('btn-note');
           target.innerHTML = '친구 신청';
+          setFriendOrNot(false);
         }
       })
       //친구 여부에 따라 버튼 바꾸기
