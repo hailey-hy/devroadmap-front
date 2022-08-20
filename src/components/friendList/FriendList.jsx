@@ -164,7 +164,10 @@ const FriendList = () => {
         instance({
             url : '/matchingornot'
         }).then((response) => {
-            console.log(response.data)
+            if(response.data === true){
+                document.getElementById('custom-switch').checked = true;
+                setSwitchCheck(true)
+            }
         })
     }, [])
 
