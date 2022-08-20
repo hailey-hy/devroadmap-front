@@ -25,7 +25,7 @@ const Status = (props) => {
 
 
   const isFront = () => {
-    if((props.friend === true && props.friendField === 'front') || (field == 'front')){
+    if((field == 'front')){
       return true
     } else{
       return false
@@ -50,7 +50,7 @@ const Status = (props) => {
     return(
       <div className='container-status'>
           <div className="container-status-main">
-          <Badge pill bg={isFront() ? 'primary' : 'success'}>{props.friendField}</Badge>
+          <Badge pill bg={props.friendField==='front' ? 'primary' : 'success'}>{props.friendField}</Badge>
               
           </div>
       </div>
