@@ -33,8 +33,8 @@ const FriendList = () => {
         instance({
             url: '/friend/proposal/receive',
         }).then((response)=> {
-            console.log(response.data.friend_list)
-            setRecordAdd(response.data);
+            console.log(response.data)
+            setRecordAdd(response.data.proposal_friend_list);
             setLoadingAdd(false);
         })
     

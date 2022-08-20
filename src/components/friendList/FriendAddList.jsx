@@ -10,21 +10,55 @@ import { useNavigate } from 'react-router-dom'
 const FriendAddList = ({record, loading}) => {
   console.log(record)
   const accept = (e) => {
-    console.log(e.target.id)
+    const targetChild = e.target
+    const targetNick = targetChild.parentNode.parentNode.parentNode;
+    console.log(targetChild)
+    console.log(targetNick);
       instance({
           method: 'post',
           url: '/friend/proposal/acceptornot',
           params: {
-            "friendnickname": e.target.id,
+            "friendnickname": targetNick.id,
             "acceptornot": true
           }
         }).then(response => {
           if(response.data === 'ok'){
-            var targetID = e.target.id;
-            var target = document.getElementById(targetID);
-            console.log(target);
-            target.classList.add('complete');
-            target.innerHTML = '등록 완료!';
+            // 수락 -> 등록 완료
+            const targetUpdate = e.target.parentNode;
+            targetUpdate.classList.add('complete');
+            targetUpdate.innerHTML = '등록 완료!';
+
+            const targetDelete = targetUpdate.nextSibling;
+            // const targetDeleteBtn = targetDelete.nextElementSibling;
+            console.log(targetDelete)
+            targetDelete.style.pointerEvents = 'none';
+            }
+        })
+  }
+
+  const refuse = (e) => {
+    const targetChild = e.target
+    const targetNick = targetChild.parentNode.parentNode.parentNode;
+    console.log(targetChild)
+    console.log(targetNick);
+      instance({
+          method: 'post',
+          url: '/friend/proposal/acceptornot',
+          params: {
+            "friendnickname": targetNick.id,
+            "acceptornot": false
+          }
+        }).then(response => {
+          if(response.data === 'ok'){
+            // 수락 -> 등록 완료
+            const targetUpdate = e.target.parentNode;
+            targetUpdate.classList.add('complete');
+            targetUpdate.innerHTML = '거절 완료!';
+
+            const targetDelete = targetUpdate.previousSibling;
+            // const targetDeleteBtn = targetDelete.nextElementSibling;
+            console.log(targetDelete)
+            targetDelete.style.pointerEvents = 'none';
             }
         })
   }
@@ -41,18 +75,34 @@ const FriendAddList = ({record, loading}) => {
     return (
       <>
       {record.map((record) => (
-      <div className="friend-add go-friend" onClick={() => {
-        goFriend(record);
-      }}>
-          <Badge pill className="friend-field" bg={record.friend_field === 'front' ? 'primary' : 'success'}>{record.friend_field}</Badge>
-          <div className="friend-img"></div>
-          <div className="friend-detail-divider">
+      <div className="friend-add go-friend" id={record.friend_nickname}>
+          <div onClick={() => {
+            goFriend(record);
+          }}>
+            <Badge pill className="friend-field" bg={record.friend_field === 'front' ? 'primary' : 'success'}>{record.friend_field}</Badge>
+          </div>
+          <div onClick={() => {
+            goFriend(record);
+          }}>
+            <div className="friend-img"></div>
+          </div>
+          <div className="friend-detail-divider" onClick={() => {
+            goFriend(record);
+          }}>
               <h5 className="friend-name">{record.friend_nickname}</h5>
               <h5 className='friend-progress'>{record.friend_progressRate}%</h5>
           </div>
           {/* <MdCancel className='friend-cancle'/> */}
-          <div class="add-btn-random btn-friend-add" id={record.friend_nickname} onClick={
-              accept}>+</div>
+          <div className='btn-friend-grid'>
+            <div className="add-btn-random btn-friend-add" onClick={
+                accept}>
+                <h5 className="friend-accept">수락</h5>
+            </div>
+            <div class="add-btn-random btn-friend-add" onClick={
+                refuse}>
+                <h5 className="friend-accept">거절</h5>
+            </div>
+          </div>
       </div>
       ))}
       </>
