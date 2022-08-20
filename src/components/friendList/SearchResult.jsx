@@ -9,6 +9,7 @@ const SearchResult = (props) => {
 // search_user_field: "front"
 // search_user_joindate: "2022-06-23 01:57:48.0"
 // search_user_nickname: "해연"
+console.log(props.result);
 
 const accept = (e) => {
   console.log(e.target.id)
@@ -51,14 +52,23 @@ if (props.result.search_user_friendornot === 'already friend'){
   )
 }
 
-if(props.result.result === 'ok'){
+if(props.result.search_user_friendornot != "doesn't exist nickname"){
   return (
-    <div className="friend-add go-friend" onClick={() => {
-      // goFriend(props.result);
-    }}>
-          <Badge pill bg={props.result.search_user_field === 'front' ? 'primary' : 'success'} className="friend-field">{props.result.search_user_field}</Badge>
-          <div className="friend-img"></div>
-          <div className="friend-detail-divider">
+    <div className="friend-add go-friend"> 
+          
+          <div className="friend-badge" id={props.result.search_user_nickname} onClick={() => {
+            goFriend(props.result);
+          }}>
+            <Badge pill bg={props.result.search_user_field === 'front' ? 'primary' : 'success'} className="friend-field">{props.result.search_user_field}</Badge>
+          </div>
+          <div id={props.result.search_user_nickname} onClick={() => {
+            goFriend(props.result);
+          }}>
+            <div className="friend-img" ></div>
+          </div>
+          <div className="friend-detail-divider" id={props.result.search_user_nickname} onClick={() => {
+        goFriend(props.result);
+      }}>
               <h5 className="friend-name">{props.result.search_user_nickname}</h5>
               <h5 className='friend-progress'>{props.result.search_user_progressrate}%</h5>
           </div>
@@ -66,6 +76,13 @@ if(props.result.result === 'ok'){
       </div>
   )
 }
+// 친구 신청 대기 중일 경우?
+else if(props.result.search_user_friendornot === "not friend"){
+  return(
+    <div>친구 신청 대기 중입니다.</div>
+  )
+}
+
 else {
   return (
     <div>검색 결과가 없어요.</div>

@@ -8,7 +8,7 @@ import './friendList.css'
 import { useNavigate } from 'react-router-dom'
 
 const FriendItem = ({record, loading}) => {
-
+console.log(record)
 //친구 끊기 모달 창
   const [show, setShow] = useState(false);
   const [disconnectFriend, setDisconnectFriend] = useState('');
@@ -36,7 +36,8 @@ const FriendItem = ({record, loading}) => {
     }).then(response => {
       if(response.data === 'ok'){
         var targetID = friend_nickname;
-        var target = document.getElementById(targetID);
+        var targetChild = document.getElementById(targetID);
+        var target = targetChild.parentNode;
         // target.classList.add('hide');
         target.remove();
       }
@@ -70,13 +71,21 @@ const goFriend = (friend) => {
     return (
       <>
       {record.map((record) => (
-      <div className="friend go-friend" id={record.friend_nickname} onClick={() => {
-        goFriend(record);
-      }}> 
+      <div className="friend go-friend"> 
           {/* <div className="select-friend"> */}
-          <Badge pill bg={record.friend_field === 'front' ? 'primary' : 'success'} className='front friend-field'>{record.friend_field}</Badge>
-          <div className="friend-img"></div>
-          <div className="friend-detail-divider">
+          <div className="friend-badge" id={record.friend_nickname} onClick={() => {
+            goFriend(record);
+          }}>
+            <Badge pill bg={record.friend_field === 'front' ? 'primary' : 'success'} className='front friend-field'>{record.friend_field}</Badge>
+          </div>
+          <div id={record.friend_nickname} onClick={() => {
+            goFriend(record);
+          }}>
+            <div className="friend-img" ></div>
+          </div>
+          <div className="friend-detail-divider" id={record.friend_nickname} onClick={() => {
+        goFriend(record);
+      }}>
               <h5 className="friend-name">{record.friend_nickname}</h5>
               <h5 className='friend-progress'>{record.friend_progressRate}%</h5>
           </div>
