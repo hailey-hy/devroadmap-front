@@ -23,23 +23,6 @@ const Join = (props) => {
     setNickname(e.target.value);
   }
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  }
-
-  // const handlePassword = (e) => {
-  //     const pwAlertMsg = document.querySelector('#pw-alert');
-  //     setPassword(e.target.value)
-  //     if (password.length >= 4 && password.length < 12) {
-  //       setPwCheck(true);
-  //       pwAlertMsg.innerHTML = '';
-  //     } else {
-  //       setPwCheck(false);
-  //       pwAlertMsg.innerHTML = '4자리 이상 12자리 이하';
-  //     } 
-      
-  // }
-
   const handlePassword = (e) => {
     setPassword(e.target.value);
   }
@@ -48,24 +31,21 @@ const Join = (props) => {
     setPasswordCheck(e.target.value)
 }
 
-//프로필 사진
+//서버에서 이메일 불러오기
 
-  // const [files, setFiles] = useState('');
+useEffect(() => {
+  instance({
+    url: '/signup/mail/confirm'
+}).then((response) => {
+  const target = document.getElementById('email-input');
+  target.value = response.data;
+  console.log(response.data);
+  setEmail(response.data);
+  
+})
+},[])
 
-  // const onLoadFile = (e) => {
-  //   const file = e.target.files;
-  //   setFiles(file);
-  // }
-
-// 공부 시간 (사용 중지)
-
-// const [radioValue, setRadioValue] = useState('1');
-
-// const radios = [
-//   { name: '8시간', value: '8시간' },
-//   { name: '4시간', value: '4시간' },
-//   { name: '2시간', value: '2시간' },
-// ];
+console.log(email);
 
 //공부 유형
 const [radioSecValue, setRadioSecValue] = useState('1');
@@ -110,7 +90,7 @@ const renderTooltip = (props) => (
       },
       params: {
         "nickname" : nickname,
-        "email" : defaultEmail,
+        "email" : email,
         "password" : password,
         "field" : radioSecValue
       }
@@ -304,8 +284,8 @@ const renderTooltip = (props) => (
           {/* 이메일 */}
           <div className="detail-container" id='detail-email'>
               <h5 className='detail-title'>이메일</h5>
-                <input className='login-input' id='email-input' type='text' value={defaultEmail} onChange={handleEmail}/>
-                {/* <Button className='id-check' variant="primary">확인</Button> */}
+                <input className='login-input' id='email-input' type='text' value={defaultEmail}/>
+                
             </div>
             {/* 비밀번호 */}
             <div className="detail-container">

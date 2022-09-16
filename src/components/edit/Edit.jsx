@@ -4,6 +4,7 @@ import instance from '../../api';
 import './edit.css'
 import { nicknameCheck } from '../../util/nicknameCheck';
 import { useSelector } from 'react-redux';
+import { upload } from '@testing-library/user-event/dist/upload';
 
 //회원 정보 수정 페이지
 
@@ -108,7 +109,6 @@ const Edit = () => {
         "nickname" : nickname
       }
     }).then(response => {
-      console.log(response.data);
       if(response.data == 'ok'){
         setNickCheck(true);
         setShowNickCheck(true);
@@ -164,51 +164,76 @@ const Edit = () => {
 
    //수정하기 버튼
 
-   const [ok, setOk] = useState(false);
-
+  //  const [ok, setOk] = useState(false);
+  var ok = false;
    const onClickEdit = () => {
     //닉네임 중복, 비밀번호 자리수, 비밀번호 확인 여부 확인
-    if(nickname){
-      setOk(false);
+    if(nickname.length > 0){
+      // setOk(ok => false);
+      ok = false
       if(nickCheck){
-        setOk(true);
+        // setOk(ok => true);
+        ok = true
       } 
     }
 
-    if(password){
-      setOk(false);
+    if(password.length > 0){
+      // setOk(ok => false
+      ok = false
       if(pwCheck){
-        setOk(true);
+        // setOk(ok => true);
+        ok = true
       }
     }
 
-    if(ok){
-    console.log(radioSecValue);
-    const formdata = new FormData();
-    formdata.append('uploadImage', files[0]);
+    if(nickname.length == 0 && nickname.length == 0){
+      ok = true
+    }
 
-    instance({
-      method: 'post',
-      url: '/edit/userdetatils',
-      headers: {
-        "Content-Type": "multipart/form-data"
-      },
-      params: {
-        "nickname" : nickname,
-        "email" : email,
-        "password" : password,
-        "profile" : formdata,
-        "field" : radioSecValue
-      }
-    }).then(response => {
-      handleShow();
-    }).catch(err => {
-      console.error(err);
-    });
-  } else {
-    handleShow2();
+    doEdit();
+
+    
   }
-}
+
+  const doEdit = () => {
+    console.log(nickname)
+    console.log(nickCheck)
+    console.log(password.length)
+    console.log(pwCheck)
+    console.log(ok)
+    if(ok){
+      console.log(radioSecValue);
+      const formdata = new FormData();
+      formdata.append('uploadImage', files[0]);
+      console.log(formdata)
+      for (let value of formdata.values()) {
+        console.log(value);
+      }
+  
+      instance({
+        method: 'post',
+        url: '/edit/userdetails',
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        params: {
+          "nickname" : nickname,
+          "email" : email,
+          "password" : password,
+          "profile" : {formdata},
+          "field" : radioSecValue
+        }
+      }).then(response => {
+        handleShow();
+      }).catch(err => {
+        console.error(err);
+      });
+    } else {
+      handleShow2();
+    }
+  }
+    
+
 
   return (
     <section id="edit">
