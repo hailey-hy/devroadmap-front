@@ -250,3 +250,15 @@
     margin-top: 2.4rem;
     height: 20px;
 }
+
+#msg-to-down{
+    position: relative;
+    margin-top: 28rem;
+    text-align: center;
+}
+
+#arrow-to-down{
+    margin-bottom: 2.8rem;
+    width: 100px;
+    height: 40px;
+}

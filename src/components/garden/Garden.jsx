@@ -13,6 +13,7 @@ import cloud4 from '../../assets/img-garden/구름4.png';
 import cloud5 from '../../assets/img-garden/구름5.png';
 import bird from '../../assets/img-garden/새.png'
 import img20 from '../../assets/img-garden/정원사 사다리 올라가는 버전.png';
+import {VscTriangleDown} from 'react-icons/vsc'
 import { useEffect } from 'react';
 import instance from '../../api';
 
@@ -96,7 +97,7 @@ const Garden = (props) => {
   //사다리 + 정원사 툴팁 표시
   const items2 = [];
 
-  if((props.friend === true && props.friend-field === 'front')||(field == 'front')){
+  if((props.friend == true && props.friend-field === 'front')||(field == 'front')){
     items2.push(
       <OverlayTrigger
           overlay={
@@ -121,6 +122,21 @@ const Garden = (props) => {
       </OverlayTrigger>
     )
   }
+
+  //본인 정원일 경우 정원 채우기 안내 메시지 출력
+  const item3 = [];
+  console.log(props.firend)
+
+  if(props.friend == undefined && props.login == undefined && props.join == undefined){
+    item3.push(
+      <div id='msg-to-down'>
+        <VscTriangleDown id='arrow-to-down'></VscTriangleDown>
+        {/* <h3 >정원 채우기</h3> */}
+      </div>
+      
+    )
+  }
+  // item3.push(<h3>정원 채우기</h3>)
 
 
   //안읽은 메시지 데이터 불러오는 api
@@ -203,7 +219,11 @@ const Garden = (props) => {
         <div id="container-garden">
           {item}
           {items2}
+          {item3}
         </div>  
+        <div id="msg-garden">
+          
+        </div>
 
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
