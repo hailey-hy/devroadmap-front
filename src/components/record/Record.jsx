@@ -11,6 +11,7 @@ const Record = () => {
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [recordPerPage, setRecordPerPage] = useState(3);
+    const [recordFirst, setRecordFirst] = useState(''); //가장 첫번째 항목을 저장
     
     useEffect(() => {
         setLoading(true);
@@ -20,7 +21,7 @@ const Record = () => {
         }).then((response)=> {
             setRecord(response.data.complete_subjects);
             setLoading(false);
-            console.log(response.data);
+            setRecordFirst(response.data.complete_subjects[0]);
         })
     
     }, []);
@@ -56,7 +57,7 @@ const Record = () => {
     <div className='container-white container'>
       <div id="container-records">
         <h3 id="white-title">정원 기록</h3>
-        <Bubbles record={currentRecord(record)} loading={loading}></Bubbles>
+        <Bubbles record={currentRecord(record)} loading={loading} first={recordFirst}></Bubbles>
         <Pagination>{items}</Pagination>
         </div>
     </div>

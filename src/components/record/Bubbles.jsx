@@ -8,14 +8,15 @@ import gardener from '../../assets/img-record/정원사 호미.png'
 import { useSelector } from 'react-redux'
 
 
-const Bubbles = ({record, loading}) => {
+const Bubbles = ({record, loading, first}) => {
     const frontList = useSelector(state => state.frontList);
     const backList = useSelector(state => state.backList);
     const field = useSelector(state => state.field);
     const item = []
+    console.log(record)
 
     if(record.length >= 1){
-        for(let i = record.length - 1; i >= 0; i--){
+        for(let i = 0; i < record.length; i++){
             // 항목명
             var subject_num = record[i].object;
             console.log(record[i].user_field)
@@ -27,8 +28,8 @@ const Bubbles = ({record, loading}) => {
             }
             console.log(subject);
 
-            // 가장 최신 항목에 정원사 표시
-            if(i === record.length - 1){
+            // 저장해뒀던 first를 이용하여 가장 최신 항목에 정원사 표시
+            if(record[i] === first){
                 var imgGardener = 'show gardener'
             } else {
                 var imgGardener = 'hide gardener'
