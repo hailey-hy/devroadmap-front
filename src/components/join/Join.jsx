@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Button, ButtonGroup, ToggleButton, Tooltip, Overlay, OverlayTrigger, Modal} from 'react-bootstrap'
+import Form from 'react-bootstrap/Form';
 import instance from '../../api';
 import { useNavigate } from "react-router-dom";
 import Garden from '../garden/Garden';
@@ -37,7 +38,7 @@ useEffect(() => {
   instance({
     url: '/signup/mail/confirm'
 }).then((response) => {
-  const target = document.getElementById('email-input');
+  const target = document.getElementById('email-input-fixed');
   target.value = response.data;
   console.log(response.data);
   setEmail(response.data);
@@ -90,7 +91,7 @@ const renderTooltip = (props) => (
       },
       params: {
         "nickname" : nickname,
-        "email" : email,
+        "email" : defaultEmail,
         "password" : password,
         "field" : radioSecValue
       }
@@ -115,27 +116,26 @@ const renderTooltip = (props) => (
 
 
   //닉네임 중복 확인 툴팁, 버튼
-  const [showNickCheck, setShowNickCheck] = useState(false);
-  const [showNickCheck2, setShowNickCheck2] = useState(false);
-  const [showNickCheck3, setShowNickCheck3] = useState(false);
+  const [showNickCheck, setShowNickCheck] = useState(false); //닉네임 검사 성공
+  const [showNickCheck2, setShowNickCheck2] = useState(false);  //닉네임 중복
+  const [showNickCheck3, setShowNickCheck3] = useState(false); //닉네임 유효성 검사
   const target = useRef(null);
 
   const nickServerCheck = () => {
     const lowerNick = nickname.toLowerCase();
-    if(nickname == lowerNick){
+    if(nickname == lowerNick && nickname.length >= 2 && nickname.length < 11){
       instance({
         method: 'get',
         url: '/signup/nickname/',
         params: {
           "nickname" : nickname}
       }).then((response) => {
-        if(response.data == 'ok'){
-        // setNickCheck(true);
+        if(response.data == 'ok'){ //닉네임 검사에 성공한 경우
         setShowNickCheck(true);
         setShowNickCheck2(false);
         setShowNickCheck3(false);
         setNickCheck(true);
-        } else {
+        } else { //중복 닉네임이 있을 경우
           setShowNickCheck2(true);
           setShowNickCheck(false);
           setShowNickCheck3(false);
@@ -144,7 +144,7 @@ const renderTooltip = (props) => (
       }).catch((err) => {
         console.error(err)
       })
-    } else {
+    } else { //닉네임 유효성 검사 실패한 경우
       setShowNickCheck3(true);
       setShowNickCheck(false);
       setShowNickCheck2(false);
@@ -248,15 +248,23 @@ const renderTooltip = (props) => (
                 <Overlay target={target.current} show={showNickCheck3} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                      닉네임은 한글, 영문 소문자, 숫자만 포함 가능해요.
+                      닉네임은 2~8자리 한글, 영문 소문자, 숫자만 포함 가능해요.
                     </Tooltip>
                   )}
                 </Overlay>
                 {/* <h5 id='nick-alert'></h5> */}
               </div>
               <div ref={target}>
-                <input className='login-input' type='text'  value={nickname} onChange={handleNickname} placeholder='NICKNAME'/>
+              <div className='divider'>
+                <Form.Control
+                  className='join-input'
+                  type="text"
+                  placeholder='2~8자리 한글, 영문 소문자'
+                  value={nickname}
+                  onChange={handleNickname}
+                />
                 <Button className='id-check' variant="primary" onClick={nickServerCheck}>확인</Button>
+                </div>
               </div>
 
             </div>
@@ -284,8 +292,14 @@ const renderTooltip = (props) => (
           {/* 이메일 */}
           <div className="detail-container" id='detail-email'>
               <h5 className='detail-title'>이메일</h5>
-                <input className='login-input' id='email-input' type='text' value={defaultEmail}/>
-                
+                <Form.Control
+                  className='join-input-email'
+                  id='email-input-fixed'
+                  type="text"
+                  placeholder='이메일'
+                  value={defaultEmail}
+                  disabled
+                />
             </div>
             {/* 비밀번호 */}
             <div className="detail-container">
@@ -294,9 +308,26 @@ const renderTooltip = (props) => (
                 {/* <h5 className='pw' id='pw-alert'></h5> */}
               </div>
                 <div ref={targetPw}>
-                  <input id='input-pw' className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/>
+                  <Form.Control
+                    className='join-input'
+                    id='input-pw'
+                    type="password"
+                    placeholder='비밀번호'
+                    value={password}
+                    onChange={handlePassword}
+                  />
                 </div>
-                <input className='login-input' type='password' value={passwordCheck} onChange={handlePasswordCheck} placeholder='PW CHECK'/>
+                <div className='divider'>
+                <Form.Control
+                    className='join-input'
+                    id='input-pw'
+                    type="password"
+                    placeholder='비밀번호 확인'
+                    value={passwordCheck}
+                    onChange={handlePasswordCheck}
+                  />
+                <Button className='id-check' variant="primary" onClick={onClickPwDoubleCheck}>확인</Button>
+                </div>
                 <Overlay target={targetPw.current} show={showPwCheck} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
@@ -318,7 +349,7 @@ const renderTooltip = (props) => (
                     </Tooltip>
                   )}
                 </Overlay>
-                <Button className='id-check' variant="primary" onClick={onClickPwDoubleCheck}>확인</Button>
+                
             </div>
         </div>
       </div>

@@ -29,11 +29,12 @@
 }
 
 .detail-container{
-    margin: 0.8rem;
+    margin: 1.2rem;
     width: 300px;
     text-align: center;
     justify-content: center;
     align-items: center;
+    height: ;
 }
 
 .detail-title{
@@ -52,17 +53,35 @@
     margin: auto;
 }
 
-/* #nick-alert{
-    font-size: 13px;
-    z-index: 1000;
-} */
+.join-input{
+    width: 200px;
+    margin-left: 1.5rem;
+    margin-top: 0.3rem;
+    margin-right: 0;
+}
+
+.join-input-email{
+    width: 250px;
+    margin-left: 1.5rem;
+    margin-top: 0.3rem;
+    
+}
+
+.divider{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: 38px;
+}
 
 #tooltip-nickCheck{
     z-index: 1000;
 }
 
 .id-check{
-    margin-bottom: 0.18rem;
+    margin-top: 0.4rem;
+    width: 54px;
+    height: 38px;
+    margin-left: 0.4rem;
 }
 
 .img-container{
@@ -81,9 +100,9 @@
     grid-template-columns: 0.2fr 1fr;
 }
 
-#input-pw{
+/* #input-pw{
     margin-right: 3.7rem;
-}
+} */
 
 #pw-alert{
     font-size: 13.5px;

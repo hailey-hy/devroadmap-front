@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button'
 import { Modal } from 'react-bootstrap'
+import Form from 'react-bootstrap/Form';
 import './login.css'
 import instance from '../../api'
 import { useNavigate } from "react-router-dom";
@@ -12,6 +13,7 @@ const Login = (props) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [emailDefault, setEmailDefault] = useState('')
   const [result, setResult] = useState('');
 
   const handleEmail = (e) => {
@@ -22,16 +24,46 @@ const Login = (props) => {
       setPassword(e.target.value)
   }
 
-  const navigate = useNavigate();
+  //이메일 직접입력 선택시 작동 함수
+
+  const [emailInput, setEmailInput] = useState('');
+
+  const handleEmailInput = (e) => {
+    setEmailInput(e.target.value)
+  }
+
+  const handleEmailDefault = (e) => {
+    if(e.target.value == 'user-input'){
+      var target = document.getElementById('email-input');
+      console.log(target)
+      target.style.display = 'block';
+      target.style.pointerEvents = 'all'
+
+      var target2 = document.getElementById('login-id-email');
+      target2.style.display = 'none';
+    } else{
+      setEmailDefault(e.target.value)
+    }
+    
+  }
+
+  
 
   // login 버튼 클릭 이벤트
   const onClickLogin = () => {
+
+    if (emailDefault.length > 0){
+      var domain = emailDefault
+    }
+    else {
+      var domain = emailInput
+    }
 
     instance({
       method: 'post',
       url: '/signin',
       params: {
-        "email" : email,
+        "email" : email + '@' + domain,
         "password" : password
       }
     }).then(response => {
@@ -49,6 +81,10 @@ const Login = (props) => {
     });
   }
 
+  //회원가입 이동
+
+  const navigate = useNavigate();
+
   const goJoin = () => {
     navigate('/signup/mail');
   }
@@ -61,6 +97,9 @@ const Login = (props) => {
   const handleShow = () => setShow(true);
   
   
+
+
+
   return (
     <>
       <div id="login-garden">
@@ -72,8 +111,57 @@ const Login = (props) => {
           <Google></Google> <br></br>
           <Button className="btn-login-select" variant="primary" href={NAVER_AUTH_URL}>NAVER</Button> <br></br>
           <Button className="btn-login-select" variant="primary" href={KAKAO_AUTH_URL}>KAKAO</Button> */}
-          <input className='login-input' type='text' value={email} onChange={handleEmail} placeholder='EMAIL'/><br/>
-          <input className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/><br/>
+          {/* <input className='login-input' type='text' value={email} onChange={handleEmail} placeholder='EMAIL'/><br/> */}
+          {/* <input className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/><br/> */}
+          <div id='login-input-grid'>
+            <div id='login-lable-container'>
+            <Form.Control
+              className='login-id'
+              type="text"
+              aria-describedby="passwordHelpBlock"
+              placeholder='이메일'
+              value={email}
+              onChange={handleEmail}
+            />
+            <label id='email-lable'>@</label>
+            </div>
+            <div>
+            <Form.Select 
+            aria-label="Default select example"
+            id='login-id-email'
+            value={emailDefault}
+            onChange={handleEmailDefault}
+            >
+              <option>선택</option>
+              <option value="naver.com">naver</option>
+              <option value="gmail.com">google</option>
+              <option value="hanmail.net">daum</option>
+              <option value="kakao.com">kakao</option>
+              <option value="user-input">직접 입력</option>
+            </Form.Select>
+
+            <Form.Control
+              // className='login-id-email'
+              id='email-input'
+              type="text"
+              placeholder='직접 입력'
+              value={emailInput}
+              onChange={handleEmailInput}
+              name='email-input'
+            />
+            </div>
+          </div>
+          
+
+          <Form.Control
+            className='login-input'
+            type="password"
+            aria-describedby="passwordHelpBlock"
+            placeholder='비밀번호'
+            value={password}
+            onChange={handlePassword}
+          />
+      
           <div>
           {/* 로그인 오류 시 오류 메시지 출력 창 */}
             <h6 id='login-result'>{result}</h6> 
