@@ -39,7 +39,8 @@ const Login = (props) => {
   
       window.localStorage.setItem("user", response.data);
       console.log(window.localStorage.getItem("user"));
-      navigate('/');
+      // navigate('/');
+      window.location.replace('/'); //강제 새로고침
       
     }).catch(error => {
       console.error(error);

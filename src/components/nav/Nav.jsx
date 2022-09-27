@@ -62,7 +62,8 @@ const Nav = (props) => {
   const logout = () => {
     toggleMenu();
     localStorage.removeItem("user");
-     navigate('/');
+    window.location.replace('/'); //강제 새로고침
+    //  navigate('/');
   }
 
   const goLogin = () => {
@@ -111,6 +112,7 @@ const Nav = (props) => {
       if(response.data == 'withdraw success'){
         console.log('탈퇴')
         setShowSecond(true);
+        localStorage.removeItem("user");
       }
     })
   }
