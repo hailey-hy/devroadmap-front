@@ -7,7 +7,7 @@ import Footer from '../footer/Footer'
 
 const Roadmap = () => {
 
-  const [total, setTotal] = useState(19);
+
   const [resp, setResp] = useState(false);
   const [showLists, setShowLists] = useState([]);
   // const [userType, setUserType] = useState('front');
@@ -15,10 +15,6 @@ const Roadmap = () => {
   console.log(userType)
 
   useEffect(() => {
-    //  리덕스 store에 저장된 field 확인하여 백/프론트 다른 내용 보여주기
-    if(userType == 'back'){
-      setTotal(20);
-    };
 
     // /history와 통신하여 유저가 이미 완료한 데이터 가져오기
     instance({
@@ -45,14 +41,14 @@ const Roadmap = () => {
 
   let obejct_list = [];
   if(userType == 'front'){
-  for (let number = 1; number < total; number++) {
+  for (let number = 1; number < 19; number++) {
     
     obejct_list.push(
         <Objects number={number} resp={resp} name={frontObjects[number - 1]}></Objects>
         
     )}
     } else {
-      for (let number = 1; number < total + 1; number++) {
+      for (let number = 1; number < 20; number++) {
         obejct_list.push(
           <Objects number={number} resp={resp} name={backObjects[number - 1]}></Objects>
       )}
