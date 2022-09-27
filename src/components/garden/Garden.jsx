@@ -44,6 +44,7 @@ const Garden = (props) => {
   const imgList = ['소나무', '꽃나무', '울타리', '새집', '토끼', '연못', '개구리', '분수대', '두더지', '벤치의자', '튤립', 
   '민들레', '토끼풀', '돌', '덤불', '사다리', '다람쥐 그네', '정원사 앉아있는 버전', '개미', '지렁이', '연꽃']
 
+  //이미지에 툴팁 추가
   for(let i = 1; i <= imgList.length; i++){
     var imgId = 'img' + i;
     var imgSrc = imgList[i - 1];
@@ -129,10 +130,19 @@ const Garden = (props) => {
 
   if(props.friend == undefined && props.login == undefined && props.join == undefined){
     item3.push(
-      <div id='msg-to-down'>
-        <VscTriangleDown id='arrow-to-down'></VscTriangleDown>
-        {/* <h3 >정원 채우기</h3> */}
-      </div>
+      <OverlayTrigger
+            overlay={
+              <Tooltip id={`tooltip-top`} className='tooltips'>
+                <strong>로드맵을 완료하고 <br/> 정원을 더 채워 보세요!</strong>
+              </Tooltip>
+            }
+          >
+        <div id='msg-to-down'>
+          <VscTriangleDown id='arrow-to-down'></VscTriangleDown>
+          {/* <h3 >정원 채우기</h3> */}
+        </div>
+      </OverlayTrigger>
+      
       
     )
   }
@@ -145,11 +155,12 @@ const Garden = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordPerPage, setRecordPerPage] = useState(2);
 
+
   useEffect(() => {
     instance({
       url: '/guestbook/bird/list',
     }).then(response => {
-        setRecord(response.data);
+        setRecord(response.data.guestbook_list);
         setLoading(false);
       })
   }, [])
@@ -157,7 +168,10 @@ const Garden = (props) => {
   //안 읽은 메시지 모달 창
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false)
+    setRecord([]); //리액트 내에서 읽음을 확인 처리하기 위함
+  };
   const handleShow = () => setShow(true);
 
   //안 읽은 메시지 페이지네이션
