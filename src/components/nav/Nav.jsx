@@ -109,8 +109,7 @@ const Nav = (props) => {
       method: 'post',
       url: '/edit/withdraw',
     }).then((response) => {
-      if(response.data == 'withdraw success'){
-        console.log('탈퇴')
+      if(response.data == 'ok'){
         setShowSecond(true);
         localStorage.removeItem("user");
       }
