@@ -155,6 +155,7 @@ const Login = (props) => {
 
           <Form.Control
             className='login-input'
+            id='login-pw'
             type="password"
             aria-describedby="passwordHelpBlock"
             placeholder='비밀번호'
@@ -164,7 +165,7 @@ const Login = (props) => {
       
           <div>
           {/* 로그인 오류 시 오류 메시지 출력 창 */}
-            <h6 id='login-result'>{result}</h6> 
+            {/* <h6 id='login-result'>{result}</h6>  */}
           </div>
           <Button className='btn-login' onClick={onClickLogin}>로그인</Button>
           <h5 id='login-back' onClick={goJoin}>회원가입</h5>
