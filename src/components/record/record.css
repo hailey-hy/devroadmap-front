@@ -37,6 +37,7 @@
     text-align: center;
     align-items: center;
     margin-left: 1rem;
+    padding: 0.2rem;
 }
 
 .record-bubble:after {
