@@ -25,11 +25,18 @@
     padding: 0.4rem;
     margin-left: 0;
     margin-bottom: 1rem;
+    pointer-events: all;
 }
 
 #login-id-email{
     height: 38px;
     margin-top: 0.4rem;
+}
+
+#login-lable-container{
+    /* width: 140px;
+    height: 38px; */
+    pointer-events: none;
 }
 
 .login-input{
@@ -41,20 +48,7 @@
     padding: 0.4rem;
     margin-left: 4.7rem;
     margin-bottom: 1rem;
-}
-
-#login-input-grid{
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    grid-gap: 0;
-    width: 250px;
-    margin-left: 4.7rem;
-}
-
-#login-lable-container{
-    width: 140px;
-    height: 38px;
-    
+    z-index: 100;
 }
 
 #email-lable{
@@ -64,6 +58,24 @@
     top: -3rem;
     left: 3rem;
 }
+
+#login-pw{
+    z-index: 1000;
+    /* margin-top: 1rem; */
+}
+
+#login-input-grid{
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-gap: 0;
+    width: 250px;
+    margin-left: 4.7rem;
+    height: 3rem;
+}
+
+
+
+
 
 #email-input{
     margin-top: 0.4rem;
