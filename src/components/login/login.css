@@ -31,9 +31,10 @@
 #login-id-email{
     height: 38px;
     margin-top: 0.4rem;
+    pointer-events: all;
 }
 
-#login-lable-container{
+.login-lable-container{
     /* width: 140px;
     height: 38px; */
     pointer-events: none;
