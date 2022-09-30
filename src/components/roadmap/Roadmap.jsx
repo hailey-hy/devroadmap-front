@@ -4,13 +4,13 @@ import Objects from './Objects'
 import instance from '../../api'
 import { useSelector } from 'react-redux'
 import Footer from '../footer/Footer'
+import { studyList } from '../../util/studyList'
 
 const Roadmap = () => {
 
 
   const [resp, setResp] = useState(false);
   const [showLists, setShowLists] = useState([]);
-  // const [userType, setUserType] = useState('front');
   const userType = useSelector(state => state.field);
   console.log(userType)
 
@@ -34,10 +34,9 @@ const Roadmap = () => {
   })
   console.log(showLists)
 
-  // const frontObjects = ['인터넷', 'HTML', 'CSS', 'JS', '버전관리', '웹 보안 지식', '패키지 관리자', 'CSS설계', 'CSS전처리기', '빌드 툴', '프레임워크', 'CSS in JS', '타입 체커', 'CSS프레임워크', '테스트', '서버 사이드 렌더링', '그래프 QL', '정적 사이드 생성기'];
-  const frontObjects = useSelector(state => state.frontList);
- 
-  const backObjects = useSelector(state => state.backList);
+ //공부 분야에 따른 항목 표시
+  const frontObjects = studyList('front')
+  const backObjects = studyList('back')
 
   let obejct_list = [];
   if(userType == 'front'){

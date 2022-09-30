@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Tooltip, OverlayTrigger, Modal, Button, Pagination, Badge } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import Memo from '../note/Memo';
-
+import { studyList } from '../../util/studyList';
 import './garden.css'
 import grass from '../../assets/img-garden/땅.png';
 import sun from '../../assets/img-garden/해.png';
@@ -22,10 +22,8 @@ const Garden = (props) => {
 
 
   const field = useSelector(state => state.field);
-
-  const frontList = useSelector(state => state.frontList);
-  const backList = useSelector(state => state.backList);
-
+  const frontList = studyList('front');
+  const backList = studyList('back');
 
 
   //친구 정원에서 접근할 경우를 구분하여 새 표시

@@ -6,11 +6,12 @@ import medium from '../../assets/img-record/쟁기질 줄 중간버전.png'
 import short from '../../assets/img-record/쟁기질 줄 짧은 버전.png'
 import gardener from '../../assets/img-record/정원사 호미.png'
 import { useSelector } from 'react-redux'
+import { studyList } from '../../util/studyList'
 
 
 const Bubbles = ({record, loading, first}) => {
-    const frontList = useSelector(state => state.frontList);
-    const backList = useSelector(state => state.backList);
+    const frontList = studyList('front');
+    const backList = studyList('back');
     const field = useSelector(state => state.field);
     const item = []
     console.log(record)
