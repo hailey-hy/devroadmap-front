@@ -34,6 +34,7 @@ const Login = (props) => {
 
   const handleEmailDefault = (e) => {
     if(e.target.value == 'user-input'){
+
       var target = document.getElementById('email-input');
       console.log(target)
       target.style.display = 'block';
@@ -51,12 +52,12 @@ const Login = (props) => {
 
   // login 버튼 클릭 이벤트
   const onClickLogin = () => {
-
-    if (emailDefault.length > 0){
-      var domain = emailDefault
+    //직접 입력된 이메일이 있을 경우 해당 입력값을 도메인으로 사용
+    if (emailInput.length > 0){
+      var domain = emailInput
     }
     else {
-      var domain = emailInput
+      var domain = emailDefault
     }
 
     instance({
