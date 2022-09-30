@@ -1,12 +1,13 @@
 #container-friend-notion{
     position: absolute;
-    top: 23%;
+    top: 26%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
-    height: 120px;
+    height: 200px;
     background-color: var(--color-transparent);
     text-align: center;
+    padding: 1rem;
 }
 
 #friend-notion-title{

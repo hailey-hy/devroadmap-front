@@ -4,6 +4,7 @@ import './friendGarden.css'
 import { Button, Modal, Form } from 'react-bootstrap';
 import Garden from '../garden/Garden'
 import Status from '../main/Status';
+import { profileCheck } from '../../util/profileCheck';
 import './friendGarden.css'
 import grass from '../../assets/img-garden/땅.png';
 import sun from '../../assets/img-garden/해.png';
@@ -21,6 +22,8 @@ const FriendGarden = () => {
   const friendName = localStorage.getItem("friend-nickname");
   const friendEmail = localStorage.getItem("friend-email");
   const [friendField, setFriendField] = useState('front');
+  const [friendProfile, setFriendProfile] = useState('');
+  
   
   useEffect(() => {
         instance({
@@ -33,6 +36,8 @@ const FriendGarden = () => {
         //친구 정보 불러오기
           setFriendField(response.data.user_field)
           console.log(friendField)
+
+          setFriendProfile(profileCheck(response.data.friendProfile))
         //친구 완료 항목
           let savedItem = [];
 
@@ -155,6 +160,7 @@ const FriendGarden = () => {
           <Status friend={true} friendField={friendField}></Status>
           {/* 친구 정원 알림창 */}
           <div id="container-friend-notion">
+            <img src={friendProfile} alt="" className='friend-profile'/>
             <h5 id='friend-notion-title'>{friendName}님의 정원입니다.</h5>
             <Button id='btn-note' variant="primary" onClick={noteOrAdd}>방명록 남기기</Button>
           </div>

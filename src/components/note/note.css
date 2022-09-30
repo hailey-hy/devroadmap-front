@@ -12,7 +12,7 @@
 .img-memo-container{
     width: 70px;
     height: 70px;
-    border: 1px solid rgb(87, 87, 87);
+    /* border: 1px solid rgb(87, 87, 87); */
     text-align: left;
     justify-items: left;
     margin-bottom: 1rem;
@@ -23,6 +23,13 @@
     flex-wrap: wrap;
     
 } */
+
+.img-memo{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 100%;
+}
 
 .memo-name{
     font-size: 13px;

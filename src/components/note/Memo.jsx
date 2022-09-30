@@ -1,4 +1,5 @@
 import React from 'react'
+import { profileCheck } from '../../util/profileCheck'
 import './note.css'
 
 const Memo = ({record, loading}) => {
@@ -11,7 +12,7 @@ const Memo = ({record, loading}) => {
     item.push(
         <div className="container-memo">
         <div className='img-memo-container'>
-            <img src={record[i].id} alt="" className='img-memo'/>
+            <img src={profileCheck(record[i].profile)} alt="" className='img-memo'/>
         </div>
         <div className="record-bubble memo-bubble">
             <div className='container-memo-detail'>
