@@ -7,7 +7,7 @@
 import basicImg from '../assets/basic-profile.png'
 
 export const profileCheck = (profile) => {
-    if (profile == null){
+    if (profile == null || profile.length == 0){
         return basicImg
     }
     else{
