@@ -6,6 +6,7 @@ import { Badge, Modal, Button } from 'react-bootstrap'
 import {MdCancel} from 'react-icons/md'
 import './friendList.css'
 import { useNavigate } from 'react-router-dom'
+import { profileCheck } from '../../util/profileCheck'
 
 const FriendItem = ({record, loading}) => {
 console.log(record)
@@ -81,7 +82,9 @@ const goFriend = (friend) => {
           <div id={record.friend_nickname} onClick={() => {
             goFriend(record);
           }}>
-            <div className="friend-img" ></div>
+            <div className="friend-img">
+              <img src={profileCheck(record.friend_profile)} alt="" className='friend-profile'/>
+            </div>
           </div>
           <div className="friend-detail-divider" id={record.friend_nickname} onClick={() => {
         goFriend(record);

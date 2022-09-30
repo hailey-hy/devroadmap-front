@@ -9,14 +9,18 @@ import {createStore} from 'redux';
 import {Provider, useSelector, useDispatch, connect} from 'react-redux';
 import instance from '../../api';
 import basicImg from '../../assets/basic-profile.png'
+import { profileCheck } from '../../util/profileCheck';
 
 const Nav = (props) => {
+
+  //내비게이션 바 내 유저 정보 불러오기 관련
+
   const [userDetail, setUserDetail] = useState('');
   const [email, setEmail] = useState('이메일');
   const [nickname, setNickname] = useState('닉네임');
   const [profile, setProfile] = useState('');
   const [field, setField] = useState('');
-  // const [userJwt, setUserJwt] = useState('');
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,11 +30,7 @@ const Nav = (props) => {
       setNickname(response.data.nickname);
       setEmail(response.data.email);
       setField(response.data.field);
-      if(response.data.profile == undefined) {
-        setProfile(basicImg);
-      } else {
-        setProfile(response.data.profile)
-      }
+      setProfile(profileCheck(response.data.profile));
       setUserDetail(response.data);
       dispatch({type: 'load', nickname: nickname, email: email, field: field, profile: profile});
 
@@ -38,18 +38,8 @@ const Nav = (props) => {
       console.error(err)
     });
   },[field])
-  
 
-
-
-  const [isOpen, setMenu] = useState(false);
-
-  const toggleMenu = () => {
-    setMenu(isOpen => !isOpen);
-    // props.navOpen(!isOpen);
-  }
-
-  const navigate = useNavigate();
+  //유저 분야 판단 함수
 
   const isFront = () => {
     if(field == 'front'){
@@ -58,13 +48,29 @@ const Nav = (props) => {
       return false
     }
   }
+  
 
+  //내비게이션 바 열고 닫기 관련 
+
+  const [isOpen, setMenu] = useState(false);
+
+  const toggleMenu = () => {
+    setMenu(isOpen => !isOpen);
+    // props.navOpen(!isOpen);
+  }
+
+  
+
+  //로그아웃 함수
   const logout = () => {
     toggleMenu();
     localStorage.removeItem("user");
     window.location.replace('/'); //강제 새로고침
-    //  navigate('/');
   }
+
+  //내비게이션 바 바로가기 관련
+
+  const navigate = useNavigate();
 
   const goLogin = () => {
     navigate('/signin');
@@ -102,7 +108,7 @@ const Nav = (props) => {
   const handleCloseSecond = () => setShow(false);
   const handleShowSecond = () => setShow(true);
 
-  // 회원 탈퇴 비즈니스 로직
+  // 회원 탈퇴 함수
 
   const userWithdraw = () => {
     instance({
@@ -127,7 +133,7 @@ const Nav = (props) => {
         
         {/* 유저 정보 요약 창 */}
         <div id="container-user">
-          <img src={profile} alt="" id="user-profile" />
+          <img src={profile} alt="" className="user-profile" />
           <div id="contianer-user-detail">
             <Badge pill bg={isFront() ? 'primary' : 'success'}>{field}</Badge>
             <h5 id='user-nickname'>{nickname}님</h5>

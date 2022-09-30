@@ -6,6 +6,7 @@ import {MdCancel} from 'react-icons/md'
 import './friendList.css'
 import instance from '../../api'
 import { useNavigate } from 'react-router-dom'
+import { profileCheck } from '../../util/profileCheck'
 
 const FriendAddList = ({record, loading}) => {
   console.log(record)
@@ -84,7 +85,9 @@ const FriendAddList = ({record, loading}) => {
           <div onClick={() => {
             goFriend(record);
           }}>
-            <div className="friend-img"></div>
+            <div className="friend-img">
+              <img src={profileCheck(record.friend_profile)} alt="" className='friend-profile'/>
+            </div>
           </div>
           <div className="friend-detail-divider" onClick={() => {
             goFriend(record);

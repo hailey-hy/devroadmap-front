@@ -2,6 +2,7 @@ import React from 'react'
 import instance from '../../api'
 import { Badge } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import { profileCheck } from '../../util/profileCheck'
 
 const SearchResult = (props) => {
   // result: "ok"
@@ -64,7 +65,9 @@ if(props.result.search_user_friendornot != "doesn't exist nickname"){
           <div id={props.result.search_user_nickname} onClick={() => {
             goFriend(props.result);
           }}>
-            <div className="friend-img" ></div>
+            <div className="friend-img" >
+              <img src={profileCheck(props.result.search_user_profile)} alt="" className='friend-profile'/>
+            </div>
           </div>
           <div className="friend-detail-divider" id={props.result.search_user_nickname} onClick={() => {
         goFriend(props.result);
