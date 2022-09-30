@@ -132,13 +132,16 @@ const FriendGarden = () => {
       const target = document.getElementById('text-count');
 
       if(textCount <= 200){
-        target.innerHTML = '(' + textCount + '/200)';
+        target.innerHTML = textCount + '/200';
       } else {
-        target.innerHTML = '(200/200)'
+        target.innerHTML = '200/200'
       }
     }
 
-  //방명록 남긴 이후 모달창 관련 모음
+  //방명록 남기는 중 모달창
+
+
+  //방명록 작성 완료 모달창
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -167,11 +170,11 @@ const FriendGarden = () => {
                   className="mb-3"
                   controlId="exampleForm.ControlTextarea1"
                 >
-                  <Form.Label>200자 이하의 메시지만 남길 수 있습니다.</Form.Label>
-                  <Form.Control as="textarea" rows={3} onChange={textCounter} maxlength='200'/>
+                  <Form.Label></Form.Label>
+                  <Form.Control as="textarea" rows={3} onChange={textCounter} maxlength='200' placeholder='200자 이하의 메시지만 남길 수 있습니다.'/>
                 </Form.Group>
               </Form>
-              <div id="text-count">(0/200)</div>
+              <div id="text-count">0/200</div>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleCloseMsg}>
