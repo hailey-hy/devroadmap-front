@@ -12,7 +12,6 @@ const Roadmap = () => {
   const [resp, setResp] = useState(false);
   const [showLists, setShowLists] = useState([]);
   const userType = useSelector(state => state.field);
-  console.log(userType)
 
   useEffect(() => {
 
@@ -27,12 +26,9 @@ const Roadmap = () => {
 
   showLists.map(list => {
     const target = document.getElementById(list.object);
-    console.log(target);
-    console.log(list.object);
     target.classList.remove('un-checked');
     target.classList.add('checked');
   })
-  console.log(showLists)
 
  //공부 분야에 따른 항목 표시
   const frontObjects = studyList('front')

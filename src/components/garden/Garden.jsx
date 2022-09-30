@@ -66,7 +66,6 @@ const Garden = (props) => {
         var msg = backList[i - 3];
       }
     }
-    console.log(msg)
 
     
     //로그인에서 접근할 경우 툴팁 해제
@@ -124,7 +123,6 @@ const Garden = (props) => {
 
   //본인 정원일 경우 정원 채우기 안내 메시지 출력
   const item3 = [];
-  console.log(props.firend)
 
   if(props.friend == undefined && props.login == undefined && props.join == undefined){
     item3.push(
@@ -177,7 +175,6 @@ const Garden = (props) => {
     const indexOfFirst = indexOfLast - recordPerPage;
     const recordArray = Array.from(record);
     const currentRecord = (record) => {
-      console.log(record)
       let currentRecord = 0;
       currentRecord = recordArray.slice(indexOfFirst, indexOfLast);
       return currentRecord;
