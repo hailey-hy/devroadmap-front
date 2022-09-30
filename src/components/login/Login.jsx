@@ -114,7 +114,7 @@ const Login = (props) => {
           {/* <input className='login-input' type='text' value={email} onChange={handleEmail} placeholder='EMAIL'/><br/> */}
           {/* <input className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/><br/> */}
           <div id='login-input-grid'>
-            <div id='login-lable-container'>
+            <div className='login-lable-container'>
             <Form.Control
               className='login-id'
               type="text"
@@ -125,7 +125,7 @@ const Login = (props) => {
             />
             <label id='email-lable'>@</label>
             </div>
-            <div>
+            <div className='login-lable-container'>
             <Form.Select 
             aria-label="Default select example"
             id='login-id-email'
