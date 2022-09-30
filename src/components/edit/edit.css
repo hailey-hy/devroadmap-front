@@ -61,10 +61,17 @@
 }
 
 #img-edit{
-    border: 1px solid rgb(119, 119, 119);
+    /* border: 1px solid rgb(119, 119, 119); */
+    border-radius: 100%;
 }
 
 #btn-edit{
     margin-top: 2rem;
     margin-bottom: 2rem;
+}
+
+#original-img{
+    width: 70px;
+    object-fit: contain;
+    border-radius: 100%;
 }

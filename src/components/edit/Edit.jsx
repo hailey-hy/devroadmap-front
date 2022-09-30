@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import { Button, ButtonGroup, ToggleButton, Modal, Tooltip, Overlay } from 'react-bootstrap'
 import instance from '../../api';
 import './edit.css'
+import { profileCheck } from '../../util/profileCheck';
 import { nicknameCheck } from '../../util/nicknameCheck';
 import { useSelector } from 'react-redux';
 import { upload } from '@testing-library/user-event/dist/upload';
@@ -49,6 +50,7 @@ const Edit = () => {
   const onLoadFile = (e) => {
     const file = e.target.files;
     setFiles(file);
+    preview();
   }
 
   //프로필 사진 미리보기
@@ -56,13 +58,16 @@ const Edit = () => {
     preview();
 
     return () => preview();
-  });
+  }, [files]);
 
   const preview = () => {
-    if (!files) return false;
+    if(!files) return false;
 
+    const hide = document.querySelector('#original-img')
     const imgEL = document.querySelector('.img-box');
-    const reader = new FileReader();
+    if (hide != null){
+      hide.style.display = 'none'
+      const reader = new FileReader();
 
     reader.onload = () => {
         imgEL.style.backgroundImage = `url(${reader.result})`
@@ -70,6 +75,8 @@ const Edit = () => {
     if(files[0] != null){
     reader.readAsDataURL(files[0]);
     }
+    }
+
   }
 
   //공부 유형
@@ -244,7 +251,9 @@ const Edit = () => {
           <div className="detail-container-edit">
             <h5 className='detail-title'>프로필 사진</h5>
             <form className='img-container'>
-              <div id="img-edit" className="img-box" backgroundImage={userProfile}></div>
+              <div id="img-edit" className="img-box">
+                <img src={profileCheck(userProfile)} alt="" id='original-img'/>
+              </div>
               <input id="img-upload" type="file" accept='image/*' onChange={onLoadFile}/>
             </form>
           </div>
