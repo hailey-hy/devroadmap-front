@@ -5,8 +5,6 @@ import instance from '../../api';
 import { useNavigate } from "react-router-dom";
 import Garden from '../garden/Garden';
 import './join.css'
-
-import { nicknameCheck } from '../../util/nicknameCheck';
 import {BiInfoCircle} from 'react-icons/bi'
 import { useSelector } from 'react-redux';
 
