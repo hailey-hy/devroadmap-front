@@ -111,7 +111,7 @@
 .friend-profile{
     height: 60px;
     width: 60px;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 100%;
 }
 

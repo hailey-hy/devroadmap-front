@@ -3,6 +3,7 @@ import { Badge } from 'react-bootstrap'
 import {MdCancel} from 'react-icons/md'
 import instance from '../../api'
 import { useNavigate } from 'react-router-dom'
+import { profileCheck } from '../../util/profileCheck'
 
 const RandomFriendBack = () => {
   const [random1, setRandom1] = useState([]);
@@ -58,7 +59,7 @@ const RandomFriendBack = () => {
       }}>
         <Badge pill className="friend-field" bg='success'>back</Badge>
         <div className="friend-img">
-            <img src={random1.match_user_back_profile} alt="" />
+            <img src={profileCheck(random1.match_user_back_profile)} alt="" className='friend-profile'/>
             </div>
         <div className="friend-detail-divider">
             <h5 className="friend-name">{random1.match_user_back_nickname}</h5>

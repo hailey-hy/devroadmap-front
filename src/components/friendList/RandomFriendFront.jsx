@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Badge } from 'react-bootstrap'
 import instance from '../../api';
 import { useNavigate } from 'react-router-dom'
+import { profileCheck } from '../../util/profileCheck';
 
 const RandomFriendFront = () => {
   const [random2, setRandom2] = useState([]);
@@ -55,7 +56,7 @@ const RandomFriendFront = () => {
       }}>
         <Badge pill className="friend-field">front</Badge>
         <div className="friend-img">
-            <img src={random2.match_user_front_profile} alt="" />
+            <img src={profileCheck(random2.match_user_front_profile)} alt="" className='friend-profile'/>
             </div>
         <div className="friend-detail-divider">
             <h5 className="friend-name">{random2.match_user_front_nickname}</h5>
