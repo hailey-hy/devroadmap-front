@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react'
 import { Button, ButtonGroup, ToggleButton, Modal, Tooltip, Overlay } from 'react-bootstrap'
+import Form from 'react-bootstrap/Form';
 import instance from '../../api';
 import './edit.css'
 import { profileCheck } from '../../util/profileCheck';
-import { nicknameCheck } from '../../util/nicknameCheck';
 import { useSelector } from 'react-redux';
 import { upload } from '@testing-library/user-event/dist/upload';
 
@@ -250,11 +250,15 @@ const Edit = () => {
         <div className='chunck-for-divide'>
           <div className="detail-container-edit">
             <h5 className='detail-title'>프로필 사진</h5>
-            <form className='img-container'>
+            <form className='img-container img-container-edit'>
               <div id="img-edit" className="img-box">
                 <img src={profileCheck(userProfile)} alt="" id='original-img'/>
               </div>
-              <input id="img-upload" type="file" accept='image/*' onChange={onLoadFile}/>
+              <Form.Group controlId="formFileSm" className="mb-3" id='img-upload' accept='image/*' onChange={onLoadFile}>
+                {/* <Form.Label>Default file input example</Form.Label> */}
+                <Form.Control type="file" size="sm"/>
+              </Form.Group>
+              {/* <input id="img-upload" type="file" accept='image/*' onChange={onLoadFile}/> */}
             </form>
           </div>
           <div className="detail-container-edit">
@@ -295,8 +299,17 @@ const Edit = () => {
               )}
             </Overlay>
             <div ref={target}>
-              <input className='login-input' type='text' value={nickname} onChange={handleNickname} placeholder={userNickname}/>
+            <div className='divider'>
+              <Form.Control
+                  className='join-input'
+                  type="text"
+                  placeholder={userNickname}
+                  value={nickname}
+                  onChange={handleNickname}
+                />
+              {/* <input className='login-input' type='text' value={nickname} onChange={handleNickname} placeholder={userNickname}/> */}
               <Button className='id-check' variant="primary" onClick={onClickNickCheck}>확인</Button>
+            </div>
             </div>
           </div>
           <div className="detail-container-edit">
@@ -305,9 +318,25 @@ const Edit = () => {
               {/* <h5 className='pw' id='pw-alert'></h5> */}
             </div>
             <div ref={targetPw}>
-              <input id='input-pw' className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/>
+              <Form.Control
+                    className='join-input'
+                    id='input-pw'
+                    type="password"
+                    placeholder='비밀번호'
+                    value={password}
+                    onChange={handlePassword}
+              />
             </div>
-            <input className='login-input' type='password' value={passwordCheck} onChange={handlePasswordCheck} placeholder='PW CHECK'/>
+            
+            <div className='divider'>
+                <Form.Control
+                    className='join-input'
+                    id='input-pw'
+                    type="password"
+                    placeholder='비밀번호 확인'
+                    value={passwordCheck}
+                    onChange={handlePasswordCheck}
+                  />
             <Overlay target={targetPw.current} show={showPwCheck} placement="top-end">
               {(props) => (
                 <Tooltip id="nick-alert" {...props}>
@@ -331,7 +360,7 @@ const Edit = () => {
             </Overlay>
 
             <Button className='id-check' variant="primary" onClick={onClickPwDoubleCheck}>확인</Button>
-              
+            </div>
           </div>
         </div> 
       </div>

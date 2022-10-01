@@ -75,3 +75,13 @@
     object-fit: contain;
     border-radius: 100%;
 }
+
+#img-upload{
+    margin-top: 1rem;
+    width: 180px;
+}
+
+.img-container-edit{
+    margin-left: 1.5rem;
+    grid-gap: 0.7rem;
+}
