@@ -30,12 +30,6 @@ const Edit = () => {
 
   const handlePassword = (e) => {
       setPassword(e.target.value)
-      // if (password.length >= 4 && password.length < 12) {
-      //   setPwCheck(true);
-      // } else {
-      //   setPwCheck(false);
-        
-      // } 
       
   }
 
@@ -161,7 +155,10 @@ const Edit = () => {
 
   // 모달창 관련
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    window.location.reload();
+  };
   const handleShow = () => setShow(true);
 
   const [show2, setShow2] = useState(false);
