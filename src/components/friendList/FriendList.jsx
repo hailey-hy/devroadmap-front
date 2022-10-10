@@ -128,7 +128,6 @@ const FriendList = () => {
             url: '/friend',
         }).then((response)=> {
             setRecord(response.data.friend_list);
-            // setRecord(response.data);
             setLoading(false);
         })
     
@@ -238,7 +237,7 @@ const FriendList = () => {
                     <div className='util' id="util-random">
                         <div id="random-divider">
                         <h4 id='search-title'>다른 정원 둘러보기</h4>
-                        {/* <div id="search-on-off"> */}
+                        
                         <div className="switch">
                             <Form.Check 
                                 type="switch"
@@ -251,7 +250,7 @@ const FriendList = () => {
                             />
                         </div>
                     </div>
-                        {/* </div> */}
+                        
                         {randomItems}
                     </div>
                 </div>
