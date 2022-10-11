@@ -6,7 +6,6 @@ import './roadmap.css'
 
 const Objects = (props) => {
 
-  // console.log(props.number)
 
   const field = useSelector(state => state.field);
 
@@ -88,7 +87,6 @@ const Objects = (props) => {
         instance({
         url: '/progressrate',
       }).then(response => {
-        console.log(response.data)
         dispatch({type: 'load-progress', progress: response.data.progressRate})
       })
       }, 500)
@@ -137,11 +135,6 @@ const Objects = (props) => {
           gardener.classList.remove('hide');
           sittingGardener.classList.add('hide');
         } 
-        // else if (ladder.classList.contains('hide')
-        //   && gardener.classList.contains('hide')){
-        //     gardener.classList.add('hide');
-        //     ladder.classList.add('hide');
-        // }
 
       instance({
         url: '/subject/complete/withdraw',

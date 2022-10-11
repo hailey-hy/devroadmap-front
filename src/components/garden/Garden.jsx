@@ -29,7 +29,6 @@ const Garden = (props) => {
   //친구 정원에서 접근할 경우를 구분하여 새 표시
   if(props.friend === true){
     var birdControl = 'hide garden-img bird';
-    // bird.classList.add('hide');
   } else if (! window.localStorage.getItem("user")){
     var birdControl = 'hide garden-img bird';
   }else {
@@ -142,7 +141,6 @@ const Garden = (props) => {
       
     )
   }
-  // item3.push(<h3>정원 채우기</h3>)
 
 
   //안읽은 메시지 데이터 불러오는 api

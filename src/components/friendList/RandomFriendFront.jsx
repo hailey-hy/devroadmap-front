@@ -8,13 +8,11 @@ const RandomFriendFront = () => {
   const [random2, setRandom2] = useState([]);
 
   useEffect(() => {
-    // setLoading(true);
     instance({
         url: '/friend/match',
     }).then((response)=> {
         setRandom2(response.data.matching[1]);
         console.log(response.data);
-        // setLoading(false);
     })
 
   }, []);

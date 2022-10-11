@@ -102,7 +102,6 @@ const JoinMail = (props) => {
             </Form.Select>
 
             <Form.Control
-              // className='login-id-email'
               id='email-input'
               type="text"
               placeholder='직접 입력'

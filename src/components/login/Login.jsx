@@ -72,12 +72,10 @@ const Login = (props) => {
   
       window.localStorage.setItem("user", response.data);
       console.log(window.localStorage.getItem("user"));
-      // navigate('/');
       window.location.replace('/'); //강제 새로고침
       
     }).catch(error => {
       console.error(error);
-      // setResult("로그인 실패")
       handleShow();
     });
   }
@@ -108,12 +106,6 @@ const Login = (props) => {
       </div>
       <div className="container-login">
           <h3 id='login-title'>로그인</h3>
-          {/* 소셜 로그인 (중지)
-          <Google></Google> <br></br>
-          <Button className="btn-login-select" variant="primary" href={NAVER_AUTH_URL}>NAVER</Button> <br></br>
-          <Button className="btn-login-select" variant="primary" href={KAKAO_AUTH_URL}>KAKAO</Button> */}
-          {/* <input className='login-input' type='text' value={email} onChange={handleEmail} placeholder='EMAIL'/><br/> */}
-          {/* <input className='login-input' type='password' value={password} onChange={handlePassword} placeholder='PW'/><br/> */}
           <div id='login-input-grid'>
             <div className='login-lable-container'>
             <Form.Control
@@ -166,7 +158,6 @@ const Login = (props) => {
       
           <div>
           {/* 로그인 오류 시 오류 메시지 출력 창 */}
-            {/* <h6 id='login-result'>{result}</h6>  */}
           </div>
           <Button className='btn-login' onClick={onClickLogin}>로그인</Button>
           <h5 id='login-back' onClick={goJoin}>회원가입</h5>

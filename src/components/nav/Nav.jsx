@@ -166,7 +166,6 @@ const handleScroll = () => {
         </div>
         
         
-        {/* <div id="goEdit"> */}
         <h3 class='go-tab' onClick={() => {
             goMain()
             toggleMenu()
@@ -188,7 +187,6 @@ const handleScroll = () => {
           toggleMenu()
         }}>회원 정보 수정</h3>
 
-        {/* </div> */}
         <Button id="user-delete" variant='warning' onClick={handleShow}>회원 탈퇴</Button>
 
         <Modal

@@ -42,11 +42,6 @@ console.log(record)
         // target.classList.add('hide');
         target.remove();
       }
-      // var delTarget = document.getElementsByClassName('friend');
-      // console.log(delTarget)
-      // if(delTarget.length === 0){
-      //   console.log('ad')
-      // }
     })
   }
 
@@ -73,7 +68,6 @@ const goFriend = (friend) => {
       <>
       {record.map((record) => (
       <div className="friend go-friend"> 
-          {/* <div className="select-friend"> */}
           <div className="friend-badge" id={record.friend_nickname} onClick={() => {
             goFriend(record);
           }}>
@@ -92,7 +86,6 @@ const goFriend = (friend) => {
               <h5 className="friend-name">{record.friend_nickname}</h5>
               <h5 className='friend-progress'>{record.friend_progressRate}%</h5>
           </div>
-          {/* </div> */}
           <div className="friend-cancle" id={record.friend_nickname} onClick={
             handleShow}>
             <MdCancel className="friend-cancle-img"/>

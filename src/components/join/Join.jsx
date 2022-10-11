@@ -9,7 +9,6 @@ import {BiInfoCircle} from 'react-icons/bi'
 import { useSelector } from 'react-redux';
 
 const Join = (props) => {
-  // const defaultEmail = useSelector(state => state.defaultEmail);
   const defaultEmail = window.localStorage.getItem("email");
   console.log(defaultEmail);
   const [nickname, setNickname] = useState('');
@@ -53,13 +52,6 @@ const radiosSec = [
   { name: 'front', value: 'front' },
   { name: 'back', value: 'back' }
 ];
-//   const handleType = (e) => {
-//     setType(e.target.value)
-//   }
-
-// const handleField = (e) => {
-//   setField(e.target.value)
-//   }
 
 //툴팁
 const renderTooltip = (props) => (
@@ -85,7 +77,6 @@ const renderTooltip = (props) => (
       url: '/signup',
       headers: {
         "Content-Type": "application/text",
-        // "Content-Type": "multipart/form-data"
       },
       params: {
         "nickname" : nickname,
@@ -95,7 +86,6 @@ const renderTooltip = (props) => (
       }
     }).then(response => {
       handleShow2();
-      // navigate('/signin');
     }).catch(err => {
       console.error(err);
     });
@@ -195,26 +185,6 @@ const renderTooltip = (props) => (
 
   const goLogin = () => navigate('/');
 
-  //프로필 사진 미리보기
-  // useEffect(() => {
-  //   preview();
-
-  //   return () => preview();
-  // });
-
-  // const preview = () => {
-  //   if (!files) return false;
-
-  //   const imgEL = document.querySelector('.img-box');
-  //   const reader = new FileReader();
-
-  //   reader.onload = () => {
-  //       imgEL.style.backgroundImage = `url(${reader.result})`
-  //   };
-  //   if(files[0] != null){
-  //   reader.readAsDataURL(files[0]);
-  //   }
-  // }
 
   return (
     <>
@@ -250,7 +220,6 @@ const renderTooltip = (props) => (
                     </Tooltip>
                   )}
                 </Overlay>
-                {/* <h5 id='nick-alert'></h5> */}
               </div>
               <div ref={target}>
               <div className='divider'>
@@ -303,7 +272,6 @@ const renderTooltip = (props) => (
             <div className="detail-container">
               <div id="detail-pw">
                 <h5 className='detail-title pw'>비밀번호</h5>
-                {/* <h5 className='pw' id='pw-alert'></h5> */}
               </div>
                 <div ref={targetPw}>
                   <Form.Control

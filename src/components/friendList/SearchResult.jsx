@@ -5,11 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import { profileCheck } from '../../util/profileCheck'
 
 const SearchResult = (props) => {
-  // result: "ok"
-// search_user_email: "lillyine.hy@gmail.com"
-// search_user_field: "front"
-// search_user_joindate: "2022-06-23 01:57:48.0"
-// search_user_nickname: "해연"
 console.log(props.result);
 
 const accept = (e) => {

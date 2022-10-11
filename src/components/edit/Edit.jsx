@@ -81,12 +81,6 @@ const Edit = () => {
     { name: 'back', value: 'back' }
   ];
 
-  // const radioTargets = document.querySelectorAll('.btn-check');
-  // radioTargets.forEach(target => {
-  //   if(target.value == userField){
-  //     target.setAttribute('active', '');
-  //   }
-  // });
 
   //중복 확인 관련
   const [nickCheck, setNickCheck] = useState(false);
@@ -168,24 +162,19 @@ const Edit = () => {
 
    //수정하기 버튼
 
-  //  const [ok, setOk] = useState(false);
   var ok = false;
    const onClickEdit = () => {
     //닉네임 중복, 비밀번호 자리수, 비밀번호 확인 여부 확인
     if(nickname.length > 0){
-      // setOk(ok => false);
       ok = false
       if(nickCheck){
-        // setOk(ok => true);
         ok = true
       } 
     }
 
     if(password.length > 0){
-      // setOk(ok => false
       ok = false
       if(pwCheck){
-        // setOk(ok => true);
         ok = true
       }
     }
@@ -252,10 +241,8 @@ const Edit = () => {
                 <img src={profileCheck(userProfile)} alt="" id='original-img'/>
               </div>
               <Form.Group controlId="formFileSm" className="mb-3" id='img-upload' accept='image/*' onChange={onLoadFile}>
-                {/* <Form.Label>Default file input example</Form.Label> */}
                 <Form.Control type="file" size="sm"/>
               </Form.Group>
-              {/* <input id="img-upload" type="file" accept='image/*' onChange={onLoadFile}/> */}
             </form>
           </div>
           <div className="detail-container-edit">
@@ -304,7 +291,6 @@ const Edit = () => {
                   value={nickname}
                   onChange={handleNickname}
                 />
-              {/* <input className='login-input' type='text' value={nickname} onChange={handleNickname} placeholder={userNickname}/> */}
               <Button className='id-check' variant="primary" onClick={onClickNickCheck}>확인</Button>
             </div>
             </div>
@@ -312,7 +298,6 @@ const Edit = () => {
           <div className="detail-container-edit">
             <div id="detail-pw">
               <h5 className='detail-title pw'>비밀번호</h5>
-              {/* <h5 className='pw' id='pw-alert'></h5> */}
             </div>
             <div ref={targetPw}>
               <Form.Control

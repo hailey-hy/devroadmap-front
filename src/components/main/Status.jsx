@@ -18,12 +18,6 @@ const Status = (props) => {
   console.log(props.friendField)
   console.log(props.friend)
 
-    // if(props.friend === true){
-    //   let field = props.friend-field
-    // } else {
-    //   let field = useSelector((state) => state.field);
-    // }
-
 
   const isFront = () => {
     if((field == 'front')){
@@ -41,7 +35,6 @@ const Status = (props) => {
       url: '/progressrate',
     }).then(response => {
       console.log(response.data)
-      // setRate(response.data.progressRate);
       dispatch({type: 'load-progress', progress: response.data.progressRate, date: response.data.startDays})
     })
   }, [rate])
