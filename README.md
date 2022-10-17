@@ -8,7 +8,12 @@
 
 - 개발 정원은 예비 개발자들이 개발 공부를 더 재미있게 할 수 있도록 돕는 공부 기록 다이어리입니다.
 - 처음 이용 시 사용자는 텅 빈 정원을 받게 되며, 주어진 개발 공부 로드맵을 완료할수록 정원이 채워집니다.
-- 또한, 친구의 성취도를 확인하거나 성취도가 비슷한 다른 사용자를 친구 추천 받아 더욱 공부 의욕을 자극받을 수 있습니다.
+
+
+## ****🔧****사용 기술
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/Redux-764ABC?style=flat&logo=Redux&logoColor=white"/> 
+<img src="https://img.shields.io/badge/ES6 JS-F7DF1E?style=flat&logo=JavaScript&logoColor=black"/>
 
 ## ****👊핵심 기능****
 
