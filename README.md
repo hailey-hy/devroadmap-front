@@ -2,7 +2,7 @@
 
 - 개발 정원은 예비 개발자들이 개발 공부를 더 재미있게 할 수 있도록 돕는 공부 기록 다이어리입니다.
 - 처음 이용 시 사용자는 텅 빈 정원을 받게 되며, 주어진 개발 공부 로드맵을 완료할수록 정원이 채워집니다.
-- 🔗 서비스 URL : 배포 예정
+- 🔗 서비스 URL : https://devroadmap-front.herokuapp.com/
 - 🔗 팀 노션페이지: [https://www.notion.so/33c2efa3bb3c4805857ba7d663959c9d](https://www.notion.so/33c2efa3bb3c4805857ba7d663959c9d)
 
 
