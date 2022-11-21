@@ -1,5 +1,6 @@
 # 🪴개발 정원
-<img width="1426" alt="dev-garden" src="https://user-images.githubusercontent.com/93465128/202973018-d0b7871d-4d14-414a-b80e-2480f6fb7555.png">
+<img width="500" alt="dev-garden" src="https://user-images.githubusercontent.com/93465128/202973018-d0b7871d-4d14-414a-b80e-2480f6fb7555.png">
+
 - 개발 정원은 예비 개발자들이 개발 공부를 더 재미있게 할 수 있도록 돕는 공부 기록 다이어리입니다.
 - 처음 이용 시 사용자는 텅 빈 정원을 받게 되며, 주어진 개발 공부 로드맵을 완료할수록 정원이 채워집니다.
 - 🔗 서비스 URL : https://devroadmap-front.herokuapp.com/
@@ -39,4 +40,4 @@
 
 ## 🗓 ****개발 기간****
 
-- 2022/7/1 ~ 진행중
+- 2022/7/1 ~ 현재 헤로쿠 무료 서비스 종료로 재배포 진행 중
