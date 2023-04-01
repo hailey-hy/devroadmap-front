@@ -1,10 +1,11 @@
 import instance from '../../api'
 import React, {useState} from 'react'
-import { Button, Modal } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form';
 import Garden from '../garden/Garden'
-import { MESSAGES, DOMAINS, ALERT } from './Constants';
+import { JOIN_MESSAGES, DOMAINS, JOIN_ALERT } from '../UI/Constants';
 import './join.css'
+import { useModal } from '../hooks/useModal';
 
 
 const JoinMail = (props) => {
@@ -41,14 +42,10 @@ const handleEmailDefault = (e) => {
 
 // 이메일 인증 버튼 클릭시 작동 함수
 const onClickJoinMail = () => {
-        
-  if (emailDefault.length > 0){
-      var domain = emailDefault
-    }
-    else {
-      var domain = emailInput
-    }
-
+  var domain = emailInput;
+  if (emailDefault.length > 0){var domain = emailDefault}
+  //테스트용!
+  handleOpen();
   instance({
       method: 'post',
       url: '/signup/mail',
@@ -56,16 +53,18 @@ const onClickJoinMail = () => {
           "email" : email + '@' + domain
       }
   }).then(response => {
-      handleShow();
-      window.localStorage.setItem("email", email + '@' + domain);
+      handleOpen();
   })
 }
 
 // 이메일 인증 요청 Alert창 관련 변수 및 함수
-const [show, setShow] = useState(false);
+// const [show, setShow] = useState(false);
 
-const handleClose = () => setShow(false);
-const handleShow = () => setShow(true);
+// const handleClose = () => setShow(false);
+const { openModal } = useModal();
+const handleOpen = () => {
+  openModal(JOIN_ALERT.MAIL_SENT_TITLE, JOIN_ALERT.MAIL_SENT_BODY);
+};
     
   return (
     <>
@@ -73,7 +72,7 @@ const handleShow = () => setShow(true);
         <Garden login={true}></Garden>
     </div>
     <div className="container-login">
-        <h3 id='login-title'>{MESSAGES.JOIN_1}</h3>
+        <h3 id='login-title'>{JOIN_MESSAGES.JOIN_1}</h3>
         <br/>
         <div id='login-input-grid'>
             <div id='login-lable-container'>
@@ -81,7 +80,7 @@ const handleShow = () => setShow(true);
               className='login-id'
               type="text"
               aria-describedby="passwordHelpBlock"
-              placeholder= {MESSAGES.EMAIL}
+              placeholder= {JOIN_MESSAGES.EMAIL}
               value={email}
               onChange={handleEmail}
             />
@@ -116,17 +115,8 @@ const handleShow = () => setShow(true);
         
         <Button className='btn-login' onClick={() => {
             onClickJoinMail();
-            }}>{MESSAGES.EMAIL_AUTH}</Button>
+            }}>{JOIN_MESSAGES.EMAIL_AUTH}</Button>
     </div>
-    <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-            <Modal.Title>{ALERT.MAIL_SENT}</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-            <p>{ALERT.MAIL_SENT_SPECIFIED}<br/>{ALERT.LINK_CLILCK}</p>
-        </Modal.Body>
-    </Modal>
     </>
   )
 }

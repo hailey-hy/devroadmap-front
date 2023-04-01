@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button'
-import { Modal } from 'react-bootstrap'
+import { useModal } from '../hooks/useModal';
 import Form from 'react-bootstrap/Form';
 import './login.css'
 import instance from '../../api'
 import { useNavigate } from "react-router-dom";
 import Garden from '../garden/Garden';
+import { LOGIN_MSSAGES, LOGIN_PLACE_HOLDERS, DOMAINS } from '../UI/Constants';
 
 import '../garden/garden.css'
 
@@ -76,7 +77,7 @@ const Login = (props) => {
       
     }).catch(error => {
       console.error(error);
-      handleShow();
+      handleOpen();
     });
   }
 
@@ -90,22 +91,18 @@ const Login = (props) => {
   
 
   //로그인 실패 모달
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const { openModal } = useModal();
+  const handleOpen = () => {
+    openModal();
+  }
   
-  
-
-
-
   return (
     <>
       <div id="login-garden">
         <Garden login={true}></Garden>
       </div>
       <div className="container-login">
-          <h3 id='login-title'>로그인</h3>
+          <h3 id='login-title'>{LOGIN_MSSAGES.LOGIN}</h3>
           <div id='login-input-grid'>
             <div className='login-lable-container'>
             <Form.Control
@@ -125,19 +122,19 @@ const Login = (props) => {
             value={emailDefault}
             onChange={handleEmailDefault}
             >
-              <option>선택</option>
-              <option value="naver.com">naver</option>
-              <option value="gmail.com">google</option>
-              <option value="hanmail.net">daum</option>
-              <option value="kakao.com">kakao</option>
-              <option value="user-input">직접 입력</option>
+              <option>{DOMAINS.CHOOSE}</option>
+              <option value="naver.com">{DOMAINS.NAVER}</option>
+              <option value="gmail.com">{DOMAINS.GOOGLE}</option>
+              <option value="hanmail.net">{DOMAINS.DAUM}</option>
+              <option value="kakao.com">{DOMAINS.KAKAO}</option>
+              <option value="user-input">{DOMAINS.USER_INPUT}</option>
             </Form.Select>
 
             <Form.Control
               // className='login-id-email'
               id='email-input'
               type="text"
-              placeholder='직접 입력'
+              placeholder={DOMAINS.USER_INPUT}
               value={emailInput}
               onChange={handleEmailInput}
               name='email-input'
@@ -151,7 +148,7 @@ const Login = (props) => {
             id='login-pw'
             type="password"
             aria-describedby="passwordHelpBlock"
-            placeholder='비밀번호'
+            placeholder={LOGIN_PLACE_HOLDERS.PW}
             value={password}
             onChange={handlePassword}
           />
@@ -159,11 +156,11 @@ const Login = (props) => {
           <div>
           {/* 로그인 오류 시 오류 메시지 출력 창 */}
           </div>
-          <Button className='btn-login' onClick={onClickLogin}>로그인</Button>
-          <h5 id='login-back' onClick={goJoin}>회원가입</h5>
+          <Button className='btn-login' onClick={onClickLogin}>{LOGIN_MSSAGES.LOGIN}</Button>
+          <h5 id='login-back' onClick={goJoin}>{LOGIN_MSSAGES.JOIN}</h5>
       </div>
 
-      <Modal
+      {/* <Modal
         show={show}
         onHide={handleClose}
         backdrop="static"
@@ -183,7 +180,7 @@ const Login = (props) => {
             닫기
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
     </>
   )
 }
