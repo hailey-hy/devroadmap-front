@@ -6,6 +6,7 @@ import Garden from '../garden/Garden'
 import Status from '../main/Status';
 import { profileCheck } from '../../util/profileCheck';
 import './friendGarden.css'
+import { FR_GARDEN, FR_GARDEN_ALERT } from '../UI/Constants';
 import grass from '../../assets/img-garden/땅.png';
 import sun from '../../assets/img-garden/해.png';
 import cloud1 from '../../assets/img-garden/구름1.png';
@@ -161,14 +162,14 @@ const FriendGarden = () => {
           {/* 친구 정원 알림창 */}
           <div id="container-friend-notion">
             <img src={friendProfile} alt="" className='friend-profile'/>
-            <h5 id='friend-notion-title'>{friendName}님의 정원입니다.</h5>
-            <Button id='btn-note' variant="primary" onClick={noteOrAdd}>방명록 남기기</Button>
+            <h5 id='friend-notion-title'>{friendName}{FR_GARDEN.TITEL}</h5>
+            <Button id='btn-note' variant="primary" onClick={noteOrAdd}>{FR_GARDEN.ADD_NOTE}</Button>
           </div>
 
           {/* 방명록 남기기 모달 창 */}
           <Modal show={showMsg} onHide={handleCloseMsg}>
             <Modal.Header closeButton>
-              <Modal.Title>{friendName}님께 방명록 남기기</Modal.Title>
+              <Modal.Title>{friendName}{FR_GARDEN_ALERT.ADD_NOTE_TITLE}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <Form>
@@ -177,10 +178,10 @@ const FriendGarden = () => {
                   controlId="exampleForm.ControlTextarea1"
                 >
                   <Form.Label></Form.Label>
-                  <Form.Control as="textarea" rows={3} onChange={textCounter} maxlength='200' placeholder='200자 이하의 메시지만 남길 수 있습니다.'/>
+                  <Form.Control as="textarea" rows={3} onChange={textCounter} maxlength='200' placeholder={FR_GARDEN_ALERT.ADD_NOTE_PLACEHOLDER}/>
                 </Form.Group>
               </Form>
-              <div id="text-count">0/200</div>
+              <div id="text-count">{FR_GARDEN_ALERT.ADD_NOTE_TEXT_COUNT}</div>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleCloseMsg}>
@@ -199,10 +200,10 @@ const FriendGarden = () => {
             keyboard={false}
           >
           <Modal.Header closeButton>
-            <Modal.Title>방명록 작성 완료!</Modal.Title>
+            <Modal.Title>{FR_GARDEN_ALERT.DONE_NOTE_TITLE}</Modal.Title>
           </Modal.Header>
             <Modal.Body>
-              방명록을 남겼어요.
+            {FR_GARDEN_ALERT.DONE_NOTE_BODY}
             </Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={() => {

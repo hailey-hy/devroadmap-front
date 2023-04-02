@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Modal, Button}  from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 import { useModal } from '../hooks/useModal';
+import { BUTTON } from '../UI/Constants';
 
 const Alerts = () => {
     const {modalState, openModal, closeModal} = useModal();
@@ -19,7 +20,7 @@ const Alerts = () => {
         <Modal.Body>{body}</Modal.Body>
         <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-            닫기
+            {BUTTON.CLOSE}
             </Button>
         </Modal.Footer>
         </Modal>

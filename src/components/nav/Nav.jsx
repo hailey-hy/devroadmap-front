@@ -10,6 +10,7 @@ import {Provider, useSelector, useDispatch, connect} from 'react-redux';
 import instance from '../../api';
 import basicImg from '../../assets/basic-profile.png'
 import { profileCheck } from '../../util/profileCheck';
+import { NAV, NAV_ALERT } from '../UI/Constants'
 
 const Nav = (props) => {
 
@@ -157,37 +158,37 @@ const handleScroll = () => {
           <img src={profile} alt="" className="user-profile" />
           <div id="contianer-user-detail">
             <Badge pill bg={isFront() ? 'primary' : 'success'}>{field}</Badge>
-            <h5 id='user-nickname'>{nickname}님</h5>
+            <h5 id='user-nickname'>{nickname}{NAV.USER}</h5>
           </div>
           <Button id='logout' onClick={() => {
             logout()
             toggleMenu()
-          }}>로그아웃</Button>
+          }}>{NAV.LOGOOUT}</Button>
         </div>
         
         
         <h3 class='go-tab' onClick={() => {
             goMain()
             toggleMenu()
-          }}>메인</h3>
+          }}>{NAV.MAIN}</h3>
         <h3 class='go-tab' onClick={() => {
           goRecord()
           toggleMenu()
-        }}>정원 기록</h3>
+        }}>{NAV.RECORD}</h3>
         <h3 class='go-tab' onClick={() => {
           goFriend()
           toggleMenu()
-        }}>친구 목록</h3>
+        }}>{NAV.FRIEND}</h3>
         <h3 class='go-tab' onClick={() => {
           goNote()
           toggleMenu()
-        }}>방명록</h3>
+        }}>{NAV.NOTE}</h3>
         <h3 class='go-tab' onClick={() => {
           goEdit()
           toggleMenu()
-        }}>회원 정보 수정</h3>
+        }}>{NAV.EDIT}</h3>
 
-        <Button id="user-delete" variant='warning' onClick={handleShow}>회원 탈퇴</Button>
+        <Button id="user-delete" variant='warning' onClick={handleShow}>{NAV.DELETE}</Button>
 
         <Modal
         show={show}
@@ -196,10 +197,10 @@ const handleScroll = () => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>회원 탈퇴</Modal.Title>
+          <Modal.Title>{NAV_ALERT.DEL_TITLE}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          정말 회원을 탈퇴할까요?
+        {NAV_ALERT.DEL_BODY}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => {
@@ -208,7 +209,7 @@ const handleScroll = () => {
             }}>
             취소
           </Button>
-          <Button variant="warning" onClick={userWithdraw}>탈퇴</Button>
+          <Button variant="warning" onClick={userWithdraw}>{NAV.DELETE}</Button>
         </Modal.Footer>
       </Modal>
 
@@ -219,10 +220,10 @@ const handleScroll = () => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>회원 탈퇴 완료!</Modal.Title>
+          <Modal.Title>{NAV_ALERT.DEL_DONE_TITLE}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          회원 탈퇴되었어요.
+        {NAV_ALERT.DEL_DONE_BODY}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => {
@@ -250,7 +251,7 @@ const handleScroll = () => {
         <Button onClick={() => {
             goLogin()
             toggleMenu()
-          }}>로그인</Button>
+          }}>{NAV.LOGIN}</Button>
       </ul>
     </nav> 
     )

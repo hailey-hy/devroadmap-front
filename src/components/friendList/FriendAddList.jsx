@@ -7,6 +7,7 @@ import './friendList.css'
 import instance from '../../api'
 import { useNavigate } from 'react-router-dom'
 import { profileCheck } from '../../util/profileCheck'
+import { FRIEND } from '../UI/Constants'
 
 const FriendAddList = ({record, loading}) => {
   console.log(record)
@@ -27,7 +28,7 @@ const FriendAddList = ({record, loading}) => {
             // 수락 -> 등록 완료
             const targetUpdate = e.target.parentNode;
             targetUpdate.classList.add('complete');
-            targetUpdate.innerHTML = '등록 완료!';
+            targetUpdate.innerHTML = FRIEND.ACCEPT_OK;
 
             const targetDelete = targetUpdate.nextSibling;
             // const targetDeleteBtn = targetDelete.nextElementSibling;
@@ -51,10 +52,10 @@ const FriendAddList = ({record, loading}) => {
           }
         }).then(response => {
           if(response.data === 'ok'){
-            // 수락 -> 등록 완료
+            // 거절 -> 거절 완료
             const targetUpdate = e.target.parentNode;
             targetUpdate.classList.add('complete');
-            targetUpdate.innerHTML = '거절 완료!';
+            targetUpdate.innerHTML = FRIEND.DECLINE_OK;
 
             const targetDelete = targetUpdate.previousSibling;
             // const targetDeleteBtn = targetDelete.nextElementSibling;
@@ -99,11 +100,11 @@ const FriendAddList = ({record, loading}) => {
           <div className='btn-friend-grid'>
             <div className="add-btn-random btn-friend-add" onClick={
                 accept}>
-                <h5 className="friend-accept">수락</h5>
+                <h5 className="friend-accept">{FRIEND.ACCEPT}</h5>
             </div>
             <div class="add-btn-random btn-friend-add" onClick={
                 refuse}>
-                <h5 className="friend-accept">거절</h5>
+                <h5 className="friend-accept">{FRIEND.DECLINE}</h5>
             </div>
           </div>
       </div>
@@ -113,7 +114,7 @@ const FriendAddList = ({record, loading}) => {
   } else {
     return (
       <h5 id='alret-no-add-friend'>
-      아직 친구 신청이 없어요.
+      {FRIEND.NO_ADD}
     </h5>
     )
     

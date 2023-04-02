@@ -5,7 +5,7 @@ import instance from '../../api';
 import { useNavigate } from "react-router-dom";
 import Garden from '../garden/Garden';
 import './join.css'
-import { JOIN_MESSAGES,  JOIN_USER_INPUT, JOIN_ALERT} from '../UI/Constants';
+import { JOIN_MESSAGES,  USER_INPUT, JOIN_ALERT} from '../UI/Constants';
 import {BiInfoCircle} from 'react-icons/bi'
 import { useSelector } from 'react-redux';
 
@@ -55,11 +55,11 @@ const radiosSec = [
 ];
 
 //툴팁
-const renderTooltip = (props) => (
-  <Tooltip id="button-tooltip" {...props}>
-    하루동안 공부에 쓸 수 있는 <br/> 시간을 선택해 주세요.
-  </Tooltip>
-);
+// const renderTooltip = (props) => (
+//   <Tooltip id="button-tooltip" {...props}>
+//     하루동안 공부에 쓸 수 있는 <br/> 시간을 선택해 주세요.
+//   </Tooltip>
+// );
 
 //뒤로 가기 
   const navigate = useNavigate();
@@ -199,25 +199,25 @@ const renderTooltip = (props) => (
             {/* 닉네임 */}
             <div className="detail-container">
               <div id="detail-pw" >
-                <h5 className='detail-title'>{JOIN_USER_INPUT.NICKNAME}</h5>
+                <h5 className='detail-title'>{USER_INPUT.NICKNAME}</h5>
                 <Overlay target={target.current} show={showNickCheck} placement="top-end" id="tooltip-nickCheck">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                      {JOIN_USER_INPUT.NICK_OK}
+                      {USER_INPUT.NICK_OK}
                     </Tooltip>
                   )}
                 </Overlay>
                 <Overlay target={target.current} show={showNickCheck2} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                      {JOIN_USER_INPUT.NICK_FAIL}
+                      {USER_INPUT.NICK_FAIL}
                     </Tooltip>
                   )}
                 </Overlay>
                 <Overlay target={target.current} show={showNickCheck3} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                      {JOIN_USER_INPUT.NICK_RULE}
+                      {USER_INPUT.NICK_RULE}
                     </Tooltip>
                   )}
                 </Overlay>
@@ -227,7 +227,7 @@ const renderTooltip = (props) => (
                 <Form.Control
                   className='join-input'
                   type="text"
-                  placeholder={JOIN_USER_INPUT.NICK_PLACEHOLDER}
+                  placeholder={USER_INPUT.NICK_PLACEHOLDER}
                   value={nickname}
                   onChange={handleNickname}
                 />
@@ -237,7 +237,7 @@ const renderTooltip = (props) => (
 
             </div>
             <div className="detail-container">
-                <h5 className='detail-title'>{JOIN_USER_INPUT.TYPE}</h5>
+                <h5 className='detail-title'>{USER_INPUT.TYPE}</h5>
                 <ButtonGroup id="type" className="mb-2">
                 {radiosSec.map((radioSec, idx) => (
                   <ToggleButton
@@ -259,12 +259,12 @@ const renderTooltip = (props) => (
         <div>
           {/* 이메일 */}
           <div className="detail-container" id='detail-email'>
-              <h5 className='detail-title'>{JOIN_USER_INPUT.EMAIL}</h5>
+              <h5 className='detail-title'>{USER_INPUT.EMAIL}</h5>
                 <Form.Control
                   className='join-input-email'
                   id='email-input-fixed'
                   type="text"
-                  placeholder={JOIN_USER_INPUT.EMAIL}
+                  placeholder={USER_INPUT.EMAIL}
                   value={defaultEmail}
                   disabled
                 />
@@ -272,14 +272,14 @@ const renderTooltip = (props) => (
             {/* 비밀번호 */}
             <div className="detail-container">
               <div id="detail-pw">
-                <h5 className='detail-title pw'>{JOIN_USER_INPUT.PW}</h5>
+                <h5 className='detail-title pw'>{USER_INPUT.PW}</h5>
               </div>
                 <div ref={targetPw}>
                   <Form.Control
                     className='join-input'
                     id='input-pw'
                     type="password"
-                    placeholder={JOIN_USER_INPUT.PW}
+                    placeholder={USER_INPUT.PW}
                     value={password}
                     onChange={handlePassword}
                   />
@@ -289,7 +289,7 @@ const renderTooltip = (props) => (
                     className='join-input'
                     id='input-pw'
                     type="password"
-                    placeholder={JOIN_USER_INPUT.PW_CHECK}
+                    placeholder={USER_INPUT.PW_CHECK}
                     value={passwordCheck}
                     onChange={handlePasswordCheck}
                   />
@@ -298,21 +298,21 @@ const renderTooltip = (props) => (
                 <Overlay target={targetPw.current} show={showPwCheck} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                  {JOIN_USER_INPUT.PW_CHECK_OK}
+                  {USER_INPUT.PW_CHECK_OK}
                     </Tooltip>
                   )}
                 </Overlay>
                 <Overlay target={targetPw.current} show={showPwCheck2} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                  {JOIN_USER_INPUT.PW_CHECK_FAIL}
+                  {USER_INPUT.PW_CHECK_FAIL}
                     </Tooltip>
                   )}
                 </Overlay>
                 <Overlay target={targetPw.current} show={showPwCheck3} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                  {JOIN_USER_INPUT.PW_RULE}
+                  {USER_INPUT.PW_RULE}
                     </Tooltip>
                   )}
                 </Overlay>

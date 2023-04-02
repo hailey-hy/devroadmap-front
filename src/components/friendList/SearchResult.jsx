@@ -3,6 +3,7 @@ import instance from '../../api'
 import { Badge } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { profileCheck } from '../../util/profileCheck'
+import { FRIEND } from '../UI/Constants'
 
 const SearchResult = (props) => {
 console.log(props.result);
@@ -21,7 +22,7 @@ const accept = (e) => {
           var target = document.getElementById(targetID);
           console.log(target);
           target.classList.add('complete');
-          target.innerHTML = '신청 완료!';
+          target.innerHTML = FRIEND.ADD_OK;
         }
     })
 }
@@ -77,13 +78,13 @@ if(props.result.search_user_friendornot != "doesn't exist nickname"){
 // 친구 신청 대기 중일 경우?
 else if(props.result.search_user_friendornot === "not friend"){
   return(
-    <div>친구 신청 대기 중입니다.</div>
+    <div>{FRIEND.PROCESSING}</div>
   )
 }
 
 else {
   return (
-    <div>검색 결과가 없어요.</div>
+    <div>{FRIEND.NO_RESULT}</div>
   )
 }  
 }

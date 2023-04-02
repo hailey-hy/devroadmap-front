@@ -1,4 +1,5 @@
 import React from 'react'
+import { FOOTER } from '../UI/Constants'
 import './footer.css'
 
 const Footer = () => {
@@ -7,46 +8,46 @@ const Footer = () => {
         <div className="footer-team">
           <div className='footer-team-detail'>
             <h5 className="footer-content">
-              Backend Developer
+              {FOOTER.BACK}
             </h5>
             <div className="footer-content-detail-grid">
             <h5 className="footer-name">
-              양정민
+              {FOOTER.BACK_NAME}
             </h5>
             <h5 className="footer-email">
-            wjdals0814@naver.com
+              {FOOTER.BACK_EMAIL}
             </h5>
             </div>
           </div>
           <div className='footer-team-detail'>
             <h5 className="footer-content">
-              Frontend Developer
+              {FOOTER.FRONT}
             </h5>
             <div className="footer-content-detail-grid">
             <h5 className="footer-name">
-              전해연
+              {FOOTER.FRONT_NAME}
             </h5>
             <h5 className="footer-email">
-            lillyine.hy@gmail.com
+              {FOOTER.FRONT_EMAIL}
             </h5>
             </div>
           </div>
           <div className='footer-team-detail'>
             <h5 className="footer-content">
-              Illustrator
+              {FOOTER.ILLUST}
             </h5>
             <div className="footer-content-detail-grid">
             <h5 className="footer-name">
-              한유나
+              {FOOTER.ILLUST_NAME}
             </h5>
             <h5 className="footer-email">
-            yunahan914@gmail.com
+            {FOOTER.ILLUST_EMAIL}
             </h5>
             </div>
           </div>
           
         </div>
-        <h5 class='footer-content footer-copy'>Copyright 2022.Team Gardener all rights reserved.</h5>
+        <h5 class='footer-content footer-copy'>{FOOTER.COPYRIGHT}</h5>
     </footer>
   )
 }

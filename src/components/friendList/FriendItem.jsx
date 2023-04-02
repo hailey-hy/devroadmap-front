@@ -7,6 +7,7 @@ import {MdCancel} from 'react-icons/md'
 import './friendList.css'
 import { useNavigate } from 'react-router-dom'
 import { profileCheck } from '../../util/profileCheck'
+import { BUTTON, FRIEND, FRIEND_ALERT } from '../UI/Constants'
 
 const FriendItem = ({record, loading}) => {
 console.log(record)
@@ -59,7 +60,7 @@ const goFriend = (friend) => {
     return (
       <>
         <div className='util' id='container-no-friend'>
-          <h5 id='title-no-friend'>아직 친구가 없어요.</h5>
+          <h5 id='title-no-friend'>{FRIEND.NO_FRIEND}</h5>
         </div>
       </>
     )
@@ -96,21 +97,21 @@ const goFriend = (friend) => {
       {/* 친구 끊기 모달 창 */}
       <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-            <Modal.Title>친구 삭제</Modal.Title>
+            <Modal.Title>{FRIEND_ALERT.DEL_TITLE}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                정말 {disconnectFriend}님을 삭제할까요?
+                {disconnectFriend}{FRIEND_ALERT.DEL_BODY}
             </Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-                취소
+                {BUTTON.CANCLE}
             </Button>
             <Button variant="primary" onClick={() => {
               disconnect();
               handleClose();
               handleShow2();
               }}>
-                삭제
+                {BUTTON.DEL}
             </Button>
             </Modal.Footer>
         </Modal>
@@ -118,14 +119,14 @@ const goFriend = (friend) => {
         {/* 친구 끊기 확인 모달 창 */}
         <Modal show={show2} onHide={handleClose2}>
             <Modal.Header closeButton>
-            <Modal.Title>친구 삭제</Modal.Title>
+            <Modal.Title>{FRIEND_ALERT.DEL_DONE_TITLE}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                삭제되었어요.
+            {FRIEND_ALERT.DEL_DONE_BODY}
             </Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={handleClose2}>
-                닫기
+                {BUTTON.CLOSE}
             </Button>
             </Modal.Footer>
         </Modal>

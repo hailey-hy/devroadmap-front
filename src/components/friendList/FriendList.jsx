@@ -13,6 +13,7 @@ import SearchResult from './SearchResult';
 import RandomFriendBack from './RandomFriendBack';
 import RandomFriendFront from './RandomFriendFront';
 import { useSelector } from 'react-redux';
+import { FRIEND, FRIEND_TOOLTIP, FRIEND_ALERT } from '../UI/Constants'
 
 const FriendList = () => {
     //친구 신청 모달 관련 변수
@@ -205,11 +206,11 @@ const FriendList = () => {
     <section id='friend'>
         <div className='container-white container'>
             <div id="friend-title-divider">
-                <h3 id="white-title">친구 목록</h3>
+                <h3 id="white-title">{FRIEND.TITLE}</h3>
                 <OverlayTrigger
                     overlay={
                         <Tooltip id={`tooltip-top`}>
-                        <strong>친구 신청을 확인해 보세요!</strong>
+                        <strong>{FRIEND_TOOLTIP.CHECK}</strong>
                         </Tooltip>
                     }
                 >
@@ -227,7 +228,7 @@ const FriendList = () => {
                 </div>
                 <div id="friend-util">
                     <div className='util' id="util-search">
-                    <h4 id='search-title'>정원사 검색</h4>
+                    <h4 id='search-title'>{FRIEND.SEARCH}</h4>
                     <div id="search-divider">
                         <input className='search-input' type='text' value={search} onChange={handleSearch} placeholder='닉네임으로 친구를 찾아보세요!'/>
                         <Button ref={target} id='btn-search' onClick={() => 
@@ -236,7 +237,7 @@ const FriendList = () => {
                     </div>
                     <div className='util' id="util-random">
                         <div id="random-divider">
-                        <h4 id='search-title'>다른 정원 둘러보기</h4>
+                        <h4 id='search-title'>{FRIEND.TOUR}</h4>
                         
                         <div className="switch">
                             <Form.Check 
@@ -259,7 +260,7 @@ const FriendList = () => {
         {/* 친구 신청 모달 창 */}
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-            <Modal.Title>친구 신청 목록</Modal.Title>
+            <Modal.Title>{FRIEND_ALERT.ADD_LIST_TITLE}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <FriendAddList record={currentRecordAdd(recordAdd)} loading={loadingAdd}></FriendAddList>
@@ -278,7 +279,7 @@ const FriendList = () => {
         {/* 친구 검색 모달 창 */}
         <Modal show={showSearch} onHide={handleCloseSearch}>
             <Modal.Header closeButton>
-            <Modal.Title>정원사 검색 결과</Modal.Title>
+            <Modal.Title>{FRIEND_ALERT.SEARCH_LIST_TITLE}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <SearchResult result={searchResult}/>
@@ -294,7 +295,7 @@ const FriendList = () => {
         <Overlay target={target.current} show={showTooltip} placement="top">
         {(props) => (
           <Tooltip id="overlay-example" {...props}>
-            검색할 정원사의 이름을 입력해 주세요.
+            {FRIEND_TOOLTIP.SEARCH_FAIL}
           </Tooltip>
         )}
       </Overlay>

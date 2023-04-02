@@ -7,6 +7,7 @@ import short from '../../assets/img-record/쟁기질 줄 짧은 버전.png'
 import gardener from '../../assets/img-record/정원사 호미.png'
 import { useSelector } from 'react-redux'
 import { studyList } from '../../util/studyList'
+import { RECORD } from '../UI/Constants'
 
 
 const Bubbles = ({record, loading, first}) => {
@@ -66,7 +67,7 @@ const Bubbles = ({record, loading, first}) => {
         <>
             <br></br>
             <br></br><br></br>
-            <h5>아직 기록이 없어요.</h5>
+            <h5>{RECORD.NONE}</h5>
         </>
       )
   }

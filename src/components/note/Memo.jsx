@@ -1,5 +1,6 @@
 import React from 'react'
 import { profileCheck } from '../../util/profileCheck'
+import { MEMO } from '../UI/Constants'
 import './note.css'
 
 const Memo = ({record, loading}) => {
@@ -37,7 +38,7 @@ if(item.length > 0){
 }
 else{
     return (
-        <h5 id='no-memo'>아직 작성된 방명록이 없어요.</h5>
+        <h5 id='no-memo'>{MEMO.NO_MEMO}</h5>
       )
 }
   

@@ -6,6 +6,7 @@ import './edit.css'
 import { profileCheck } from '../../util/profileCheck';
 import { useSelector } from 'react-redux';
 import { upload } from '@testing-library/user-event/dist/upload';
+import { EDIT, EDIT_ALERT, BUTTON, USER_INPUT } from '../UI/Constants';
 
 //회원 정보 수정 페이지
 
@@ -231,11 +232,11 @@ const Edit = () => {
   return (
     <section id="edit">
     <div className='container-white container'>
-      <h3 id="white-title">회원 정보 수정</h3>
+      <h3 id="white-title">{EDIT.TITLE}</h3>
       <div className="chunck-container-edit">
         <div className='chunck-for-divide'>
           <div className="detail-container-edit">
-            <h5 className='detail-title'>프로필 사진</h5>
+            <h5 className='detail-title'>{USER_INPUT.PROFILE}</h5>
             <form className='img-container img-container-edit'>
               <div id="img-edit" className="img-box">
                 <img src={profileCheck(userProfile)} alt="" id='original-img'/>
@@ -246,7 +247,7 @@ const Edit = () => {
             </form>
           </div>
           <div className="detail-container-edit">
-          <h5 className='detail-title'>공부 분야</h5>
+          <h5 className='detail-title'>{USER_INPUT.TYPE}</h5>
           <ButtonGroup id="type" className="mb-2">
             {radiosSec.map((radioSec, idx) => (
               <ToggleButton
@@ -267,18 +268,18 @@ const Edit = () => {
         </div>
         <div className='chunck-for-divide'>
           <div className="detail-container-edit">
-            <h5 className='detail-title'>닉네임</h5>
+            <h5 className='detail-title'>{USER_INPUT.NICKNAME}</h5>
             <Overlay target={target.current} show={showNickCheck} placement="top-end" id="tooltip-nickCheck">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                      사용 가능한 닉네임이에요.
+                      {USER_INPUT.NICK_OK}
                     </Tooltip>
                   )}
                 </Overlay>
             <Overlay target={target.current} show={showNickCheck2} placement="top-end">
               {(props) => (
                 <Tooltip id="nick-alert" {...props}>
-                  다른 닉네임을 사용해 주세요.
+                  {USER_INPUT.NICK_FAIL}
                 </Tooltip>
               )}
             </Overlay>
@@ -297,14 +298,14 @@ const Edit = () => {
           </div>
           <div className="detail-container-edit">
             <div id="detail-pw">
-              <h5 className='detail-title pw'>비밀번호</h5>
+              <h5 className='detail-title pw'>{USER_INPUT.PW}</h5>
             </div>
             <div ref={targetPw}>
               <Form.Control
                     className='join-input'
                     id='input-pw'
                     type="password"
-                    placeholder='비밀번호'
+                    placeholder={USER_INPUT.PW}
                     value={password}
                     onChange={handlePassword}
               />
@@ -315,28 +316,28 @@ const Edit = () => {
                     className='join-input'
                     id='input-pw'
                     type="password"
-                    placeholder='비밀번호 확인'
+                    placeholder={USER_INPUT.PW_CHECK}
                     value={passwordCheck}
                     onChange={handlePasswordCheck}
                   />
             <Overlay target={targetPw.current} show={showPwCheck} placement="top-end">
               {(props) => (
                 <Tooltip id="nick-alert" {...props}>
-              비밀번호 확인 완료!
+              {USER_INPUT.PW_CHECK_OK}
                 </Tooltip>
               )}
             </Overlay>
             <Overlay target={targetPw.current} show={showPwCheck2} placement="top-end">
               {(props) => (
                 <Tooltip id="nick-alert" {...props}>
-              비밀번호가 일치하지 않아요.
+              {USER_INPUT.PW_CHECK_FAIL}
                 </Tooltip>
               )}
             </Overlay>
             <Overlay target={targetPw.current} show={showPwCheck3} placement="top-end">
               {(props) => (
                 <Tooltip id="nick-alert" {...props}>
-              4~10자리 비밀번호를 <br/> 사용해 주세요.
+              {USER_INPUT.PW_RULE}
                 </Tooltip>
               )}
             </Overlay>
@@ -351,24 +352,24 @@ const Edit = () => {
       {/* 경고창 */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>회원 정보 수정 완료!</Modal.Title>
+          <Modal.Title>{EDIT_ALERT.DONE_TITLE}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>입력하신 정보로 회원 정보가 수정되었어요.</Modal.Body>
+        <Modal.Body>{EDIT_ALERT.DONE_BODY}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            닫기
+            {BUTTON.CLOSE}
           </Button>
         </Modal.Footer>
       </Modal>
 
       <Modal show={show2} onHide={handleClose2}>
         <Modal.Header closeButton>
-          <Modal.Title>회원정보 수정 양식 미완성!</Modal.Title>
+          <Modal.Title>{EDIT_ALERT.FAIL_TITLE}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>확인되지 않은 항목이 있어요. <br/> 정상적인 회원 정보 수정을 위해 확인을 완료해 주세요.</Modal.Body>
+        <Modal.Body>{EDIT_ALERT.FAIL_BODY}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose2}>
-            닫기
+            {BUTTON.CLOSE}
           </Button>
         </Modal.Footer>
       </Modal>

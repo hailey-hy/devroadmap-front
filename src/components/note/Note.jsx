@@ -3,6 +3,7 @@ import './note.css'
 import Memo from './Memo'
 import instance from '../../api'
 import { Pagination } from 'react-bootstrap';
+import { NOTE } from '../UI/Constants';
 
 const Note = () => {
 
@@ -51,7 +52,7 @@ const Note = () => {
     <div id="record">
     <div className='container-white container'>
         <div id="container-records">
-          <h3 id="white-title">방명록</h3>
+          <h3 id="white-title">{NOTE.TITLE}</h3>
             <Memo record={currentRecord(record)} loading={loading}></Memo>
             <Pagination>{items}</Pagination>
         </div>

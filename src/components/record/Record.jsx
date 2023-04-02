@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 import './record.css'
 import Bubbles from './Bubbles';
 import { Pagination } from 'react-bootstrap';
+import { RECORD } from '../UI/Constants';
 
 
 const Record = () => {
@@ -56,7 +57,7 @@ const Record = () => {
     <div id="record">
     <div className='container-white container'>
       <div id="container-records">
-        <h3 id="white-title">정원 기록</h3>
+        <h3 id="white-title">{RECORD.TITLE}</h3>
         <Bubbles record={currentRecord(record)} loading={loading} first={recordFirst}></Bubbles>
         <Pagination>{items}</Pagination>
         </div>
