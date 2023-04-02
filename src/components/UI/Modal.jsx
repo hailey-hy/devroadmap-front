@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Modal, Button}  from 'react-bootstrap'
 import { useSelector } from 'react-redux';
-import { useModal } from '../hooks/useModal';
+import { useModal } from '../../hooks/useModal';
 import { BUTTON } from '../UI/Constants';
 
 const Alerts = () => {

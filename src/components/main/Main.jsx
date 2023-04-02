@@ -3,14 +3,14 @@ import './main.css'
 import '../garden/garden.css'
 import Status from './Status'
 import Roadmap from '../roadmap/Roadmap'
-import { loginCheck } from '../../util/loginCheck'
+import { useLoginCheck } from '../../hooks/useLoginCheck'
 import instance from '../../api'
 import Garden from '../garden/Garden'
 
 
 
 const Main = () => {
-  loginCheck();
+  useLoginCheck();
 
   const [savedItem, setSavedItem] = useState([]);
 

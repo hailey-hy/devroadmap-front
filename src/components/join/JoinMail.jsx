@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Garden from '../garden/Garden'
 import { JOIN_MESSAGES, DOMAINS, JOIN_ALERT } from '../UI/Constants';
 import './join.css'
-import { useModal } from '../hooks/useModal';
+import { useModal } from '../../hooks/useModal';
 
 
 const JoinMail = (props) => {

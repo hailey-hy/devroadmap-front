@@ -10,7 +10,6 @@ import Record from './components/record/Record';
 import {createStore} from 'redux';
 import {Provider, useSelector, useDispatch, connect} from 'react-redux';
 import axios from 'axios';
-import { loginCheck } from './util/loginCheck';
 import FriendList from './components/friendList/FriendList';
 import FriendGarden from './components/friendGarden/FriendGarden';
 import Note from './components/note/Note';
