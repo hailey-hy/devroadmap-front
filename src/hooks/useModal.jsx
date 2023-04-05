@@ -1,16 +1,22 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useCallback } from "react";
+import { react, useCallback, useState } from "react";
 
 export const useModal = () => {
+
+    const [openedModals, setOpenedModals] = useState([]);
     const modalState = useSelector((state) => state.modalState);
+    
     const dispatch = useDispatch();
-    const openModal = useCallback((title, body) => {
-        dispatch({type:'modal-context', modalTitle: title, modalBody: body});
-        dispatch({type:'modal', modalState: true});
+     const openModal = useCallback((Component, props) => {
+        dispatch({type:'modal', modalState: {Component, props : { ...props, open : true }}});
     });
-    const closeModal = useCallback(() => {
-        dispatch({type:'modal', modalState: false})
+    const closeModal = useCallback((Component) => {
+        setOpenedModals((modals) => {
+            modals.filter((modal) =>  modal.Component !== Component)
+        })
+        dispatch({type:'modal', modalState: openedModals});
     });
+
     return {
         modalState,
         openModal,

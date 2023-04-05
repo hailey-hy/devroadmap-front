@@ -13,7 +13,7 @@ import axios from 'axios';
 import FriendList from './components/friendList/FriendList';
 import FriendGarden from './components/friendGarden/FriendGarden';
 import Note from './components/note/Note';
-import Alerts from './components/UI/Modal';
+import Modals from './components/UI/modals/Modals';
 
 
 function App() {
@@ -30,9 +30,7 @@ function App() {
         progress: '', //진행율
         date: '', //진행 일수
         garden: [], //진행 완료된 목록
-        modalState: false,
-        modalTitle: '제목',
-        modalBody: '내용'
+        modalState: [],
         //코드 전체에서 쓸 front/back 항목 리스트
         // frontList: ['인터넷', 'HTML', 'CSS', 'JS', '버전관리', '웹 보안 지식', '패키지 관리자', 'CSS설계', 'CSS전처리기', '빌드 툴', '프레임워크', 'CSS in JS', '타입 체커', 'CSS프레임워크', '테스트', '서버 사이드 렌더링', '그래프 QL', '정적 사이드 생성기'],
         // backList: ['인터넷', '프론트 기본 지식', 'OS', '언어', '버전관리', 'DB', 'API', '캐시', '웹 보안 지식', '테스트', 'CI/CD', '개발 설계 원칙', '아키텍처 패턴', '검색엔진', '메시지 브로커', '컨테이너화 vs 가상화', '그래프 QL', '웹서버', '확장성 있는 구축']
@@ -52,11 +50,8 @@ function App() {
       newState.date = action.date;
     }
       else if (action.type === 'modal'){
+        //모달과 관련된 정보를 배열에 저장
         newState.modalState = action.modalState;
-      }
-      else if (action.type === 'modal-context'){
-        newState.modalTitle = action.modalTitle;
-        newState.modalBody = action.modalBody;
       }
     return newState
   }
@@ -80,7 +75,7 @@ function App() {
             <Route path='/note' element={<Note/>}/>
           </Routes>
         </BrowserRouter>
-        <Alerts></Alerts>
+        <Modals></Modals>
       </Provider>
       <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
       <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js" crossorigin></script>
