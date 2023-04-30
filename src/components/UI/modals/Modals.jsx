@@ -3,19 +3,25 @@
 import React from "react";
 import { useModal } from "../../../hooks/useModal"
 import SimpleModal from "./SimpleModal";
+import ConfirmModal from "./ConfirmModal";
+import PaginationModal from "./PaginationModal";
 
 export const modals = {
     simple : SimpleModal,
+    confirm : ConfirmModal,
+    page : PaginationModal
 }
 
 const Modals = () => {
     const { modalState } = useModal();
-    const { Component, props } = modalState;
+    const { Component, props } = modalState || {};
     const renderComponent = () => {
         if (!Component) return null;
     }
 
-    if(Component === SimpleModal) return <SimpleModal {...props}/>  
+    if(Component === SimpleModal) return <SimpleModal {...props}/>
+    if(Component === ConfirmModal) return <ConfirmModal {...props}/>
+    if(Component === PaginationModal) return <PaginationModal {...props}/>
     
     return <>{renderComponent()}</>
 }

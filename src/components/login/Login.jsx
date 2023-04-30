@@ -6,9 +6,9 @@ import './login.css'
 import instance from '../../api'
 import { useNavigate } from "react-router-dom";
 import Garden from '../garden/Garden';
-import { LOGIN_MSSAGES, LOGIN_PLACE_HOLDERS, DOMAINS } from '../UI/Constants';
-
+import { LOGIN_MSSAGES, LOGIN_PLACE_HOLDERS, DOMAINS, LOGIN_ALERT } from '../UI/Constants';
 import '../garden/garden.css'
+import { modals } from '../UI/modals/Modals';
 
 const Login = (props) => {
 
@@ -91,9 +91,13 @@ const Login = (props) => {
   
 
   //로그인 실패 모달
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
   const handleOpen = () => {
-    openModal();
+    openModal(modals.simple, {
+      title : LOGIN_ALERT.TITLE,
+      body : LOGIN_ALERT.BODY,
+      onClose : () => closeModal(modals.simple)
+    });
   }
   
   return (
@@ -159,28 +163,6 @@ const Login = (props) => {
           <Button className='btn-login' onClick={onClickLogin}>{LOGIN_MSSAGES.LOGIN}</Button>
           <h5 id='login-back' onClick={goJoin}>{LOGIN_MSSAGES.JOIN}</h5>
       </div>
-
-      {/* <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-      <Modal.Header closeButton>
-          <Modal.Title>로그인 실패</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          이메일 또는 비밀번호를 확인해 주세요.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => {
-            handleClose();
-            
-            }}>
-            닫기
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
     </>
   )
 }

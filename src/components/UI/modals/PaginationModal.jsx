@@ -2,22 +2,18 @@ import React from 'react'
 import { Modal, Button}  from 'react-bootstrap'
 import { BUTTON } from '../Constants';
 
-const SimpleModal = ({ title, body, open, onClose }) => {
-
+const PaginationModal = ({ title, body, open, onClose }) => {
+    
     return (
     <>
-        <Modal show={open} 
-        onHide={onClose}
-        >
+        <Modal show={open} onHide={onClose}>
         <Modal.Header closeButton>
             <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{body}</Modal.Body>
         <Modal.Footer>
-            <Button variant="secondary" 
-            onClick={onClose}
-            >
-            {BUTTON.CLOSE}
+            <Button variant="secondary" onClick={onClose}>
+                {BUTTON.CLOSE}
             </Button>
         </Modal.Footer>
         </Modal>
@@ -25,4 +21,4 @@ const SimpleModal = ({ title, body, open, onClose }) => {
   )
 }
 
-export default SimpleModal
+export default PaginationModal

@@ -6,6 +6,7 @@ import Garden from '../garden/Garden'
 import { JOIN_MESSAGES, DOMAINS, JOIN_ALERT } from '../UI/Constants';
 import './join.css'
 import { useModal } from '../../hooks/useModal';
+import { modals } from '../UI/modals/Modals'
 
 
 const JoinMail = (props) => {
@@ -44,8 +45,6 @@ const handleEmailDefault = (e) => {
 const onClickJoinMail = () => {
   var domain = emailInput;
   if (emailDefault.length > 0){var domain = emailDefault}
-  //테스트용!
-  handleOpen();
   instance({
       method: 'post',
       url: '/signup/mail',
@@ -58,12 +57,15 @@ const onClickJoinMail = () => {
 }
 
 // 이메일 인증 요청 Alert창 관련 변수 및 함수
-// const [show, setShow] = useState(false);
-
-// const handleClose = () => setShow(false);
-const { openModal } = useModal();
+const { openModal, closeModal } = useModal();
 const handleOpen = () => {
-  openModal(JOIN_ALERT.MAIL_SENT_TITLE, JOIN_ALERT.MAIL_SENT_BODY);
+  openModal(
+    modals.simple, {
+      title : JOIN_ALERT.MAIL_SENT_TITLE, 
+      body : JOIN_ALERT.MAIL_SENT_BODY,
+      onClose : () => {
+        closeModal(modals.simple)
+      }});
 };
     
   return (

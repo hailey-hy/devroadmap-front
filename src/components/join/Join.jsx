@@ -8,6 +8,8 @@ import './join.css'
 import { JOIN_MESSAGES,  USER_INPUT, JOIN_ALERT} from '../UI/Constants';
 import {BiInfoCircle} from 'react-icons/bi'
 import { useSelector } from 'react-redux';
+import { useModal } from '../../hooks/useModal';
+import { modals } from '../UI/modals/Modals';
 
 const Join = (props) => {
   const defaultEmail = window.localStorage.getItem("email");
@@ -86,13 +88,13 @@ const radiosSec = [
         "field" : radioSecValue
       }
     }).then(response => {
-      handleShow2();
+      handleOpenComplete();
     }).catch(err => {
       console.error(err);
     });
   } else {
-    handleShow();
-    
+    // handleOpenAlert();
+    handleOpenComplete();
   }
   }
 
@@ -171,21 +173,33 @@ const radiosSec = [
     }
   }
 
-  // 경고창 관련
-  const [show, setShow] = useState(false);
+// 모달 관련 변수
+const { openModal, closeModal} = useModal();
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // 입력 유효성 검사 실패 모달
+  
+  const handleOpenAlert = () => {
+    openModal(modals.simple, {
+      title : JOIN_ALERT.FAIL_TITLE,
+      body : JOIN_ALERT.FAIL_BODY,
+      onClose : () => closeModal(modals.simple)
+    })
+  }
 
-  // 완료 모달창 관련
-
-  const [show2, setShow2] = useState(false);
-
-  const handleClose2 = () => setShow2(false);
-  const handleShow2 = () => setShow2(true);
-
+  // 회원가입 완료 모달창 관련
   const goLogin = () => navigate('/');
 
+  const handleOpenComplete = () => {
+    openModal(modals.confirm, {
+      title : JOIN_ALERT.DONE_TITLE,
+      body : JOIN_ALERT.DONE_BODY,
+      onClose : () => closeModal(modals.confirm),
+      onConfirm : () => {
+        closeModal(modals.confirm);
+        goLogin();
+      }
+    })
+  }
 
   return (
     <>
@@ -323,34 +337,6 @@ const radiosSec = [
         
         <Button className='btn-login' onClick={onClickJoin}>{JOIN_MESSAGES.JOIN}</Button>
         <h5 id='go-back' onClick={goBack}>{JOIN_MESSAGES.GO_BACK}</h5>
-
-        {/* 경고창 */}
-        <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{JOIN_ALERT.FAIL_TITLE}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{JOIN_ALERT.FAIL_BODY}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            닫기
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      <Modal show={show2} onHide={handleClose2}>
-        <Modal.Header closeButton>
-          <Modal.Title>{JOIN_ALERT.DONE_TITLE}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{JOIN_ALERT.DONE_BODY}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => {
-            handleClose2();
-            goLogin();
-            }}>
-            닫기
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
     </>
   )
