@@ -60,9 +60,10 @@ function App() {
 
   return (
     <div className="App">
-      <Provider store={store}>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Provider store={store}>
           <Header/>
+          <Modals/>
           <Routes>
             <Route path='/' element={<Main/>}/>
             <Route path='/signin' element={<Login/>}/>
@@ -74,9 +75,8 @@ function App() {
             <Route path='/friend/garden' element={<FriendGarden/>}/>
             <Route path='/note' element={<Note/>}/>
           </Routes>
-        </BrowserRouter>
-        <Modals></Modals>
-      </Provider>
+        </Provider>
+      </BrowserRouter>
       <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
       <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js" crossorigin></script>
       <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
