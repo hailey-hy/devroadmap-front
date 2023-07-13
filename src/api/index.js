@@ -6,7 +6,7 @@ import axios from 'axios';
 if(localStorage.getItem("user")){
     var instance = axios.create({
         baseURL: "https://localhost:8080/",
-        // baseURL: "https://ec2-43-200-80-56.ap-northeast-2.compute.amazonaws.com:8080/",
+        // baseURL: "https://osikxvzfbu.us19.qoddiapp.com/",
         params: {
             Authorization: "Bearer " + localStorage.getItem("user")
         },
@@ -18,7 +18,7 @@ if(localStorage.getItem("user")){
 
     var instance = axios.create({
         baseURL: "https://localhost:8080/",
-        // baseURL: "https://ec2-43-200-80-56.ap-northeast-2.compute.amazonaws.com:8080/",
+        // baseURL: "https://osikxvzfbu.us19.qoddiapp.com/",
         method: 'get'
     })
 }
