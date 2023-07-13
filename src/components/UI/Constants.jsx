@@ -47,6 +47,10 @@ const LOGIN_PLACE_HOLDERS = Object.freeze({
     PW : '비밀번호'
 });
 
+const LOGIN_ALERT = Object.freeze({
+    TITLE : '로그인 실패',
+    BODY : '이메일 또는 비밀번호를 확인해 주세요.'
+})
 // 진도율 (Status)
 const STATUS = Object.freeze({
     STUDY_FRONT : '공부를 시작한지 ',
@@ -199,6 +203,7 @@ module.exports = {
     USER_INPUT,
     LOGIN_MSSAGES,
     LOGIN_PLACE_HOLDERS,
+    LOGIN_ALERT,
     STATUS,
     NAV,
     NAV_ALERT,

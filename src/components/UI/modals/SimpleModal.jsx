@@ -1,7 +1,5 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Modal, Button}  from 'react-bootstrap'
-import { useSelector } from 'react-redux';
-import { useModal } from '../../../hooks/useModal';
 import { BUTTON } from '../Constants';
 
 const SimpleModal = ({ title, body, open, onClose }) => {
