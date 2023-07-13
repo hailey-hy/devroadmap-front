@@ -4,7 +4,7 @@ import Objects from './Objects'
 import instance from '../../api'
 import { useSelector } from 'react-redux'
 import Footer from '../footer/Footer'
-import { studyList } from '../../util/studyList'
+import { useStudyList } from '../../hooks/useStudyList'
 
 const Roadmap = () => {
 
@@ -31,8 +31,8 @@ const Roadmap = () => {
   })
 
  //공부 분야에 따른 항목 표시
-  const frontObjects = studyList('front')
-  const backObjects = studyList('back')
+  const frontObjects = useStudyList('front')
+  const backObjects = useStudyList('back')
 
   let obejct_list = [];
   if(userType == 'front'){

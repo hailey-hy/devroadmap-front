@@ -1,78 +1,80 @@
 import instance from '../../api'
 import React, {useState} from 'react'
-import { Button, Modal } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form';
 import Garden from '../garden/Garden'
+import { JOIN_MESSAGES, DOMAINS, JOIN_ALERT } from '../UI/Constants';
 import './join.css'
+import { useModal } from '../../hooks/useModal';
+import { modals } from '../UI/modals/Modals'
+
 
 const JoinMail = (props) => {
 
-    // 이메일 입력 관련 변수 및 함수
-    const [email, setEmail] = useState('')
+// 이메일 입력 관련 변수 및 함수
+const [email, setEmail] = useState('')
 
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
+const handleEmail = (e) => {
+  setEmail(e.target.value);
+  }
+
+//이메일 직접입력 선택시 작동 함수
+
+const [emailInput, setEmailInput] = useState('');
+const [emailDefault, setEmailDefault] = useState('')
+
+const handleEmailInput = (e) => {
+  setEmailInput(e.target.value)
+}
+
+const handleEmailDefault = (e) => {
+  if(e.target.value == 'user-input'){
+      var target = document.getElementById('email-input');
+      console.log(target)
+      target.style.display = 'block';
+      target.style.pointerEvents = 'all'
+
+      var target2 = document.getElementById('login-id-email');
+      target2.style.display = 'none';
+  } else{
+      setEmailDefault(e.target.value)
+  }
+}
+
+// 이메일 인증 버튼 클릭시 작동 함수
+const onClickJoinMail = () => {
+  var domain = emailInput;
+  if (emailDefault.length > 0){var domain = emailDefault}
+  instance({
+      method: 'post',
+      url: '/signup/mail',
+      params: {
+          "email" : email + '@' + domain
       }
+  }).then(response => {
+      handleOpen();
+  })
+}
+
+// 이메일 인증 요청 Alert창 관련 변수 및 함수
+const { openModal, closeModal } = useModal();
+const handleOpen = () => {
+  openModal(
+    modals.simple, {
+      title : JOIN_ALERT.MAIL_SENT_TITLE, 
+      body : JOIN_ALERT.MAIL_SENT_BODY,
+      onClose : () => {
+        closeModal(modals.simple)
+      }});
+};
     
-      //이메일 직접입력 선택시 작동 함수
-
-    const [emailInput, setEmailInput] = useState('');
-    const [emailDefault, setEmailDefault] = useState('')
-
-    const handleEmailInput = (e) => {
-    setEmailInput(e.target.value)
-    }
-
-    const handleEmailDefault = (e) => {
-    if(e.target.value == 'user-input'){
-        var target = document.getElementById('email-input');
-        console.log(target)
-        target.style.display = 'block';
-        target.style.pointerEvents = 'all'
-
-        var target2 = document.getElementById('login-id-email');
-        target2.style.display = 'none';
-    } else{
-        setEmailDefault(e.target.value)
-    }
-
-    }
-      
-    // 이메일 인증 버튼 클릭시 작동 함수
-    const onClickJoinMail = () => {
-        
-        if (emailDefault.length > 0){
-            var domain = emailDefault
-          }
-          else {
-            var domain = emailInput
-          }
-
-        instance({
-            method: 'post',
-            url: '/signup/mail',
-            params: {
-                "email" : email + '@' + domain
-            }
-        }).then(response => {
-            handleShow();
-            window.localStorage.setItem("email", email + '@' + domain);
-        })
-    }
-
-    // 이메일 인증 요청 Alert창 관련 변수 및 함수
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
   return (
     <>
     <div id="login-garden">
         <Garden login={true}></Garden>
     </div>
     <div className="container-login">
-        <h3 id='login-title'>회원가입 (1/2)</h3>
+        <h3 id='login-title'>{JOIN_MESSAGES.JOIN_1}</h3>
         <br/>
         <div id='login-input-grid'>
             <div id='login-lable-container'>
@@ -80,11 +82,11 @@ const JoinMail = (props) => {
               className='login-id'
               type="text"
               aria-describedby="passwordHelpBlock"
-              placeholder='이메일'
+              placeholder= {JOIN_MESSAGES.EMAIL}
               value={email}
               onChange={handleEmail}
             />
-            <label id='email-lable'>@</label>
+            <label id='email-lable'>{DOMAINS.AT}</label>
             </div>
             <div>
             <Form.Select 
@@ -93,18 +95,18 @@ const JoinMail = (props) => {
             value={emailDefault}
             onChange={handleEmailDefault}
             >
-              <option>선택</option>
-              <option value="naver.com">naver</option>
-              <option value="gmail.com">google</option>
-              <option value="hanmail.net">daum</option>
-              <option value="kakao.com">kakao</option>
-              <option value="user-input">직접 입력</option>
+              <option>{DOMAINS.CHOOSE}</option>
+              <option value="naver.com">{DOMAINS.NAVER}</option>
+              <option value="gmail.com">{DOMAINS.GOOGLE}</option>
+              <option value="hanmail.net">{DOMAINS.DAUM}</option>
+              <option value="kakao.com">{DOMAINS.KAKAO}</option>
+              <option value="user-input">{DOMAINS.USER_INPUT}</option>
             </Form.Select>
 
             <Form.Control
               id='email-input'
               type="text"
-              placeholder='직접 입력'
+              placeholder={DOMAINS.USER_INPUT}
               value={emailInput}
               onChange={handleEmailInput}
               name='email-input'
@@ -115,17 +117,8 @@ const JoinMail = (props) => {
         
         <Button className='btn-login' onClick={() => {
             onClickJoinMail();
-            }}>이메일 인증</Button>
+            }}>{JOIN_MESSAGES.EMAIL_AUTH}</Button>
     </div>
-    <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-            <Modal.Title>인증 이메일 발송!</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-            <p>입력하신 이메일로 인증 메일이 발송되었습니다. <br/> 메일에서 인증 링크를 클릭해 주세요.</p>
-        </Modal.Body>
-    </Modal>
     </>
   )
 }

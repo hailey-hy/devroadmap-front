@@ -2,7 +2,8 @@ import instance from '../../api';
 import React, {useEffect, useState} from 'react'
 import './record.css'
 import Bubbles from './Bubbles';
-import { Pagination } from 'react-bootstrap';
+import Pagination from '../UI/paginations/CustomPagination';
+import { RECORD } from '../UI/Constants';
 
 
 const Record = () => {
@@ -39,26 +40,15 @@ const Record = () => {
     };
     const totalrecord = record.length;
 
-    let [active, setActive] = useState(1);
-    let items = [];
-    for (let number = 1; number <= Math.ceil(record.length / recordPerPage); number++) {
-    items.push(
-        <Pagination.Item key={number} active={number === active} onClick={() => {
-        setCurrentPage(number)
-        setActive(number)
-        }}>
-        {number}
-        </Pagination.Item>,
-    );
-    }   
+     
 
   return (
     <div id="record">
     <div className='container-white container'>
       <div id="container-records">
-        <h3 id="white-title">정원 기록</h3>
+        <h3 id="white-title">{RECORD.TITLE}</h3>
         <Bubbles record={currentRecord(record)} loading={loading} first={recordFirst}></Bubbles>
-        <Pagination>{items}</Pagination>
+        <Pagination record={record} recordPerPage={recordPerPage}></Pagination>
         </div>
     </div>
     </div>

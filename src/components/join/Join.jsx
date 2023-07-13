@@ -5,8 +5,11 @@ import instance from '../../api';
 import { useNavigate } from "react-router-dom";
 import Garden from '../garden/Garden';
 import './join.css'
+import { JOIN_MESSAGES,  USER_INPUT, JOIN_ALERT} from '../UI/Constants';
 import {BiInfoCircle} from 'react-icons/bi'
 import { useSelector } from 'react-redux';
+import { useModal } from '../../hooks/useModal';
+import { modals } from '../UI/modals/Modals';
 
 const Join = (props) => {
   const defaultEmail = window.localStorage.getItem("email");
@@ -54,11 +57,11 @@ const radiosSec = [
 ];
 
 //툴팁
-const renderTooltip = (props) => (
-  <Tooltip id="button-tooltip" {...props}>
-    하루동안 공부에 쓸 수 있는 <br/> 시간을 선택해 주세요.
-  </Tooltip>
-);
+// const renderTooltip = (props) => (
+//   <Tooltip id="button-tooltip" {...props}>
+//     하루동안 공부에 쓸 수 있는 <br/> 시간을 선택해 주세요.
+//   </Tooltip>
+// );
 
 //뒤로 가기 
   const navigate = useNavigate();
@@ -85,13 +88,13 @@ const renderTooltip = (props) => (
         "field" : radioSecValue
       }
     }).then(response => {
-      handleShow2();
+      handleOpenComplete();
     }).catch(err => {
       console.error(err);
     });
   } else {
-    handleShow();
-    
+    // handleOpenAlert();
+    handleOpenComplete();
   }
   }
 
@@ -170,21 +173,33 @@ const renderTooltip = (props) => (
     }
   }
 
-  // 경고창 관련
-  const [show, setShow] = useState(false);
+// 모달 관련 변수
+const { openModal, closeModal} = useModal();
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // 입력 유효성 검사 실패 모달
+  
+  const handleOpenAlert = () => {
+    openModal(modals.simple, {
+      title : JOIN_ALERT.FAIL_TITLE,
+      body : JOIN_ALERT.FAIL_BODY,
+      onClose : () => closeModal(modals.simple)
+    })
+  }
 
-  // 완료 모달창 관련
-
-  const [show2, setShow2] = useState(false);
-
-  const handleClose2 = () => setShow2(false);
-  const handleShow2 = () => setShow2(true);
-
+  // 회원가입 완료 모달창 관련
   const goLogin = () => navigate('/');
 
+  const handleOpenComplete = () => {
+    openModal(modals.confirm, {
+      title : JOIN_ALERT.DONE_TITLE,
+      body : JOIN_ALERT.DONE_BODY,
+      onClose : () => closeModal(modals.confirm),
+      onConfirm : () => {
+        closeModal(modals.confirm);
+        goLogin();
+      }
+    })
+  }
 
   return (
     <>
@@ -192,31 +207,31 @@ const renderTooltip = (props) => (
         <Garden login={true}></Garden>
     </div>
     <div id="join-second" className="container-login">
-        <h3 id='login-title'>회원가입 (2/2)</h3>
+        <h3 id='login-title'>{JOIN_MESSAGES.JOIN_2}</h3>
         <div className="chunck-container">
           <div>
             {/* 닉네임 */}
             <div className="detail-container">
               <div id="detail-pw" >
-                <h5 className='detail-title'>닉네임</h5>
+                <h5 className='detail-title'>{USER_INPUT.NICKNAME}</h5>
                 <Overlay target={target.current} show={showNickCheck} placement="top-end" id="tooltip-nickCheck">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                      사용 가능한 닉네임이에요.
+                      {USER_INPUT.NICK_OK}
                     </Tooltip>
                   )}
                 </Overlay>
                 <Overlay target={target.current} show={showNickCheck2} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                      다른 닉네임을 사용해 주세요.
+                      {USER_INPUT.NICK_FAIL}
                     </Tooltip>
                   )}
                 </Overlay>
                 <Overlay target={target.current} show={showNickCheck3} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                      닉네임은 2~8자리 한글, 영문 소문자, 숫자만 포함 가능해요.
+                      {USER_INPUT.NICK_RULE}
                     </Tooltip>
                   )}
                 </Overlay>
@@ -226,7 +241,7 @@ const renderTooltip = (props) => (
                 <Form.Control
                   className='join-input'
                   type="text"
-                  placeholder='2~8자리 한글, 영문 소문자'
+                  placeholder={USER_INPUT.NICK_PLACEHOLDER}
                   value={nickname}
                   onChange={handleNickname}
                 />
@@ -236,7 +251,7 @@ const renderTooltip = (props) => (
 
             </div>
             <div className="detail-container">
-                <h5 className='detail-title'>공부 분야</h5>
+                <h5 className='detail-title'>{USER_INPUT.TYPE}</h5>
                 <ButtonGroup id="type" className="mb-2">
                 {radiosSec.map((radioSec, idx) => (
                   <ToggleButton
@@ -258,12 +273,12 @@ const renderTooltip = (props) => (
         <div>
           {/* 이메일 */}
           <div className="detail-container" id='detail-email'>
-              <h5 className='detail-title'>이메일</h5>
+              <h5 className='detail-title'>{USER_INPUT.EMAIL}</h5>
                 <Form.Control
                   className='join-input-email'
                   id='email-input-fixed'
                   type="text"
-                  placeholder='이메일'
+                  placeholder={USER_INPUT.EMAIL}
                   value={defaultEmail}
                   disabled
                 />
@@ -271,14 +286,14 @@ const renderTooltip = (props) => (
             {/* 비밀번호 */}
             <div className="detail-container">
               <div id="detail-pw">
-                <h5 className='detail-title pw'>비밀번호</h5>
+                <h5 className='detail-title pw'>{USER_INPUT.PW}</h5>
               </div>
                 <div ref={targetPw}>
                   <Form.Control
                     className='join-input'
                     id='input-pw'
                     type="password"
-                    placeholder='비밀번호'
+                    placeholder={USER_INPUT.PW}
                     value={password}
                     onChange={handlePassword}
                   />
@@ -288,7 +303,7 @@ const renderTooltip = (props) => (
                     className='join-input'
                     id='input-pw'
                     type="password"
-                    placeholder='비밀번호 확인'
+                    placeholder={USER_INPUT.PW_CHECK}
                     value={passwordCheck}
                     onChange={handlePasswordCheck}
                   />
@@ -297,21 +312,21 @@ const renderTooltip = (props) => (
                 <Overlay target={targetPw.current} show={showPwCheck} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                  비밀번호 확인 완료!
+                  {USER_INPUT.PW_CHECK_OK}
                     </Tooltip>
                   )}
                 </Overlay>
                 <Overlay target={targetPw.current} show={showPwCheck2} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                  비밀번호가 일치하지 않아요.
+                  {USER_INPUT.PW_CHECK_FAIL}
                     </Tooltip>
                   )}
                 </Overlay>
                 <Overlay target={targetPw.current} show={showPwCheck3} placement="top-end">
                   {(props) => (
                     <Tooltip id="nick-alert" {...props}>
-                  4~10자리 비밀번호를 <br/> 사용해 주세요.
+                  {USER_INPUT.PW_RULE}
                     </Tooltip>
                   )}
                 </Overlay>
@@ -320,36 +335,8 @@ const renderTooltip = (props) => (
         </div>
       </div>
         
-        <Button className='btn-login' onClick={onClickJoin}>회원 가입</Button>
-        <h5 id='go-back' onClick={goBack}>뒤로 가기</h5>
-
-        {/* 경고창 */}
-        <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>회원가입 양식 미완성!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>완료되지 않은 항목이 있어요. <br/> 정상적인 회원가입을 위해 모든 항목을 완료해 주세요.</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            닫기
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      <Modal show={show2} onHide={handleClose2}>
-        <Modal.Header closeButton>
-          <Modal.Title>회원가입 완료!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>회원가입이 완료되었어요.</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => {
-            handleClose2();
-            goLogin();
-            }}>
-            닫기
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        <Button className='btn-login' onClick={onClickJoin}>{JOIN_MESSAGES.JOIN}</Button>
+        <h5 id='go-back' onClick={goBack}>{JOIN_MESSAGES.GO_BACK}</h5>
     </div>
     </>
   )
