@@ -1,116 +1,114 @@
 /* 로그인 */
 
-.container-login {
-  position: absolute;
-  width: 400px;
-  height: 380px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  background-color: var(--color-transparent);
-  color: var(--color-white);
+.container-login{
+    position: absolute;
+    width: 400px;
+    height: 380px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: var(--color-transparent);
+    color: var(--color-white);
 }
 
-#login-title {
-  padding: 2.5rem;
+#login-title{
+    padding: 2.5rem;
 }
 
-.login-id {
-  margin: 0.4rem;
-  width: 140px;
-  height: 38px;
-  border: none;
-  border-radius: 3px;
-  padding: 0.4rem;
-  margin-left: 0;
-  margin-bottom: 1rem;
-  pointer-events: all;
+.login-id{
+    margin: 0.4rem;
+    width: 140px;
+    height: 38px;
+    border: none;
+    border-radius: 3px;
+    padding: 0.4rem;
+    margin-left: 0;
+    margin-bottom: 1rem;
+    pointer-events: all;
 }
 
-#login-id-email {
-  height: 38px;
-  margin-top: 0.4rem;
-  pointer-events: all;
+#login-id-email{
+    height: 38px;
+    margin-top: 0.4rem;
+    pointer-events: all;
 }
 
-.login-lable-container {
-  /* width: 140px;
+.login-lable-container{
+    /* width: 140px;
     height: 38px; */
-  pointer-events: none;
+    pointer-events: none;
 }
 
-.login-input {
-  margin: 0.4rem;
-  width: 250px;
-  height: 38px;
-  border: none;
-  border-radius: 3px;
-  padding: 0.4rem;
-  margin-left: 4.7rem;
-  margin-bottom: 1rem;
-  z-index: 100;
+.login-input{
+    margin: 0.4rem;
+    width: 250px;
+    height: 38px;
+    border: none;
+    border-radius: 3px;
+    padding: 0.4rem;
+    margin-left: 4.7rem;
+    margin-bottom: 1rem;
+    z-index: 100;
 }
 
-#email-lable {
-  position: relative;
-  z-index: 10;
-  color: gray;
-  top: -3rem;
-  left: 3rem;
+#email-lable{
+    position: relative;
+    z-index: 10;
+    color: gray;
+    top: -3rem;
+    left: 3rem;
 }
 
-#login-pw {
-  z-index: 1000;
-  /* margin-top: 1rem; */
+#login-pw{
+    z-index: 1000;
+    /* margin-top: 1rem; */
 }
 
-#login-input-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  grid-gap: 0;
-  width: 250px;
-  margin-left: 4.7rem;
-  height: 3rem;
+#login-input-grid{
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-gap: 0;
+    width: 250px;
+    margin-left: 4.7rem;
+    height: 3rem;
 }
 
-#email-input {
-  margin-top: 0.4rem;
-  display: none;
+
+
+
+
+#email-input{
+    margin-top: 0.4rem;
+    display: none;
 }
 
-#login-result {
-  height: 20px;
-  align-items: center;
-  justify-items: center;
-  line-height: 3;
+#login-result{
+    height: 20px;
+    align-items: center;
+    justify-items: center;
+    line-height: 3;
 }
 
-.btn-login {
-  width: 200px;
-  height: 38px;
-  border-radius: 3.5px;
-  margin: 0.5rem;
-  text-align: center;
-  background-color: var();
+.btn-login{
+    width: 200px;
+    height: 38px;
+    border-radius: 3.5px;
+    margin: 0.5rem;
+    text-align: center;
+    background-color: var();
 }
 
-.login-back {
-  margin-top: 1rem;
-  font-size: 18px;
+#login-back{
+    margin-top: 1rem;
+    font-size: medium;
 }
 
-.login-back:hover {
-  /* margin-top: 1rem;
+#login-back:hover{
+    /* margin-top: 1rem;
     font-size: medium; */
-  color: #bbbbbb;
-  transition: var(--transition);
-  cursor: pointer;
+    color: #bbbbbb;
+    transition: var(--transition);
+    cursor: pointer;
 }
 
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  gap: 3rem;
-  justify-content: center;
-}
