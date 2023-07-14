@@ -302,9 +302,9 @@ const Garden = (props) => {
             alt=""
             onClick={onBird}
           />
-          <Badge bg="danger" className="bird-alert">
+          {/* <Badge bg="danger" className="bird-alert">
             {record.length}
-          </Badge>
+          </Badge> */}
           <span className="visually-hidden">unread messages</span>
         </div>
       </div>
