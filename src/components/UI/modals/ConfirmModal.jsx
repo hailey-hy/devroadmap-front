@@ -1,26 +1,23 @@
-import React from 'react'
-import { Modal, Button}  from 'react-bootstrap'
-import { BUTTON } from '../Constants';
+import React from "react";
+import { Modal, Button } from "react-bootstrap";
+import { BUTTON } from "../Constants";
 
-const ConfirmModal = ({ title, body, open, onClose, onConfirm }) => {
-
-    return (
+const ConfirmModal = ({ title, body, open, onClose, onConfirm, okMsg }) => {
+  return (
     <>
-        <Modal show={open} 
-        onHide={onConfirm}
-        >
+      <Modal show={open} onHide={onClose}>
         <Modal.Header closeButton>
-            <Modal.Title>{title}</Modal.Title>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{body}</Modal.Body>
         <Modal.Footer>
-            <Button variant="primary" onClick={onConfirm}>
-                {BUTTON.OK}
-            </Button>
+          <Button variant="primary" onClick={onConfirm}>
+            {okMsg}
+          </Button>
         </Modal.Footer>
-        </Modal>
+      </Modal>
     </>
-  )
-}
+  );
+};
 
-export default ConfirmModal
+export default ConfirmModal;
