@@ -219,7 +219,7 @@ const Garden = (props) => {
     // setRecord([]); //리액트 내에서 읽음을 확인 처리하기 위함
     openModal(modals.page, {
       title: "안읽은 메시지",
-      body: "테스트",
+      body: "안읽은 메시지가 없습니다.",
       // {
       //   pageComponent : <Memo record={currentRecord(record)} loading={loading}></Memo>,
       //   page : <Pagination>{items}</Pagination>,
