@@ -11,6 +11,8 @@ import instance from "../../api";
 import basicImg from "../../assets/basic-profile.png";
 import { profileCheck } from "../../hooks/profileCheck";
 import { NAV, NAV_ALERT } from "../UI/Constants";
+import { useModal } from "../../hooks/useModal";
+import { modals } from "../UI/modals/Modals";
 
 const Nav = (props) => {
   //내비게이션 바 내 유저 정보 불러오기 관련
@@ -151,6 +153,22 @@ const Nav = (props) => {
         setShowSecond(true);
         localStorage.removeItem("user");
       }
+    });
+  };
+
+  // 회원가입 유도 모달
+  const { openModal, closeModal } = useModal();
+  const handleJoinModalOpen = () => {
+    openModal(modals.confirm, {
+      title: "회원 가입 필요",
+      body: "회원 가입이 필요한 기능입니다.",
+      onClose: () => closeModal(modals.confirm),
+      onConfirm: () => {
+        join();
+        closeModal(modals.confirm);
+        toggleMenu();
+      },
+      okMsg: NAV.SIGNUP,
     });
   };
 
@@ -317,6 +335,46 @@ const Nav = (props) => {
               {NAV.SIGNUP}
             </Button>
           </div>
+          <h3
+            class="go-tab"
+            onClick={() => {
+              handleJoinModalOpen();
+            }}
+          >
+            {NAV.MAIN}
+          </h3>
+          <h3
+            class="go-tab"
+            onClick={() => {
+              handleJoinModalOpen();
+            }}
+          >
+            {NAV.RECORD}
+          </h3>
+          <h3
+            class="go-tab"
+            onClick={() => {
+              handleJoinModalOpen();
+            }}
+          >
+            {NAV.FRIEND}
+          </h3>
+          <h3
+            class="go-tab"
+            onClick={() => {
+              handleJoinModalOpen();
+            }}
+          >
+            {NAV.NOTE}
+          </h3>
+          <h3
+            class="go-tab"
+            onClick={() => {
+              handleJoinModalOpen();
+            }}
+          >
+            {NAV.EDIT}
+          </h3>
         </ul>
       </nav>
     );
