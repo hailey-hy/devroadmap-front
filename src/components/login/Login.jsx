@@ -98,6 +98,12 @@ const Login = (props) => {
     });
   };
 
+  // 체험해보기 이동
+  const tryService = () => {
+    window.localStorage.setItem("tester", "테스트 유저");
+    window.location.replace("/");
+  };
+
   return (
     <>
       <div id="login-garden">
@@ -158,9 +164,14 @@ const Login = (props) => {
         <Button className="btn-login" onClick={onClickLogin}>
           {LOGIN_MSSAGES.LOGIN}
         </Button>
-        <h5 id="login-back" onClick={goJoin}>
-          {LOGIN_MSSAGES.JOIN}
-        </h5>
+        <span className="flex-container">
+          <h5 className="login-back" onClick={goJoin}>
+            {LOGIN_MSSAGES.JOIN}
+          </h5>
+          <h5 className="login-back" onClick={tryService}>
+            {LOGIN_MSSAGES.TRY}
+          </h5>
+        </span>
       </div>
     </>
   );
