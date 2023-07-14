@@ -89,9 +89,15 @@ const Nav = (props) => {
 
   //로그아웃 함수
   const logout = () => {
-    toggleMenu();
-    localStorage.removeItem("user");
-    window.location.replace("/"); //강제 새로고침
+    localStorage.clear();
+    navigate("/signin");
+  };
+
+  // 회원가입 함수
+
+  const join = () => {
+    localStorage.clear();
+    navigate("/signup/mail");
   };
 
   //내비게이션 바 바로가기 관련
@@ -174,7 +180,7 @@ const Nav = (props) => {
               </h5>
             </div>
             <Button
-              id="logout"
+              className="nav-button"
               onClick={() => {
                 logout();
                 toggleMenu();
@@ -282,6 +288,35 @@ const Nav = (props) => {
               </Button>
             </Modal.Footer>
           </Modal>
+        </ul>
+      </nav>
+    );
+  } else if (localStorage.getItem("tester")) {
+    return (
+      <nav>
+        <ul className="header-wrapper">
+          <BsJustify
+            id="nav-icon"
+            className={isOpen ? "white" : "black"}
+            onClick={() => toggleMenu()}
+          />
+        </ul>
+        <ul id="nav-content" className={isOpen ? "show-menu" : "hide-menu"}>
+          <IoClose id="nav-cancel" onClick={() => toggleMenu()} />
+
+          {/* 테스터 정보 요약 창 */}
+          <div id="container-tester">
+            <h5 id="tester-nickname">{NAV.TRY}</h5>
+            <Button
+              className="nav-button"
+              onClick={() => {
+                join();
+                toggleMenu();
+              }}
+            >
+              {NAV.SIGNUP}
+            </Button>
+          </div>
         </ul>
       </nav>
     );

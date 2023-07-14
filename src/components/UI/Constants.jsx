@@ -72,6 +72,8 @@ const NAV = Object.freeze({
   NOTE: "방명록",
   EDIT: "회원 정보 수정",
   DELETE: "회원 탈퇴",
+  TRY: "더 많은 기능 사용하기",
+  SIGNUP: "회원 가입",
 });
 
 const NAV_ALERT = Object.freeze({
